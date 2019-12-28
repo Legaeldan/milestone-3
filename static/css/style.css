@@ -8,10 +8,14 @@ main {
   flex: 1 0 auto;
 }
 
+
 .btn-large {
-  width: 32%;
-  margin: 0.5%;
+/*  margin: 0.5%; */
   height: 130px;
   background-color: #eeeeee;
   color: #000000;
+}
+
+.recipes-main {
+  margin: 5% auto;
 }
