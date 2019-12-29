@@ -12,6 +12,10 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/discover')
+def discover():
+    return render_template('discover.html')
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(9100),
