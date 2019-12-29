@@ -9,11 +9,10 @@ main {
 }
 
 
-.btn-large {
-/*  margin: 0.5%; */
-  height: 130px;
-  background-color: #eeeeee;
-  color: #000000;
+.pagination {
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .recipes-main {
@@ -22,4 +21,5 @@ main {
 
 .drink-image {  
 width: 100%;
+padding: 1rem 0;
 }
