@@ -5,7 +5,8 @@ from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
-
+app.config["MONGO_DBNAME"] = 'drinks_manager'
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
 @app.route('/')
 def home():
