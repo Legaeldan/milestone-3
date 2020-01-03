@@ -5,8 +5,7 @@
 <div class="recipes-main">
     <div class="row">
         {% for drink in drinks %}
-
-        <a class="col s12 m4" href="#">
+        <a class="col s12 m4" href="{{url_for('view_drink', drink_id=drink._id)}}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
         </a>
         {% endfor %}
