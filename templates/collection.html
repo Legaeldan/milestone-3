@@ -2,4 +2,18 @@
 
 {% block content %}
 
+<div class="recipes-main">
+    <div class="row">
+        {% for drink in drinks %}
+
+        <a class="col s12 m4" href="#">
+            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        </a>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
 {% endblock %}
