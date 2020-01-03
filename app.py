@@ -21,6 +21,10 @@ def discover():
 def ingredients():
     return render_template('ingredients.html')
 
+@app.route('/collection')
+def collection():
+    return render_template('collection.html')
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(9100),
