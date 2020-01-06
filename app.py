@@ -22,7 +22,7 @@ def discover():
 
 @app.route('/ingredients')
 def ingredients():
-    return render_template('ingredients.html')
+    return render_template('ingredients.html', ingredients=mongo.db.ingedients.find())
 
 @app.route('/collection')
 def collection():
