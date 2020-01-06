@@ -11,12 +11,20 @@
     <div class="col s12 m6 ingredients">
         <h2>Ingredients</h2>
         <ul class="discover-drink">
-            {% for key in drink if key.startswith('ingredient') %}
+            {% for ingredient in drink if ingredient.startswith('ingredient')%}
             <li>
-                {{ drink[key] }}
+                {{ drink[ingredient] }}
             </li>
             {% endfor %}
         </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+    <h2>Method</h2>
+    <div class="discover-drink">
+        {{ drink.instructions }}
+    </div c>
     </div>
 </div>
 <div class="row">
