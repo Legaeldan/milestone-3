@@ -11,21 +11,11 @@
     <div class="col s12 m6 ingredients">
         <h2>Ingredients</h2>
         <ul class="discover-drink">
+            {% for key in drink if key.startswith('ingredient') %}
             <li>
-                2 oz Blended Whiskey
+                {{ drink[key] }}
             </li>
-            <li>
-                Juice 1/2 Lemon
-            </li>
-            <li>
-                1/2 tsp Powdered Sugar
-            </li>
-            <li>
-                1 Cherry
-            </li>
-            <li>
-                1/2 Slice Lemon
-            </li>
+            {% endfor %}
         </ul>
     </div>
 </div>
