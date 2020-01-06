@@ -36,7 +36,7 @@ def view_drink(drink_id):
 @app.route('/edit_drink/<drink_id>')
 def edit_drink(drink_id):
     the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('edit.html', drink=the_drink)
+    return render_template('editdrink.html', drink=the_drink)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
