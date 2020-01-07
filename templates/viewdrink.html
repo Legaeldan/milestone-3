@@ -12,9 +12,9 @@
         <h2>Ingredients</h2>
         <ul class="discover-drink">
             {% for ingredient in ingredients %}
-            {% if ingredient._id in drink.ingredientList %}
+            {% if ingredient.ingredientName in drink.ingredientList %}
             <li>
-                {{ ingredient._id }}
+                {{ ingredient.ingredientName }}
             </li>       
             {% endif %}
             {% endfor %}
