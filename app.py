@@ -31,6 +31,12 @@ def ingredients():
 def add_ingredient():
     return render_template('addingredient.html')
 
+@app.route('/insert_ingredient', methods=['POST'])
+def insert_ingredient():
+    ingredients =  mongo.db.ingedients
+    ingredients.insert_one(request.form.to_dict())
+    return redirect(url_for('ingredients'))
+
 @app.route('/collection')
 def collection():
     return render_template('collection.html', drinks=mongo.db.drinks.find())
