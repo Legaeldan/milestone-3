@@ -1,7 +1,9 @@
 import os
+import random
 from flask import Flask, render_template, redirect, request, url_for, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+
 
 
 app = Flask(__name__)
@@ -18,7 +20,8 @@ def home():
 
 @app.route('/discover')
 def discover():
-    return render_template('discover.html')
+    rand = mongo.db.drinks.count()
+    return render_template('viewdrink.html', drink=mongo.db.drinks.find()[random.randrange(rand)], ingredients=mongo.db.ingedients.find())
 
 @app.route('/ingredients')
 def ingredients():
@@ -37,6 +40,11 @@ def view_drink(drink_id):
 def edit_drink(drink_id):
     the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('editdrink.html', drink=the_drink)
+
+@app.route('/search/<ingredient_id>')
+def search_ingredient(ingredient_id):
+    the_ingredient =  mongo.db.ingedients.find_one({"_id": ObjectId(ingredient_id)})
+    return render_template('search_ingredient.html', ingredient=the_ingredient, drinks=mongo.db.drinks.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
