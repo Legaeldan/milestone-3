@@ -27,6 +27,10 @@ def discover():
 def ingredients():
     return render_template('ingredients.html', ingredients=mongo.db.ingedients.find())
 
+@app.route('/add_ingredient')
+def add_ingredient():
+    return render_template('addingredient.html')
+
 @app.route('/collection')
 def collection():
     return render_template('collection.html', drinks=mongo.db.drinks.find())
