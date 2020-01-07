@@ -11,12 +11,16 @@
     <div class="col s12 m6 ingredients">
         <h2>Ingredients</h2>
         <ul class="discover-drink">
-            {% for ingredient in drink if ingredient.startswith('ingredient')%}
+            {% for ingredient in ingredients %}
+            {% if ingredient._id in drink.ingredientList %}
             <li>
-                {{ drink[ingredient] }}
-            </li>
+                {{ ingredient._id }}
+            </li>       
+            {% endif %}
             {% endfor %}
         </ul>
+
+ 
     </div>
 </div>
 <div class="row">
