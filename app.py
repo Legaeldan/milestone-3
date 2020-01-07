@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'drinks_manager'
-app.config["MONGO_URI"] = 'mongodb+srv://testuser:testuserpassw0rd@myfirstcluster-ludvv.mongodb.net/drinks_manager?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = 'mongodb+srv://root:passw0rd@myfirstcluster-ludvv.mongodb.net/drinks_manager?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
 
@@ -45,6 +45,16 @@ def collection():
 def view_drink(drink_id):
     the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('viewdrink.html', drink=the_drink, ingredients=mongo.db.ingedients.find())
+
+@app.route('/add_drink')
+def add_drink():
+    return render_template('adddrink.html', ingredients=mongo.db.ingedients.find())
+
+@app.route('/insert_drink', methods=['POST'])
+def insert_drink():
+    drinks =  mongo.db.drinks
+    drinks.insert_one(request.form.to_dict())
+    return redirect(url_for('collection'))
 
 @app.route('/edit_drink/<drink_id>')
 def edit_drink(drink_id):
