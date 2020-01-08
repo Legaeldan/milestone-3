@@ -41,16 +41,9 @@ def insert_ingredient():
 def collection():
     return render_template('collection.html', drinks=mongo.db.drinks.find())
 
-@app.route('/view_drink/<drink_id>', methods=['GET', 'POST'])
+@app.route('/view_drink/<drink_id>')
 def view_drink(drink_id):
-    drink =  mongo.db.drinks
     the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    drink.update_one( {'_id': ObjectId(drink_id)},
-    { '$set':
-        {
-        'ingredientList':request.form.getlist('ingredientName')
-        }        
-    })
     return render_template('viewdrink.html', drink=the_drink, ingredients=mongo.db.ingedients.find())
 
 @app.route('/add_drink')
@@ -64,9 +57,19 @@ def insert_drink():
 
 @app.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
 def drink_ingredients(drink_id):
-    drinkId = drink_id
     drink =  mongo.db.drinks
-    return render_template('drinkingredients.html', the_drink=drinkId, ingredients=mongo.db.ingedients.find())
+    return render_template('drinkingredients.html', drink_id=drink_id, ingredients=mongo.db.ingedients.find())
+
+@app.route('/drink_ingredients/insert/<drink_id>', methods=['POST'])
+def insert_ingredients(drink_id):
+    drink =  mongo.db.drinks
+    drink.update_one( {'_id': ObjectId(drink_id)},
+    { '$set':
+        {
+        'ingredientList':request.form.getlist('ingredientName')
+        }        
+    })
+    return redirect(url_for('view_drink', drink_id=drink_id))
 
 @app.route('/edit_drink/<drink_id>')
 def edit_drink(drink_id):
