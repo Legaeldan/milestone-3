@@ -58,7 +58,8 @@ def insert_drink():
 @app.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
 def drink_ingredients(drink_id):
     drink =  mongo.db.drinks
-    return render_template('drinkingredients.html', drink_id=drink_id, ingredients=mongo.db.ingedients.find())
+    the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
+    return render_template('drinkingredients.html', drink=the_drink, drink_id=drink_id, ingredients=mongo.db.ingedients.find())
 
 @app.route('/drink_ingredients/insert/<drink_id>', methods=['POST'])
 def insert_ingredients(drink_id):
