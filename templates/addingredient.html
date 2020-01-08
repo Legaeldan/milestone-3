@@ -5,7 +5,7 @@
 <h2>Add Ingredient</h2>
 
 <div class="row">
-    <form class="col s12" action="{{ url_for('insert_ingredient') }}" method="POST">
+    <form class="col s12" action="{{ url_for('insert_ingredient', drink_id=drink_id) }}" method="POST">
       <div class="row">
         <div class="input-field col s12">
           <input id="ingredientName" name="ingredientName" type="text" class="validate" required>
