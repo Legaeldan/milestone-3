@@ -53,8 +53,18 @@ def add_drink():
 @app.route('/insert_drink', methods=['POST'])
 def insert_drink():
     drinks =  mongo.db.drinks
-    drinks.insert_one(request.form.to_dict())
-    return redirect(url_for('collection'))
+    return redirect(url_for('drink_ingredients', drink_id=drinks.insert_one(request.form.to_dict()).inserted_id))
+
+@app.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
+def drink_ingredients(drink_id):
+    the_drink =  mongo.db.drinks
+    the_drink.update_one( {'_id': ObjectId(drink_id)},
+    { '$set':
+        {
+        'ingredientList':request.form.getlist('ingredientName')
+        }        
+    })
+    return render_template('drinkingredients.html', ingredients=mongo.db.ingedients.find())
 
 @app.route('/edit_drink/<drink_id>')
 def edit_drink(drink_id):
