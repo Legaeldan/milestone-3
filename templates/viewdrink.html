@@ -8,6 +8,7 @@
         <h2>{{drink.drinkName}}</h2>
     <img class="discover-drink" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
 </div>
+<div class="row">
     <div class="col s12 m6 ingredients">
         <h2>Ingredients</h2>
         <ul class="discover-drink">
@@ -23,14 +24,7 @@
  
     </div>
 </div>
-<div class="row">
-    <div class="col s12 m6 offset-m3">
-    <h2>Method</h2>
-    <div class="discover-drink">
-        {{ drink.instructions }}
-    </div c>
-    </div>
-</div>
+
 <div class="row">
     <div class="col s6 center-align">
 <a class="waves-effect waves-light btn" href="{{url_for('edit_drink', drink_id=drink._id)}}">EDIT DRINK</a>
@@ -39,6 +33,6 @@
 <a class="waves-effect waves-light btn" href="{{url_for('drink_ingredients', drink_id=drink._id)}}">EDIT INGREDIENTS</a>
 </div>
 </div>  
-
+</div>
 
 {% endblock %}
