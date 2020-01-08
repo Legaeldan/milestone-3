@@ -99,5 +99,5 @@ def search_ingredient(ingredient_id):
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
-            port=int(9100),
+            port=os.environ.get('PORT'),
             debug=True)
