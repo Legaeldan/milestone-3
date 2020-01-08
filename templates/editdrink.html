@@ -9,13 +9,13 @@
     <form class="col s12" action="{{ url_for('update_drink', drink_id=drink_id) }}" method="POST">
       <div class="row">
         <div class="input-field col s12">
-          <input id="drinkName" name="drinkName" type="text" placeholder="{{ drink.drinkName }}" class="validate" required>
+          <input id="drinkName" name="drinkName" type="text" placeholder="{{ drink.drinkName }}" value="{{ drink.drinkName }}" class="validate" required>
           <label for="drinkName">Drink Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input type="url" id="drinkImage" name="drinkImage" type="text" placeholder="{{ drink.drinkImage }}" class="validate" required>
+          <input type="url" id="drinkImage" name="drinkImage" type="text" placeholder="{{ drink.drinkImage }}" value="{{ drink.drinkImage }}" class="validate" required>
           <label for="drinkImage">Drink image link</label>
         </div>
       </div>

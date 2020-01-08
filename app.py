@@ -87,7 +87,7 @@ def update_drink(drink_id):
         'drinkName':request.form.get('drinkName')
         }    
     },
-    upsert=False,)
+    upsert=False)
     return redirect(url_for('view_drink', drink_id=drink_id))
 
 @app.route('/search/<ingredient_id>')
