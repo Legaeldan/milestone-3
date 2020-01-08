@@ -5,7 +5,7 @@
 <h2>Add Ingredient</h2>
 <h5>Add all ingredients to your drink</h5>
 
-<form class="col s12" action="{{url_for('view_drink', drink_id=the_drink)}}" method="POST">
+<form class="col s12" action="{{ url_for('insert_ingredients', drink_id=drink_id) }}" method="POST">
 
 
 <div class="row">
