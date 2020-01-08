@@ -40,7 +40,12 @@
 </div>
 <div class="row">
     <div class="col s12 center-align">
-  <button class="btn waves-effect waves-light" type="submit">Add drink
+        <h5>Can't find your ingredient? <a href="{{ url_for('add_ingredient', drink_id=drink._id) }}">Click Here!</a></h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 center-align">
+  <button class="btn waves-effect waves-light" type="submit">Save Ingredients
     <i class="material-icons right">send</i>
   </button>
   </div>
