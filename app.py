@@ -75,7 +75,20 @@ def insert_ingredients(drink_id):
 @app.route('/edit_drink/<drink_id>')
 def edit_drink(drink_id):
     the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('editdrink.html', drink=the_drink)
+    return render_template('editdrink.html', drink=the_drink, drink_id=drink_id)
+
+@app.route('/edit_drink/update/<drink_id>', methods=['POST'])
+def update_drink(drink_id):
+    drink =  mongo.db.drinks
+    drink.update_one( {'_id': ObjectId(drink_id)},
+    { '$set':
+        {
+        'drinkImage':request.form.get('drinkImage'),
+        'drinkName':request.form.get('drinkName')
+        }    
+    },
+    upsert=False,)
+    return redirect(url_for('view_drink', drink_id=drink_id))
 
 @app.route('/search/<ingredient_id>')
 def search_ingredient(ingredient_id):
