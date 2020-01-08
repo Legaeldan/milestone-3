@@ -27,15 +27,17 @@ def discover():
 def ingredients():
     return render_template('ingredients.html', ingredients=mongo.db.ingedients.find())
 
-@app.route('/add_ingredient')
-def add_ingredient():
-    return render_template('addingredient.html')
+@app.route('/add_ingredient/<drink_id>')
+def add_ingredient(drink_id):
+    drink_id
+    return render_template('addingredient.html', drink_id=drink_id)
 
 @app.route('/insert_ingredient', methods=['GET','POST'])
-def insert_ingredient():
+def insert_ingredient(drink_id):
     ingredients =  mongo.db.ingedients
+    drink_id
     ingredients.insert_one(request.form.to_dict())
-    return redirect(url_for('ingredients'))
+    return redirect(url_for('drink_ingredients', drink_id=drink_id))
 
 @app.route('/collection')
 def collection():
@@ -68,7 +70,7 @@ def insert_ingredients(drink_id):
     { '$set':
         {
         'ingredientList':request.form.getlist('ingredientName')
-        }        
+        }       
     })
     return redirect(url_for('view_drink', drink_id=drink_id))
 
