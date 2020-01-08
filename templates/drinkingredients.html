@@ -2,13 +2,33 @@
 
 {% block content %}
 
+<h2>Add Ingredient</h2>
+<h5>Add all ingredients to your drink</h5>
+
+<form class="col s12" action="{{ url_for('insert_drink') }}" method="POST"></form>
+
+
+<div class="row">
+
 
 {% for ingredient in ingredients %}
 
 
+<div class="col s12 m2">
+    <p>
+    <label>
+      <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}"/>
+      <span>{{ ingredient.ingredientName }}</span>
+    </label>
+    </p>
+</div>
 
 
+  {% endfor %}
 
-{% endfor %}
+
+</div>
+</form>
+
 
 {% endblock %}
