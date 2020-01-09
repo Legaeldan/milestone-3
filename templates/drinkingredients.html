@@ -11,7 +11,7 @@
 <div class="row">
 
 
-{% for ingredient in ingredients %}
+{% for ingredient in ingredients|sort(attribute='ingredientName') %}
 {% if ingredient.ingredientName in drink.ingredientList %}
 
 <div class="col s12 m2">
