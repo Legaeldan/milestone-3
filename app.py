@@ -49,6 +49,11 @@ def view_drink(drink_id):
     the_drink =  mongo.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('viewdrink.html', drink=the_drink, ingredients=mongo.db.ingedients.find())
 
+@app.route('/delete_drink/<drink_id>')
+def delete_drink(drink_id):
+    the_drink = mongo.db.drinks.delete_one({"_id": ObjectId(drink_id)})
+    return redirect(url_for('collection'))
+
 @app.route('/add_drink')
 def add_drink():
     return render_template('adddrink.html', ingredients=mongo.db.ingedients.find())
