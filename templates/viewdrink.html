@@ -32,7 +32,25 @@
 <div class="col s6 center-align">
 <a class="waves-effect waves-light btn" href="{{url_for('drink_ingredients', drink_id=drink._id)}}">EDIT INGREDIENTS</a>
 </div>
+<div class="col s12 center-align">
+    <a class="waves-effect waves-light btn delete-button modal-trigger" href="#modal1">DELETE DRINK</a>
+    </div>
 </div>  
 </div>
+
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Delete Drink?</h4>
+      <p>Are you sure you want to delete this drink?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-light btn-flat delete-button "><strong>Yes</strong></a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../static/js/viewDrink.js"></script>
 
 {% endblock %}

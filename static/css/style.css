@@ -22,7 +22,19 @@ main {
 .drink-image {  
 width: 100%;
 padding: 1rem 0;
-height: 382px;
+}
+
+.delete-button {
+  background-color: #f73038;
+  color: #ffffff;
+}
+
+.delete-button:hover {
+  background-color: #fb5157;
+}
+
+.delete-button:focus {
+  background-color: #da262d;
 }
 
 .discover-container {
