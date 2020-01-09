@@ -28,6 +28,11 @@ def discover():
 def ingredients():
     return render_template('ingredients.html', ingredients=mongo.db.ingedients.find())
 
+@app.route('/search', methods=['POST'])
+def search_ingredient():
+    ingredients = request.form.to_dict()
+    return render_template('search_ingredient.html', ingredient=ingredients, drinks=mongo.db.drinks.find())
+
 @app.route('/add_ingredient/<drink_id>')
 def add_ingredient(drink_id):
     the_drink = drink_id
@@ -97,11 +102,6 @@ def update_drink(drink_id):
     },
     upsert=False)
     return redirect(url_for('view_drink', drink_id=drink_id))
-
-@app.route('/search/<ingredient_id>')
-def search_ingredient(ingredient_id):
-    the_ingredient =  mongo.db.ingedients.find_one({"_id": ObjectId(ingredient_id)})
-    return render_template('search_ingredient.html', ingredient=the_ingredient, drinks=mongo.db.drinks.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
