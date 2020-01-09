@@ -30,10 +30,10 @@ def ingredients():
 
 @app.route('/add_ingredient/<drink_id>')
 def add_ingredient(drink_id):
-    drink_id
-    return render_template('addingredient.html', drink_id=drink_id)
+    the_drink = drink_id
+    return render_template('addingredient.html', drink_id=the_drink)
 
-@app.route('/insert_ingredient', methods=['GET','POST'])
+@app.route('/insert_ingredient/<drink_id>', methods=['GET','POST'])
 def insert_ingredient(drink_id):
     ingredients =  mongo.db.ingedients
     drink_id
