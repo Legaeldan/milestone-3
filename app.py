@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'drinks_manager'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
+app.config["MONGO_URI"] = 'mongodb+srv://root:passw0rd@myfirstcluster-ludvv.mongodb.net/drinks_manager?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
 
@@ -21,7 +21,8 @@ def home():
 @app.route('/discover')
 def discover():
     rand = mongo.db.drinks.count()
-    return render_template('viewdrink.html', drink=mongo.db.drinks.find()[random.randrange(rand)], ingredients=mongo.db.ingedients.find())
+    the_drink = mongo.db.drinks.find()[random.randrange(rand)]
+    return render_template('viewdrink.html', drink=the_drink, ingredients=mongo.db.ingedients.find())
 
 @app.route('/ingredients')
 def ingredients():
@@ -99,5 +100,5 @@ def search_ingredient(ingredient_id):
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
-            port=os.environ.get('PORT'),
+            port=int(9100),
             debug=True)
