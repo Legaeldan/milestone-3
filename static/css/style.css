@@ -8,11 +8,8 @@ main {
   flex: 1 0 auto;
 }
 
-
-.pagination {
-  display: flex;
-  align-content: center;
-  justify-content: center;
+.page-footer {
+  padding-top: 0px;
 }
 
 .recipes-main {
