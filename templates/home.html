@@ -4,12 +4,13 @@
 
 <div class="recipes-main">
     <div class="row">
-        {% for n in range(6) %}
         {% for drink in drinks %}
+        {% if loop.index <= 6 %}
         <a class="col s12 m4" href="{{url_for('view_drink', drink_id=drink._id)}}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
         </a>
-        {% endfor %}
+
+        {% endif %}
         {% endfor %}
     </div>
 </div>
