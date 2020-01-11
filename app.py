@@ -22,12 +22,14 @@ def home():
     """
     return render_template('home.html', drinks=MONGO.db.drinks.find())
 
-# Page with random document generation.
 @APP.route('/discover')
 def discover():
-    # Count all document in drinks collection.
+    """
+    Count all document in drinks collection.
+    return random document from drinks collection based on location of randomly generated number.
+    Page with random document generation.
+    """
     rand = MONGO.db.drinks.count()
-    # return random document from drinks collection based on location of randomly generated number.
     the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
     return render_template('viewdrink.html', drink=the_drink, ingredients=MONGO.db.ingedients.find())
 
@@ -36,16 +38,20 @@ def discover():
 def ingredients():
     return render_template('ingredients.html', ingredients=MONGO.db.ingedients.find())
 
-# Page to search for all documents containing an ingredient.
 @APP.route('/search', methods=['POST'])
 def search_ingredient():
-    # Convert ingredient from ingredient page form into dictionary.
+    """
+    Page to search for all documents containing an ingredient.
+    Convert ingredient from ingredient page form into dictionary.
+    """
     ingredients = request.form.to_dict()
     return render_template('search_ingredient.html', ingredient=ingredients, drinks=MONGO.db.drinks.find())
 
-# Display all documents in collection in alphabetical order.
 @APP.route('/collection')
 def collection():
+    """
+    Display all documents in collection in alphabetical order.
+    """
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
 
 @APP.route('/add_ingredient')
@@ -87,9 +93,11 @@ def view_drink(drink_id):
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('viewdrink.html', drink=the_drink)
 
-# Deleted drink from collection once confirmed on page.
 @APP.route('/delete_drink/<drink_id>')
 def delete_drink(drink_id):
+    """
+    Deleted drink from collection once confirmed on page.
+    """
     MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
     return redirect(url_for('collection'))
 
@@ -133,15 +141,19 @@ def insert_drink():
     #                  })
     #return redirect(url_for('view_drink', drink_id=drink_id))
 
-# Find drink details, and generate on page for editing purposes.
 @APP.route('/edit_drink/<drink_id>')
 def edit_drink(drink_id):
+    """
+    Find drink details, and generate on page for editing purposes.
+    """
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('editdrink.html', drink=the_drink, drink_id=drink_id)
 
-# Update drink passthrough page to push to DB.
 @APP.route('/edit_drink/update/<drink_id>', methods=['POST'])
 def update_drink(drink_id):
+    """
+    Update drink passthrough page to push to DB.
+    """
     drink = MONGO.db.drinks
     # Update only set object in document, not all
     drink.update_one({'_id': ObjectId(drink_id)},
