@@ -60,11 +60,13 @@ def add_ingredient():
 @APP.route('/insert_ingredient', methods=['POST'])
 def insert_ingredient():
     form = request.form.to_dict()
-    mongo_count = MONGO.db.ingredients.find({'ingredientName': form["ingredientName"]}).count()
+    mongo_count = MONGO.db.ingredients.count_documents({'ingredientName': form["ingredientName"]})
     if mongo_count > 0:
         print(mongo_count)
+        print(form)
     else:
         print(mongo_count)
+        print(form)
         MONGO.db.ingredients.insert_one(form)
     return redirect(url_for('add_drink'))
 
