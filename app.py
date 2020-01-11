@@ -49,7 +49,7 @@ def collection():
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
 
 # Route when ingredients don't already exist.
-@APP.route('/add_ingredient/<drink_id>')
+@APP.route('/add_ingredient')
 def add_ingredient(drink_id):
     the_drink = drink_id
     return render_template('addingredient.html', drink_id=the_drink)
