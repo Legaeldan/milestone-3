@@ -62,6 +62,13 @@ h2 {
   max-height: 350px;
 }
 
+.drink-ingredients {
+  max-height: 15rem;
+  border: 1px solid #cccccc;
+  border-radius: 16px;
+  overflow-x: hidden;
+}
+
 @media(min-width:768px) {
 .btn {
   width: 280px;

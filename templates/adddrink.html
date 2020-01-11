@@ -19,7 +19,7 @@
         </div>
       </div>
 
-    <div class="row">
+    <div class="row drink-ingredients">
 
       {% for ingredient in ingredients|sort(attribute='ingredientName') %}
       <div class="col s12 m2">
@@ -31,11 +31,13 @@
           </p>
       </div>
       {% endfor %}
+    </div>
       <div class="row">
         <div class="col s12 center-align">
             <h5>Can't find your ingredient? <a href="{{ url_for('add_ingredient') }}">Click Here!</a></h5>
         </div>
     </div>
+  
 
       <div class="row">
         <div class="col s12 center-align">
