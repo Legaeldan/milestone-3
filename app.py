@@ -86,19 +86,13 @@ def insert_drink():
     drinks = MONGO.db.drinks 
     form = request.form.to_dict()
     today = datetime.datetime.now()
-    bob = {
+    finalDrink = {
         'drinkName': form["drinkName"],
         'drinkImage': form["drinkImage"],
-        'drinkList': request.form.getlist("ingredientName"),
+        'ingredientList': request.form.getlist("ingredientName"),
         'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
     }
-    print(bob['modifiedDate'])
-    print(bob)
-    return render_template('home.html')
-    
-    # Inserted_id used to return _id for newly created document, and pass to next page.
-    #return redirect(url_for('drink_ingredients', drink_id=drinks.insert_one(bob).inserted_id))
-    #return redirect(url_for('drink_ingredients', drink_id=drinks.insert_one(request.form.to_dict()).inserted_id))
+    return redirect(url_for('view_drink', drink_id=drinks.insert_one(finalDrink).inserted_id))
 
 
 #@APP.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
@@ -110,16 +104,16 @@ def insert_drink():
 
 # Passthrough page to insert ingredients array into document created previously, or to edit current drink.
 # Insert split from initial drink creation to facilitate the creation of an array in MongoDB.
-@APP.route('/drink_ingredients/insert/<drink_id>', methods=['POST'])
-def insert_ingredients(drink_id):
-    drink = MONGO.db.drinks
-    drink.update_one({'_id': ObjectId(drink_id)},
-                     {'$set':
-                      {
-                          'ingredientList': request.form.getlist('ingredientName')
-                      }
-                      })
-    return redirect(url_for('view_drink', drink_id=drink_id))
+#@APP.route('/drink_ingredients/insert/<drink_id>', methods=['POST'])
+#def insert_ingredients(drink_id):
+    #drink = MONGO.db.drinks
+    #drink.update_one({'_id': ObjectId(drink_id)},
+    #                 {'$set':
+    #                  {
+    #                      'ingredientList': request.form.getlist('ingredientName')
+    #                  }
+    #                  })
+    #return redirect(url_for('view_drink', drink_id=drink_id))
 
 # Find drink details, and generate on page for editing purposes.
 @APP.route('/edit_drink/<drink_id>')
