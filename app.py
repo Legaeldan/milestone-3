@@ -1,7 +1,7 @@
 import os
 import random
 import time
-from datetime import date
+import datetime
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -85,14 +85,15 @@ def add_drink():
 def insert_drink():
     drinks = MONGO.db.drinks 
     form = request.form.to_dict()
+    today = datetime.datetime.now()
     bob = {
         'drinkName': form["drinkName"],
         'drinkImage': form["drinkImage"],
         'drinkList': request.form.getlist("ingredientName"),
-        'drinkModified': date.today()
+        'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
     }
+    print(bob['modifiedDate'])
     print(bob)
-    print(date.today())
     return render_template('home.html')
     
     # Inserted_id used to return _id for newly created document, and pass to next page.
@@ -100,12 +101,12 @@ def insert_drink():
     #return redirect(url_for('drink_ingredients', drink_id=drinks.insert_one(request.form.to_dict()).inserted_id))
 
 
-@APP.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
-def drink_ingredients(drink_id):
-    drink = MONGO.db.drinks
+#@APP.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
+#def drink_ingredients(drink_id):
+    #drink = MONGO.db.drinks
     # drink_id pulled from previous to add ingredients to newly created object.
-    the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('drinkingredients.html', drink=the_drink, drink_id=drink_id, ingredients=MONGO.db.ingedients.find())
+    #the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
+    #return render_template('drinkingredients.html', drink=the_drink, drink_id=drink_id, ingredients=MONGO.db.ingedients.find())
 
 # Passthrough page to insert ingredients array into document created previously, or to edit current drink.
 # Insert split from initial drink creation to facilitate the creation of an array in MongoDB.
