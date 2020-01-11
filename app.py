@@ -1,12 +1,14 @@
 import os
 import random
-from datetime import datetime
+import time
+from datetime import date
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 APP = Flask(__name__)
 
+APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
 APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
 APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
@@ -86,9 +88,11 @@ def insert_drink():
     bob = {
         'drinkName': form["drinkName"],
         'drinkImage': form["drinkImage"],
-        'drinkModified': datetime.timestamp(datetime.now())
+        'drinkList': request.form.getlist("ingredientName"),
+        'drinkModified': date.today()
     }
     print(bob)
+    print(date.today())
     return render_template('home.html')
     
     # Inserted_id used to return _id for newly created document, and pass to next page.
