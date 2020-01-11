@@ -48,20 +48,35 @@ def search_ingredient():
 def collection():
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
 
-# Route when ingredients don't already exist.
 @APP.route('/add_ingredient')
-def add_ingredient(drink_id):
-    the_drink = drink_id
-    return render_template('addingredient.html', drink_id=the_drink)
+def add_ingredient():
+    return render_template('addingredient.html')
+
+@APP.route('/insert_ingredient', methods=['POST'])
+def insert_ingredient():
+    form = request.form.to_dict()
+    mongo_count = MONGO.db.ingredients.find({'ingredientName': form["ingredientName"]}).count()
+    if mongo_count > 0:
+        print(mongo_count)
+    else:
+        print(mongo_count)
+        MONGO.db.ingredients.insert_one(form)
+    return redirect(url_for('add_drink'))
+
+# Route when ingredients don't already exist.
+#@APP.route('/add_ingredient/<drink_id>')
+#def add_ingredient(drink_id):
+    #the_drink = drink_id
+    #return render_template('addingredient.html', drink_id=the_drink)
 
 # Passthrough page to insert new ingredient into DB.
-@APP.route('/insert_ingredient/<drink_id>', methods=['GET', 'POST'])
-def insert_ingredient(drink_id):
-    ingredients = MONGO.db.ingedients
+#@APP.route('/insert_ingredient/<drink_id>', methods=['GET', 'POST'])
+#def insert_ingredient(drink_id):
+    #ingredients = MONGO.db.ingedients
     # drink_id defined to retain and pass to return back to drink being edited.
-    drink_id
-    ingredients.insert_one(request.form.to_dict())
-    return redirect(url_for('drink_ingredients', drink_id=drink_id))
+    #drink_id
+    #ingredients.insert_one(request.form.to_dict())
+    #return redirect(url_for('drink_ingredients', drink_id=drink_id))
 
 # View individual drink details.
 @APP.route('/view_drink/<drink_id>')
@@ -83,7 +98,7 @@ def add_drink():
 # Passthrough to push drink to DB.
 @APP.route('/insert_drink', methods=['POST'])
 def insert_drink():
-    drinks = MONGO.db.drinks 
+    drinks = MONGO.db.drinks
     form = request.form.to_dict()
     today = datetime.datetime.now()
     finalDrink = {
