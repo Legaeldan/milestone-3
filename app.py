@@ -1,6 +1,5 @@
 import os
 import random
-import time
 import datetime
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
@@ -44,8 +43,8 @@ def search_ingredient():
     Page to search for all documents containing an ingredient.
     Convert ingredient from ingredient page form into dictionary.
     """
-    ingredients = request.form.to_dict()
-    return render_template('search_ingredient.html', ingredient=ingredients, drinks=MONGO.db.drinks.find())
+    ingredient_search = request.form.to_dict()
+    return render_template('search_ingredient.html', ingredient=ingredient_search, drinks=MONGO.db.drinks.find())
 
 @APP.route('/collection')
 def collection():
