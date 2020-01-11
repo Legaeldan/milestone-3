@@ -83,7 +83,6 @@ def insert_ingredient():
     #ingredients.insert_one(request.form.to_dict())
     #return redirect(url_for('drink_ingredients', drink_id=drink_id))
 
-# View individual drink details.
 @APP.route('/view_drink/<drink_id>')
 def view_drink(drink_id):
     """
@@ -105,9 +104,11 @@ def delete_drink(drink_id):
 def add_drink():
     return render_template('adddrink.html', ingredients=MONGO.db.ingedients.find())
 
-# Passthrough to push drink to DB.
 @APP.route('/insert_drink', methods=['POST'])
 def insert_drink():
+    """
+    Passthrough to push drink to DB.
+    """
     drinks = MONGO.db.drinks
     form = request.form.to_dict()
     today = datetime.datetime.now()
@@ -152,18 +153,18 @@ def edit_drink(drink_id):
 def update_drink(drink_id):
     """
     Update drink passthrough page to push to DB.
+    Update only set object in document, not all using $set function.
+    upsert set to False to avoid creating new document. Only update existing.
+
     """
     drink = MONGO.db.drinks
-    # Update only set object in document, not all
     drink.update_one({'_id': ObjectId(drink_id)},
-                     # Function from Mongo to only update specified keys without overwriting document.
                      {'$set':
                       {
                           'drinkImage': request.form.get('drinkImage'),
                           'drinkName': request.form.get('drinkName')
                       }
                       },
-                     # Upsert False to avoid creating new document. Only update existing documents.
                      upsert=False)
     return redirect(url_for('view_drink', drink_id=drink_id))
 
