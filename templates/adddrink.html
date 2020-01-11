@@ -18,8 +18,8 @@
           <label for="drinkImage">Drink image link</label>
         </div>
       </div>
-
-    <div class="row drink-ingredients">
+      <label for="drink-ingredients" class="label-ingredients">Drink Ingredients</label>
+    <div class="row drink-ingredients" id="drink-ingredients">
 
       {% for ingredient in ingredients|sort(attribute='ingredientName') %}
       <div class="col s12 m2">
