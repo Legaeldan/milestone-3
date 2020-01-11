@@ -12,12 +12,10 @@
     <div class="col s12 m6 ingredients">
         <h2>Ingredients</h2>
         <ul class="discover-drink">
-            {% for ingredient in ingredients %}
-            {% if ingredient.ingredientName in drink.ingredientList %}
+            {% for ingredient in drink.ingredientList %}
             <li>
-                {{ ingredient.ingredientName }}
+                {{ ingredient }}
             </li>       
-            {% endif %}
             {% endfor %}
         </ul>
 

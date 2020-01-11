@@ -81,8 +81,11 @@ def insert_ingredient():
 # View individual drink details.
 @APP.route('/view_drink/<drink_id>')
 def view_drink(drink_id):
+    """
+    Route to view all drink details including ingredients and image
+    """
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('viewdrink.html', drink=the_drink, ingredients=MONGO.db.ingedients.find())
+    return render_template('viewdrink.html', drink=the_drink)
 
 # Deleted drink from collection once confirmed on page.
 @APP.route('/delete_drink/<drink_id>')
