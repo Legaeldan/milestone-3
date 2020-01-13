@@ -4,6 +4,10 @@
 
 <h2>Add Ingredient</h2>
 
+{% if ingredient != None %}
+<h4>{{ ingredient }} already exists!</h4>
+{% endif %}
+
 <div class="row">
     <form class="col s12" action="{{ url_for('insert_ingredient') }}" method="POST">
       <div class="row">

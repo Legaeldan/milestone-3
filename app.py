@@ -62,12 +62,15 @@ def collection():
     """
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
 
-@APP.route('/add-ingredient')
-def add_ingredient():
+@APP.route('/add-ingredient', defaults={'ingredient_name': None})
+@APP.route('/add-ingredient/<ingredient_name>')
+def add_ingredient(ingredient_name):
+    print(ingredient_name)
     """
     Renders standard add ingredient page.
     """
-    return render_template('addingredient.html')
+    
+    return render_template('addingredient.html', ingredient=ingredient_name)
 
 #@APP.route('/insert_ingredient', methods=['POST'])
 #def insert_ingredient():
@@ -110,7 +113,7 @@ def insert_ingredient():
         ingredients.insert_one(finalIngredient)
         return redirect(url_for('add_drink'))
     print("Ingredient already exists. Returning to page.")
-    return redirect(url_for('add_ingredient'))
+    return redirect(url_for('add_ingredient', ingredient_name=form["ingredientName"]))
 
 @APP.route('/view-drink/<drink_id>')
 def view_drink(drink_id):
