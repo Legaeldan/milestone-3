@@ -55,7 +55,7 @@ def collection():
     """
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
 
-@APP.route('/add_ingredient')
+@APP.route('/add-ingredient')
 def add_ingredient():
     return render_template('addingredient.html')
 
@@ -78,7 +78,7 @@ def add_ingredient():
     #return render_template('addingredient.html', drink_id=the_drink)
 
 # 
-@APP.route('/insert_ingredient', methods=['POST'])
+@APP.route('/insert-ingredient', methods=['POST'])
 def insert_ingredient():
     """
     Passthrough page to insert new ingredient into DB.
@@ -103,7 +103,7 @@ def insert_ingredient():
         ingredients.insert_one(finalIngredient)
     return redirect(url_for('add_drink'))
 
-@APP.route('/view_drink/<drink_id>')
+@APP.route('/view-drink/<drink_id>')
 def view_drink(drink_id):
     """
     Route to view all drink details including ingredients and image
@@ -111,7 +111,7 @@ def view_drink(drink_id):
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('viewdrink.html', drink=the_drink)
 
-@APP.route('/delete_drink/<drink_id>')
+@APP.route('/delete-drink/<drink_id>')
 def delete_drink(drink_id):
     """
     Deleted drink from collection once confirmed on page.
@@ -120,11 +120,11 @@ def delete_drink(drink_id):
     return redirect(url_for('collection'))
 
 
-@APP.route('/add_drink')
+@APP.route('/add-drink')
 def add_drink():
     return render_template('adddrink.html', ingredients=MONGO.db.ingedients.find())
 
-@APP.route('/insert_drink', methods=['POST'])
+@APP.route('/insert-drink', methods=['POST'])
 def insert_drink():
     """
     Passthrough to push drink to DB.
@@ -162,7 +162,7 @@ def insert_drink():
     #                  })
     #return redirect(url_for('view_drink', drink_id=drink_id))
 
-@APP.route('/edit_drink/<drink_id>')
+@APP.route('/edit-drink/<drink_id>')
 def edit_drink(drink_id):
     """
     Find drink details, and generate on page for editing purposes.
@@ -171,7 +171,7 @@ def edit_drink(drink_id):
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('editdrink.html', ingredients=ingredientList, drink=the_drink, drink_id=drink_id)
 
-@APP.route('/edit_drink/update/<drink_id>', methods=['POST'])
+@APP.route('/edit-drink/update/<drink_id>', methods=['POST'])
 def update_drink(drink_id):
     """
     Update drink passthrough page to push to DB.
