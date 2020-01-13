@@ -167,8 +167,9 @@ def edit_drink(drink_id):
     """
     Find drink details, and generate on page for editing purposes.
     """
+    ingredientList = MONGO.db.ingedients.find()
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('editdrink.html', drink=the_drink, drink_id=drink_id)
+    return render_template('editdrink.html', ingredients=ingredientList, drink=the_drink, drink_id=drink_id)
 
 @APP.route('/edit_drink/update/<drink_id>', methods=['POST'])
 def update_drink(drink_id):
@@ -179,11 +180,15 @@ def update_drink(drink_id):
 
     """
     drink = MONGO.db.drinks
+    today = datetime.datetime.now()
     drink.update_one({'_id': ObjectId(drink_id)},
                      {'$set':
                       {
                           'drinkImage': request.form.get('drinkImage'),
-                          'drinkName': request.form.get('drinkName')
+                          'drinkName': request.form.get('drinkName'),
+                          'ingredientList': request.form.getlist("ingredientName"),
+                          'modifiedDate': today,
+                          'instructions': request.form.get('instructions')
                       }
                       },
                      upsert=False)
