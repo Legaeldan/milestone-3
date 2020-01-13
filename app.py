@@ -108,9 +108,9 @@ def insert_ingredient():
         print("Inserting ingredient")
         print(mongo_count)
         ingredients.insert_one(finalIngredient)
-    else:
-        print("Ingredient already exists. Returning to page.")
-    return redirect(url_for('add_drink'))
+        return redirect(url_for('add_drink'))
+    print("Ingredient already exists. Returning to page.")
+    return redirect(url_for('add_ingredient'))
 
 @APP.route('/view-drink/<drink_id>')
 def view_drink(drink_id):
