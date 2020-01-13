@@ -33,11 +33,16 @@ def random_drink():
     """
     rand = MONGO.db.drinks.count()
     the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
-    return render_template('viewdrink.html', random=1, drink=the_drink, ingredients=MONGO.db.ingedients.find())
+    return render_template('viewdrink.html', random=1,
+                           drink=the_drink, ingredients=MONGO.db.ingedients.find())
 
 
 @APP.route('/ingredients')
-def ingredients():
+def ingredients_list():
+    """
+    Renders all ingredients within page.
+    Retrieves all documents from ingredients database.
+    """
     return render_template('ingredients.html', ingredients=MONGO.db.ingedients.find())
 
 @APP.route('/search', methods=['POST'])
@@ -47,7 +52,8 @@ def search_ingredient():
     Convert ingredient from ingredient page form into dictionary.
     """
     ingredient_search = request.form.to_dict()
-    return render_template('search_ingredient.html', ingredient=ingredient_search, drinks=MONGO.db.drinks.find())
+    return render_template('search_ingredient.html',
+                           ingredient=ingredient_search, drinks=MONGO.db.drinks.find())
 
 @APP.route('/collection')
 def collection():
@@ -58,6 +64,9 @@ def collection():
 
 @APP.route('/add-ingredient')
 def add_ingredient():
+    """
+    Renders standard add ingredient page.
+    """
     return render_template('addingredient.html')
 
 #@APP.route('/insert_ingredient', methods=['POST'])
@@ -77,8 +86,6 @@ def add_ingredient():
 #def add_ingredient(drink_id):
     #the_drink = drink_id
     #return render_template('addingredient.html', drink_id=the_drink)
-
-# 
 @APP.route('/insert-ingredient', methods=['POST'])
 def insert_ingredient():
     """
@@ -123,6 +130,10 @@ def delete_drink(drink_id):
 
 @APP.route('/add-drink')
 def add_drink():
+    """
+    Renders add drink page.
+    Populates ingredient list to add to ingredient list array within drink.
+    """
     return render_template('adddrink.html', ingredients=MONGO.db.ingedients.find())
 
 @APP.route('/insert-drink', methods=['POST'])
@@ -170,7 +181,8 @@ def edit_drink(drink_id):
     """
     ingredientList = MONGO.db.ingedients.find()
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('editdrink.html', ingredients=ingredientList, drink=the_drink, drink_id=drink_id)
+    return render_template('editdrink.html',
+                           ingredients=ingredientList, drink=the_drink, drink_id=drink_id)
 
 @APP.route('/edit-drink/update/<drink_id>', methods=['POST'])
 def update_drink(drink_id):
