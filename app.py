@@ -89,7 +89,7 @@ def insert_ingredient():
     today = datetime.datetime.now()
     form = request.form.to_dict()
     finalIngredient = {
-        'ingredientName': form["ingredientName"],
+        'ingredientName': form["ingredientName"].title(),
         'ingredientImage': form["ingredientImage"],
         'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
     }
@@ -131,7 +131,7 @@ def insert_drink():
     form = request.form.to_dict()
     today = datetime.datetime.now()
     finalDrink = {
-        'drinkName': form["drinkName"],
+        'drinkName': form["drinkName"].title(),
         'drinkImage': form["drinkImage"],
         'ingredientList': request.form.getlist("ingredientName"),
         'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
