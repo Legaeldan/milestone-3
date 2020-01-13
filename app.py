@@ -103,12 +103,13 @@ def insert_ingredient():
         'ingredientImage': form["ingredientImage"],
         'modifiedDate': str(today)
     }
-    mongo_count = MONGO.db.ingredients.count_documents({'ingredientName': form["ingredientName"]})
-    if mongo_count > 0:
-        print("Ingredient already exists. Returning to page.")
-    else:
+    mongo_count = ingredients.find_one({'ingredientName': form["ingredientName"]})
+    if mongo_count is None:
         print("Inserting ingredient")
+        print(mongo_count)
         ingredients.insert_one(finalIngredient)
+    else:
+        print("Ingredient already exists. Returning to page.")
     return redirect(url_for('add_drink'))
 
 @APP.route('/view-drink/<drink_id>')
