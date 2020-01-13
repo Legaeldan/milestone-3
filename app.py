@@ -134,6 +134,7 @@ def insert_drink():
         'drinkName': form["drinkName"].title(),
         'drinkImage': form["drinkImage"],
         'ingredientList': request.form.getlist("ingredientName"),
+        'instructions': form["instructions"],
         'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
     }
     return redirect(url_for('view_drink', drink_id=drinks.insert_one(finalDrink).inserted_id))
