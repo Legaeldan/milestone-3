@@ -57,18 +57,17 @@ def collection():
 def add_ingredient():
     return render_template('addingredient.html')
 
-@APP.route('/insert_ingredient', methods=['POST'])
-def insert_ingredient():
-    form = request.form.to_dict()
-    mongo_count = MONGO.db.ingredients.count_documents({'ingredientName': form["ingredientName"]})
-    if mongo_count > 0:
-        print(mongo_count)
-        print(form)
-    else:
-        print(mongo_count)
-        print(form)
-        MONGO.db.ingredients.insert_one(form)
-    return redirect(url_for('add_drink'))
+#@APP.route('/insert_ingredient', methods=['POST'])
+#def insert_ingredient():
+    #today = datetime.datetime.now()
+    #form = request.form.to_dict()
+    #finalIngredient = {
+    #    'ingredientName': form["ingredientName"],
+    #    'ingredientImage': form["ingredientImage"],
+    #    'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
+    #}
+    #MONGO.db.ingredients.insert_one(finalIngredient)
+    #return redirect(url_for('add_drink'))
 
 # Route when ingredients don't already exist.
 #@APP.route('/add_ingredient/<drink_id>')
@@ -76,14 +75,31 @@ def insert_ingredient():
     #the_drink = drink_id
     #return render_template('addingredient.html', drink_id=the_drink)
 
-# Passthrough page to insert new ingredient into DB.
-#@APP.route('/insert_ingredient/<drink_id>', methods=['GET', 'POST'])
-#def insert_ingredient(drink_id):
-    #ingredients = MONGO.db.ingedients
-    # drink_id defined to retain and pass to return back to drink being edited.
-    #drink_id
-    #ingredients.insert_one(request.form.to_dict())
-    #return redirect(url_for('drink_ingredients', drink_id=drink_id))
+# 
+@APP.route('/insert_ingredient', methods=['POST'])
+def insert_ingredient():
+    """
+    Passthrough page to insert new ingredient into DB.
+    Pulls form, and converts to dictionary.
+    Then redefines dictionary to add modified date into document.
+    If check checks if document with same name already exists, then
+    inserts if no ingredient already exists in db.
+    """
+    ingredients = MONGO.db.ingedients
+    today = datetime.datetime.now()
+    form = request.form.to_dict()
+    finalIngredient = {
+        'ingredientName': form["ingredientName"],
+        'ingredientImage': form["ingredientImage"],
+        'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
+    }
+    mongo_count = MONGO.db.ingredients.count_documents({'ingredientName': form["ingredientName"]})
+    if mongo_count > 0:
+        print("Ingredient already exists. Returning to page.")
+    else:
+        print("Inserting ingredient")
+        ingredients.insert_one(finalIngredient)
+    return redirect(url_for('add_drink'))
 
 @APP.route('/view_drink/<drink_id>')
 def view_drink(drink_id):
