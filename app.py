@@ -19,6 +19,8 @@ def home():
     """
     Renders homepage, and generates all drinks in db
     """
+    today = datetime.datetime.now()
+    print(today)
     return render_template('home.html', drinks=MONGO.db.drinks.find())
 
 @APP.route('/discover')
@@ -91,7 +93,7 @@ def insert_ingredient():
     finalIngredient = {
         'ingredientName': form["ingredientName"].title(),
         'ingredientImage': form["ingredientImage"],
-        'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
+        'modifiedDate': today
     }
     mongo_count = MONGO.db.ingredients.count_documents({'ingredientName': form["ingredientName"]})
     if mongo_count > 0:
@@ -135,7 +137,7 @@ def insert_drink():
         'drinkImage': form["drinkImage"],
         'ingredientList': request.form.getlist("ingredientName"),
         'instructions': form["instructions"],
-        'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
+        'modifiedDate': today
     }
     return redirect(url_for('view_drink', drink_id=drinks.insert_one(finalDrink).inserted_id))
 
