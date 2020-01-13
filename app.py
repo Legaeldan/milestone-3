@@ -33,7 +33,7 @@ def discover():
     """
     rand = MONGO.db.drinks.count()
     the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
-    return render_template('viewdrink.html', drink=the_drink, ingredients=MONGO.db.ingedients.find())
+    return render_template('viewdrink.html', random=1, drink=the_drink, ingredients=MONGO.db.ingedients.find())
 
 
 @APP.route('/ingredients')
