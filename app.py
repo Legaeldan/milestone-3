@@ -24,8 +24,8 @@ def home():
     print(today)
     return render_template('home.html', drinks=sortedDrinks)
 
-@APP.route('/discover')
-def discover():
+@APP.route('/random')
+def random_drink():
     """
     Count all document in drinks collection.
     return random document from drinks collection based on location of randomly generated number.
