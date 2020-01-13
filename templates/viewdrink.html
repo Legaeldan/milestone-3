@@ -22,9 +22,14 @@
  
     </div>
 </div>
-
 <div class="row">
-    <div class="col s6 center-align">
+    <h2>Instructions</h2>
+    <div class="col s12">
+        {{ drink.instructions }}
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 center-align">
 <a class="waves-effect waves-light btn" href="{{url_for('edit_drink', drink_id=drink._id)}}">EDIT DRINK</a>
 </div>
 <!--<div class="col s12 center-align">
