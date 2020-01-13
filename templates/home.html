@@ -4,7 +4,12 @@
 
 <div class="recipes-main">
     <div class="row">
-        {% for drink in drinks|sort(attribute='modifiedDate') %}
+        <div class="col s12">
+            <h2>Latest Drinks</h2>
+        </div>
+    </div>
+    <div class="row">
+        {% for drink in drinks %}
         {% if loop.index <= 6 %}
         <a class="col s12 m4" href="{{url_for('view_drink', drink_id=drink._id)}}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
