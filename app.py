@@ -68,22 +68,6 @@ def login():
             return render_template('login.html', exists=0)
     return render_template('login.html')
 
-#@APP.route('/login-user', methods=['POST'])
-#def login_user():
-#    """
-#    Passthrough page for login.\\
-#    
-#    """
-#    form = request.form.to_dict()
-#    users = MONGO.db.users
-#    login_user = users.find_one({'username' : form['username']})
-#    if login_user:
-#        if bcrypt.hashpw(form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
-#            session['username'] = form['username']
-#            return redirect(url_for('home'))
-#
-#    return render_template('login.html')
-
 @APP.route('/register', methods=['POST', 'GET'])
 def register():
     """
