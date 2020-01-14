@@ -1,15 +1,17 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+<div class="row">
 <h2>Add Ingredient</h2>
-
-{% if ingredient != None %}
-<h4>{{ ingredient }} already exists!</h4>
+</div>
+{% if exists == 1 %}
+<div class="row center">
+<h4>{{ ingredient.ingredientName }} already exists!</h4>
+</div>
 {% endif %}
 
 <div class="row">
-    <form class="col s12" action="{{ url_for('insert_ingredient') }}" method="POST">
+    <form class="col s12" action="{{ url_for('add_ingredient') }}" method="POST">
       <div class="row">
         <div class="input-field col s12">
           <input id="ingredientName" name="ingredientName" type="text" class="validate" required>
