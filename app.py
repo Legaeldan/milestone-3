@@ -30,7 +30,7 @@ def home():
 
 @APP.route('/logout')
 def logout():
-    session['username'] = None
+    session.pop('username')
     return redirect(url_for('home'))
 
 @APP.route('/login')
@@ -56,8 +56,9 @@ def register():
     if request.method == 'POST':
         form = request.form.to_dict()
         users = MONGO.db.users
-        existing_user = None
+        existing_user = users.find_one({'name' : request.form['username']})
         if existing_user is None:
+            print(existing_user)
             hashpass = bcrypt.hashpw(form['password'].encode('utf-8'), bcrypt.gensalt())
             user_details = {
                 'username': form["username"],
