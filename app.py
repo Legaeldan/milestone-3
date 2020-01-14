@@ -1,7 +1,8 @@
 import os
 import random
 import datetime
-from flask import Flask, render_template, redirect, request, url_for
+import bcrypt
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -19,10 +20,35 @@ def home():
     """
     Renders homepage, and generates all drinks in db
     """
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
     today = datetime.datetime.now()
     sortedDrinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
     print(today)
     return render_template('home.html', drinks=sortedDrinks)
+
+@APP.route('/login')
+def login():
+    return render_template('login.html')
+
+@APP.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        form = request.form.to_dict()
+        users = MONGO.db.users
+        existing_user = None
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(form['password'].encode('utf-8'), bcrypt.gensalt())
+            user_details = {
+                'username': form["username"],
+                'email': form["email"],
+                'password': hashpass                
+            }
+            users.insert_one(user_details)
+            session['username'] = form['username']
+            return redirect(url_for('home'))
+        return 'That username already exists!'
+    return render_template('register.html')
 
 @APP.route('/random')
 def random_drink():
