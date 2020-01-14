@@ -8,9 +8,12 @@ from bson.objectid import ObjectId
 
 APP = Flask(__name__)
 
-APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
-APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
-APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+#APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
+APP.config["SECRET_KEY"] = "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
+APP.config["MONGO_DBNAME"] = "drinks_manager"
+APP.config["MONGO_URI"] = "mongodb+srv://root:passw0rd@myfirstcluster-ludvv.mongodb.net/drinks_manager?retryWrites=true&w=majority"
+#APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
+#APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 MONGO = PyMongo(APP)
 
@@ -20,15 +23,32 @@ def home():
     """
     Renders homepage, and generates all drinks in db
     """
-    if 'username' in session:
-        return 'You are logged in as ' + session['username']
     today = datetime.datetime.now()
     sortedDrinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
     print(today)
     return render_template('home.html', drinks=sortedDrinks)
 
+@APP.route('/logout')
+def logout():
+    session['username'] = None
+    return redirect(url_for('home'))
+
 @APP.route('/login')
 def login():
+    return render_template('login.html')
+
+@APP.route('/login-user', methods=['POST'])
+def login_user():
+    form = request.form.to_dict()
+    print(form)
+    users = MONGO.db.users
+    login_user = users.find_one({'username' : form['username']})
+    print(login_user)
+    if login_user:
+        if bcrypt.hashpw(form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+            session['username'] = form['username']
+            return redirect(url_for('home'))
+
     return render_template('login.html')
 
 @APP.route('/register', methods=['POST', 'GET'])
@@ -42,7 +62,7 @@ def register():
             user_details = {
                 'username': form["username"],
                 'email': form["email"],
-                'password': hashpass                
+                'password': hashpass             
             }
             users.insert_one(user_details)
             session['username'] = form['username']
@@ -240,5 +260,5 @@ def update_drink(drink_id):
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
-            port=os.environ.get('PORT'),
+            port=int(9100),
             debug=True)
