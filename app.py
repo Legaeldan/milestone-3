@@ -27,7 +27,8 @@ def home():
 
 @APP.route('/logout')
 def logout():
-    session.pop('username')
+    if 'username' in session:
+        session.pop('username')
     return redirect(url_for('home'))
 
 @APP.route('/login')
