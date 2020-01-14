@@ -18,39 +18,85 @@ MONGO = PyMongo(APP)
 @APP.route('/')
 def home():
     """
-    Renders homepage, and generates all drinks in db
+    Renders homepage, and generates all drinks in db.\\
+    \\
+    Sorts in reverse order by key modifiedDate.
     """
     today = datetime.datetime.now()
-    sortedDrinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
+    sorted_drinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
     print(today)
-    return render_template('home.html', drinks=sortedDrinks)
+    return render_template('home.html', drinks=sorted_drinks)
 
 @APP.route('/logout')
 def logout():
+    """
+    Checks if user is logged in. Prevents non-logged in users accessing logout function.\\
+    \\
+    If user is logged in, terminate session.\\
+    \\
+    If no user logged in, sent to home page.
+    """
     if 'username' in session:
         session.pop('username')
     return redirect(url_for('home'))
 
-@APP.route('/login')
+@APP.route('/login', methods=['POST', 'GET'])
 def login():
+    """
+    Renders login page when redirect from login link.\\
+    \\
+    When trying to login, redirects back to this route,\\
+    checks if request is POST, then performs a check if login\\
+    details are correct.\\
+    \\
+    Password is checked if hashed password provided with salt from db\\
+    matches stored password details.\\
+    \\
+    If details are incorrect, returns same page with exists=0\\
+    which triggers and alert that details are incorrect.
+    """
+    if request.method == 'POST':
+        form = request.form.to_dict()
+        users = MONGO.db.users
+        login_user = users.find_one({'username' : form['username']})
+        if login_user:
+            if bcrypt.hashpw(form['password'].encode('utf-8'),
+                             login_user['password']) == login_user['password']:
+                session['username'] = form['username']
+                return redirect(url_for('home'))
+        else:
+            return render_template('login.html', exists=0)
     return render_template('login.html')
 
-@APP.route('/login-user', methods=['POST'])
-def login_user():
-    form = request.form.to_dict()
-    print(form)
-    users = MONGO.db.users
-    login_user = users.find_one({'username' : form['username']})
-    print(login_user)
-    if login_user:
-        if bcrypt.hashpw(form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
-            session['username'] = form['username']
-            return redirect(url_for('home'))
-
-    return render_template('login.html')
+#@APP.route('/login-user', methods=['POST'])
+#def login_user():
+#    """
+#    Passthrough page for login.\\
+#    
+#    """
+#    form = request.form.to_dict()
+#    users = MONGO.db.users
+#    login_user = users.find_one({'username' : form['username']})
+#    if login_user:
+#        if bcrypt.hashpw(form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+#            session['username'] = form['username']
+#            return redirect(url_for('home'))
+#
+#    return render_template('login.html')
 
 @APP.route('/register', methods=['POST', 'GET'])
 def register():
+    """
+    Renders registration page.\\
+    \\
+    Checks if method is post. If so, checks db if\\
+    user already exists. If true, will return username already exists.\\
+    \\
+    If user doesn't exist. Generates salt, and encrypts password before\\
+    sending to the database with all other user details.\\
+    \\
+    If the method is not POST. returns the register user page.
+    """
     if request.method == 'POST':
         form = request.form.to_dict()
         users = MONGO.db.users
@@ -72,9 +118,15 @@ def register():
 @APP.route('/random')
 def random_drink():
     """
-    Count all document in drinks collection.
-    return random document from drinks collection based on location of randomly generated number.
-    Page with random document generation.
+    Count all document in drinks collection.\\
+    \\    
+    Returns a random document from drinks collection\\
+    based on location of randomly generated number.\\
+    \\
+    Page with random document generation.\\
+    \\
+    Reuses the view drink page, with a switch of random=1\\
+    to tell the page to render with title "random drink".
     """
     rand = MONGO.db.drinks.count()
     the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
@@ -85,7 +137,8 @@ def random_drink():
 @APP.route('/ingredients')
 def ingredients_list():
     """
-    Renders all ingredients within page.
+    Renders all ingredients within page.\\
+    \\
     Retrieves all documents from ingredients database.
     """
     return render_template('ingredients.html', ingredients=MONGO.db.ingedients.find())
@@ -93,7 +146,8 @@ def ingredients_list():
 @APP.route('/search', methods=['POST'])
 def search_ingredient():
     """
-    Page to search for all documents containing an ingredient.
+    Page to search for all documents containing an ingredient.\\
+    \\
     Convert ingredient from ingredient page form into dictionary.
     """
     ingredient_search = request.form.to_dict()
@@ -103,12 +157,20 @@ def search_ingredient():
 @APP.route('/collection')
 def collection():
     """
-    Display all documents in collection in alphabetical order.
+    Renders page which display all drinks in drinks database.
     """
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
 
 @APP.route('/mydrinks')
 def user_collection():
+    """
+    A registered user only login page.\\
+    \\
+    Renders a collection page and, if a user is logged in,
+    renders all documents created by them.\\
+    \\
+    If no user is logged in, redirects to login page.
+    """
     if 'username' in session:
         return render_template('mycollection.html', drinks=MONGO.db.drinks.find())
     return redirect(url_for('login'))
@@ -125,16 +187,18 @@ def add_ingredient(ingredient_name):
 @APP.route('/insert-ingredient', methods=['POST'])
 def insert_ingredient():
     """
-    Passthrough page to insert new ingredient into DB.
-    Pulls form, and converts to dictionary.
-    Then redefines dictionary to add modified date into document.
-    If check checks if document with same name already exists, then
+    Passthrough page to insert new ingredient into DB.\\
+    \\
+    Pulls form, and converts to dictionary. Then redefines converted\\
+    dictionary to add modified date into document.\\
+    \\
+    If statement checks if document with same name already exists, then\\
     inserts if no ingredient already exists in db.
     """
     ingredients = MONGO.db.ingedients
     today = datetime.datetime.now()
     form = request.form.to_dict()
-    finalIngredient = {
+    final_ingredient = {
         'ingredientName': form["ingredientName"].title(),
         'ingredientImage': form["ingredientImage"],
         'modifiedDate': str(today)
@@ -143,7 +207,7 @@ def insert_ingredient():
     if mongo_count is None:
         print("Inserting ingredient")
         print(mongo_count)
-        ingredients.insert_one(finalIngredient)
+        ingredients.insert_one(final_ingredient)
         return redirect(url_for('add_drink'))
     print("Ingredient already exists. Returning to page.")
     return redirect(url_for('add_ingredient', ingredient_name=form["ingredientName"]))
@@ -151,7 +215,7 @@ def insert_ingredient():
 @APP.route('/view-drink/<drink_id>')
 def view_drink(drink_id):
     """
-    Route to view all drink details including ingredients and image
+    Renders page for viewing all drink details for drink found in DB.
     """
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('viewdrink.html', drink=the_drink)
@@ -159,7 +223,7 @@ def view_drink(drink_id):
 @APP.route('/delete-drink/<drink_id>')
 def delete_drink(drink_id):
     """
-    Deleted drink from collection once confirmed on page.
+    Deletes drink from collection once confirmed on page.
     """
     MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
     return redirect(url_for('collection'))
@@ -168,7 +232,12 @@ def delete_drink(drink_id):
 @APP.route('/add-drink')
 def add_drink():
     """
-    Renders add drink page.
+    Add drink only a function for registered users.\\
+    \\
+    If no user logged in, returns to the login page.\\
+    \\
+    Renders add drink page.\\
+    \\
     Populates ingredient list to add to ingredient list array within drink.
     """
     if 'username' in session:
@@ -178,12 +247,18 @@ def add_drink():
 @APP.route('/insert-drink', methods=['POST'])
 def insert_drink():
     """
-    Passthrough to push drink to DB.
+    Passthrough to push drink to DB.\\
+    \\
+    Creates a new object called final_drink\\
+    then pulls all detauls from the form, including\\
+    an array of ingredients.\\
+    \\
+    Finally, inserts new dictionary into DB.
     """
     drinks = MONGO.db.drinks
     form = request.form.to_dict()
     today = datetime.datetime.now()
-    finalDrink = {
+    final_drink = {
         'drinkName': form["drinkName"].title(),
         'drinkImage': form["drinkImage"],
         'ingredientList': request.form.getlist("ingredientName"),
@@ -191,23 +266,26 @@ def insert_drink():
         'modifiedDate': str(today),
         'createdBy': session['username'],
     }
-    return redirect(url_for('view_drink', drink_id=drinks.insert_one(finalDrink).inserted_id))
+    return redirect(url_for('view_drink', drink_id=drinks.insert_one(final_drink).inserted_id))
 
 @APP.route('/edit-drink/<drink_id>')
 def edit_drink(drink_id):
     """
     Find drink details, and generate on page for editing purposes.
     """
-    ingredientList = MONGO.db.ingedients.find()
+    ingredient_list = MONGO.db.ingedients.find()
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     return render_template('editdrink.html',
-                           ingredients=ingredientList, drink=the_drink, drink_id=drink_id)
+                           ingredients=ingredient_list, drink=the_drink, drink_id=drink_id)
 
 @APP.route('/edit-drink/update/<drink_id>', methods=['POST'])
 def update_drink(drink_id):
     """
-    Update drink passthrough page to push to DB.
-    Update only set object in document, not all using $set function.
+    Update drink passthrough page to push to DB.\\
+    \\
+    Update only set objects in document, not all, using $set function.\\
+    Avoids creation of new documents if no items found.\\
+    \\
     upsert set to False to avoid creating new document. Only update existing.
 
     """
