@@ -118,25 +118,20 @@ def random_drink():
                            drink=the_drink, ingredients=MONGO.db.ingedients.find())
 
 
-@APP.route('/ingredients')
-def ingredients_list():
+@APP.route('/ingredients', methods=['GET','POST'])
+def ingredients():
     """
     Renders all ingredients within page.\\
     \\
     Retrieves all documents from ingredients database.
     """
-    return render_template('ingredients.html', ingredients=MONGO.db.ingedients.find())
-
-@APP.route('/search', methods=['POST'])
-def search_ingredient():
-    """
-    Page to search for all documents containing an ingredient.\\
-    \\
-    Convert ingredient from ingredient page form into dictionary.
-    """
-    ingredient_search = request.form.to_dict()
-    return render_template('search_ingredient.html',
-                           ingredient=ingredient_search, drinks=MONGO.db.drinks.find())
+    ingredients_list = MONGO.db.ingedients.find()
+    drinks_list = MONGO.db.drinks.find()
+    if request.method == 'POST':
+        ingredient_search = request.form.to_dict()
+        return render_template('ingredients.html', ingredients=ingredients_list,
+                                ingredient=ingredient_search, drinks=drinks_list)
+    return render_template('ingredients.html', ingredients=ingredients_list)
 
 @APP.route('/collection')
 def collection():
