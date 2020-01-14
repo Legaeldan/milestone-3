@@ -18,7 +18,16 @@
                 <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
                 <li><a href="{{ url_for('ingredients_list') }}">Ingredients</a></li>
                 <li><a href="{{ url_for('collection') }}">Collection</a></li>
+                {%  if session['username'] == None %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% else %}
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="#!">My Collection</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                  </ul>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ session['username'] }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -36,7 +45,10 @@
         </div>
     </footer>
 
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../static/js/drinkSplash.js"></script>
 </body>
 
 </html>
