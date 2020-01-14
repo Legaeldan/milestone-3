@@ -116,30 +116,12 @@ def user_collection():
 @APP.route('/add-ingredient', defaults={'ingredient_name': None})
 @APP.route('/add-ingredient/<ingredient_name>')
 def add_ingredient(ingredient_name):
-    print(ingredient_name)
     """
     Renders standard add ingredient page.
     """
-    
+    print(ingredient_name)
     return render_template('addingredient.html', ingredient=ingredient_name)
 
-#@APP.route('/insert_ingredient', methods=['POST'])
-#def insert_ingredient():
-    #today = datetime.datetime.now()
-    #form = request.form.to_dict()
-    #finalIngredient = {
-    #    'ingredientName': form["ingredientName"],
-    #    'ingredientImage': form["ingredientImage"],
-    #    'modifiedDate': (str(today.day)+"/"+str(today.month)+"/"+str(today.year))
-    #}
-    #MONGO.db.ingredients.insert_one(finalIngredient)
-    #return redirect(url_for('add_drink'))
-
-# Route when ingredients don't already exist.
-#@APP.route('/add_ingredient/<drink_id>')
-#def add_ingredient(drink_id):
-    #the_drink = drink_id
-    #return render_template('addingredient.html', drink_id=the_drink)
 @APP.route('/insert-ingredient', methods=['POST'])
 def insert_ingredient():
     """
@@ -207,30 +189,9 @@ def insert_drink():
         'ingredientList': request.form.getlist("ingredientName"),
         'instructions': form["instructions"],
         'modifiedDate': str(today),
-        'createdBy': session['username']
+        'createdBy': session['username'],
     }
     return redirect(url_for('view_drink', drink_id=drinks.insert_one(finalDrink).inserted_id))
-
-
-#@APP.route('/drink_ingredients/<drink_id>', methods=['GET', 'POST'])
-#def drink_ingredients(drink_id):
-    #drink = MONGO.db.drinks
-    # drink_id pulled from previous to add ingredients to newly created object.
-    #the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    #return render_template('drinkingredients.html', drink=the_drink, drink_id=drink_id, ingredients=MONGO.db.ingedients.find())
-
-# Passthrough page to insert ingredients array into document created previously, or to edit current drink.
-# Insert split from initial drink creation to facilitate the creation of an array in MongoDB.
-#@APP.route('/drink_ingredients/insert/<drink_id>', methods=['POST'])
-#def insert_ingredients(drink_id):
-    #drink = MONGO.db.drinks
-    #drink.update_one({'_id': ObjectId(drink_id)},
-    #                 {'$set':
-    #                  {
-    #                      'ingredientList': request.form.getlist('ingredientName')
-    #                  }
-    #                  })
-    #return redirect(url_for('view_drink', drink_id=drink_id))
 
 @APP.route('/edit-drink/<drink_id>')
 def edit_drink(drink_id):
