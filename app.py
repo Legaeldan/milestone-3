@@ -108,7 +108,9 @@ def collection():
 
 @APP.route('/mydrinks')
 def user_collection():
-    return render_template('mycollection.html', drinks=MONGO.db.drinks.find())
+    if 'username' in session:
+        return render_template('mycollection.html', drinks=MONGO.db.drinks.find())
+    return redirect(url_for('login'))
 
 @APP.route('/add-ingredient', defaults={'ingredient_name': None})
 @APP.route('/add-ingredient/<ingredient_name>')
