@@ -49,6 +49,10 @@ h2 {
    text-align: center;
 }
 
+h5 {
+  color: red;
+}
+
 .btn {
   width: 80%;
   height: 100px;

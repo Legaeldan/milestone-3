@@ -3,10 +3,13 @@
 {% block content %}
 <div class="row">
     <div class="col s12 m4 offset-m4">
-<form id="register-form" method=POST action="{{ url_for('login_user') }}">
+<form id="register-form" method=POST action="{{ url_for('login') }}">
     <div class="row">
         <div class="col s12">
             <h3 class="center">Login</h3>
+            {% if exists == 0 %}
+            <h5 class="center">Invalid username/password</h5>
+            {% endif %}
         </div>
     </div>
     <div class="row">
