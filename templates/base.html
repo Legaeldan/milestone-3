@@ -18,7 +18,7 @@
                 {% if 'username' in session %}
                 <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
                 {% endif %}
-                <li><a href="{{ url_for('ingredients_list') }}">Ingredients</a></li>
+                <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
                 <li><a href="{{ url_for('collection') }}">Collection</a></li>
                 {% if 'username' in session %}
                 <ul id="dropdown1" class="dropdown-content">
