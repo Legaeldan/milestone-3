@@ -72,6 +72,16 @@ h2 {
   font-size: 1rem;
 }
 
+#login-form {
+  border: 1px solid #cccccc;
+  border-radius: 16px;
+  margin-top: 20vh;
+}
+
+#sign-up {
+  margin-bottom: 21vh;
+}
+
 @media(min-width:768px) {
 .btn {
   width: 280px;
