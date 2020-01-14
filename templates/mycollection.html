@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="recipes-main">
+    <div class="row">
+        {% for drink in drinks %}
+        {% if session['username'] == drink.createdBy %}
+        <a class="col s4 m2 tooltipped" data-position="bottom" data-tooltip="{{ drink.drinkName }}" href="{{url_for('view_drink', drink_id=drink._id)}}">
+            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        </a>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="../static/js/viewDrink.js"></script>
+
+{% endblock %}
