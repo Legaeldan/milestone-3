@@ -91,8 +91,8 @@ def register():
             user_details = {
                 'username': form["username"],
                 'email': form["email"],
-                'password': hashpass             
-            }
+                'password': hashpass
+                }
             users.insert_one(user_details)
             session['username'] = form['username']
             return redirect(url_for('home'))
@@ -103,7 +103,7 @@ def register():
 def random_drink():
     """
     Count all document in drinks collection.\\
-    \\    
+    \\
     Returns a random document from drinks collection\\
     based on location of randomly generated number.\\
     \\
