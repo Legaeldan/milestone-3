@@ -72,7 +72,7 @@ h2 {
   font-size: 1rem;
 }
 
-#login-form {
+#login-form, #register-form {
   border: 1px solid #cccccc;
   border-radius: 16px;
   margin-top: 20vh;
@@ -80,6 +80,10 @@ h2 {
 
 #sign-up {
   margin-bottom: 21vh;
+}
+
+#register-form {
+  margin-bottom: 15vh;
 }
 
 @media(min-width:768px) {
