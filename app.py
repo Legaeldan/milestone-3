@@ -186,7 +186,9 @@ def add_drink():
     Renders add drink page.
     Populates ingredient list to add to ingredient list array within drink.
     """
-    return render_template('adddrink.html', ingredients=MONGO.db.ingedients.find())
+    if 'username' in session:
+        return render_template('adddrink.html', ingredients=MONGO.db.ingedients.find())
+    return redirect(url_for('login'))
 
 @APP.route('/insert-drink', methods=['POST'])
 def insert_drink():
