@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 
 {% block content %}
+<h2>Search by Ingredient</h2>
 <form action="{{ url_for('ingredients') }}" method="POST">
     <div class="input-field col s12">
         <select name="ingredientList">
@@ -16,11 +17,11 @@
       </button>
 </form>
 <div class="row">
+    {% if request.method == 'POST' %}
+    <h2>Drinks containing {{ ingredient.ingredientList }}</h2>
+{% endif %}
 {% for drink in drinks|sort(attribute='drinkName') %}
 {% if ingredient.ingredientList in drink.ingredientList %}
-{% if request.method == 'POST' %}
-<h2>Drinks containing {{ ingredient.ingredientList }}</h2>
-{% endif %}
 <a class="col s4 m2 tooltipped" data-position="bottom" data-tooltip="{{ drink.drinkName }}" href="{{url_for('view_drink', drink_id=drink._id)}}">
     <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
 </a>
