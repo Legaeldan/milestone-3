@@ -11,7 +11,7 @@
     <div class="row">
         {% for drink in drinks %}
         {% if loop.index <= 6 %}
-        <a class="col s12 m4" href="{{url_for('view_drink', drink_id=drink._id)}}">
+        <a class="col s12 m4 tooltipped" href="{{url_for('view_drink', drink_id=drink._id)}}" data-position="bottom" data-tooltip="{{ drink.drinkName }}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
         </a>
 
