@@ -29,6 +29,16 @@ margin-top: 4rem;
 border: 3px solid #ABABAB;
 border-radius: 50%;
 box-shadow: 0 0px 8px 2px black;
+padding: 5px;
+background-color: #696969;
+}
+
+#discover-image {
+  padding: 5px;
+  border: 5px solid;
+  background-color: #696969;
+  border-radius: 25%;
+  box-shadow: 0 0px 8px 2px black;
 }
 
 nav, .page-footer {
@@ -59,8 +69,9 @@ nav, .page-footer {
   font-size: 2.5rem;
 }
 
-h2 {
-   text-align: center;
+h2, h3 {
+  text-align: center;
+  text-decoration: underline;
 }
 
 h5, h4 {
