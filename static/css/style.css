@@ -1,18 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap');
 
 body {
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Josefin Slab', cursive;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-image: linear-gradient(rgba(42, 43, 43, 0.25), rgba(255, 255, 255, 0))
+  background-image: linear-gradient(rgba(42, 43, 43, 0.7), rgba(255, 255, 255, 0))
 }
 
 main {
   flex: 1 0 auto;
 }
+
 .content {
   flex: 1;
+}
+
+.brand-logo {
+  font-weight: bold;
+  color: #FFD700 !important;
+}
+
+nav ul a:hover {
+  color: #FFD700;
 }
 
 .page-footer {
@@ -23,6 +33,10 @@ main {
   margin: 5% auto;
 }
 
+.input-field>label {
+  color: #383838;
+}
+
 .drink-image {  
 width: 100%;
 margin-top: 4rem;
@@ -31,6 +45,11 @@ border-radius: 50%;
 box-shadow: 0 0px 8px 2px black;
 padding: 5px;
 background-color: #696969;
+}
+
+.drink-image:hover {
+  box-shadow: 0 0px 20px 7px #FFD700;
+  transition-duration: .5s;
 }
 
 #discover-image {
@@ -69,12 +88,9 @@ nav, .page-footer {
   font-size: 2.5rem;
 }
 
-h3 { 
-  text-decoration: underline;
-}
-
 h2, h3 {
   text-align: center;
+  font-weight: bold;
 }
 
 h5, h4 {
@@ -105,7 +121,7 @@ a {
 }
 
 a:hover {
-  color: #039be5;
+  color: #FFD700;
   font-weight: 900;
   transition-duration: .5s;
 }
@@ -124,6 +140,7 @@ margin-bottom: 5%;
   border: 1px solid #9c9c9c;
   border-radius: 16px;
   margin-top: 20vh;
+  background-color: #eaeaea;
 }
 
 #register-form {
