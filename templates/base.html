@@ -12,7 +12,8 @@
     <nav>
         <div class="nav-wrapper">
             <a href="{{ url_for('home') }}" class="brand-logo center">Drink Splash</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-main" class="sidenav right hide-on-med-and-down">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('random_drink') }}">Random</a></li>
                 {% if 'username' in session %}
@@ -25,16 +26,39 @@
                     <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                  </ul>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ session['username'] }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ session['username'] }}<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
                 {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 {% endif %}
             </ul>
+
         </div>
     </nav>
 
-    <div class="container">
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('random_drink') }}">Random</a></li>
+        {% if 'username' in session %}
+        <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
+        <li><a href="{{ url_for('collection') }}">Collection</a></li>
+        {% if 'username' in session %}
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ session['username'] }}<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        {% endif %}
+    </ul>
+
+    <div class="container content">
         {% block content %} {% endblock %}
     </div>
 
@@ -47,7 +71,7 @@
         </div>
     </footer>
 
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../static/js/drinkSplash.js"></script>
