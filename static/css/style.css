@@ -69,9 +69,12 @@ nav, .page-footer {
   font-size: 2.5rem;
 }
 
+h3 { 
+  text-decoration: underline;
+}
+
 h2, h3 {
   text-align: center;
-  text-decoration: underline;
 }
 
 h5, h4 {
