@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap');
+
 body {
+  font-family: 'Patrick Hand', cursive;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: linear-gradient(rgba(42, 43, 43, 0.25), rgba(255, 255, 255, 0))
 }
 
 main {
