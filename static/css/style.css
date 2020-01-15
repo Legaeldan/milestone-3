@@ -91,13 +91,9 @@ h5, h4 {
 }
 
 #login-form, #register-form {
-  border: 1px solid #cccccc;
+  border: 1px solid #9c9c9c;
   border-radius: 16px;
   margin-top: 20vh;
-}
-
-#sign-up {
-  margin-bottom: 21vh;
 }
 
 #register-form {
