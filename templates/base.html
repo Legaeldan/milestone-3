@@ -12,8 +12,8 @@
     <nav>
         <div class="nav-wrapper">
             <a href="{{ url_for('home') }}" class="brand-logo center">Drink Splash</a>
-            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-main" class="right hide-on-med-and-down">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('random_drink') }}">Random</a></li>
                 {% if 'username' in session %}
@@ -22,18 +22,16 @@
                 <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
                 <li><a href="{{ url_for('collection') }}">Collection</a></li>
                 {% if 'username' in session %}
-                <ul id="dropdown1" class="dropdown-content">
+                <ul id="main-dropdown" class="dropdown-content">
                     <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                </ul>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ session['username'] }}<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
+                  </ul>
+                <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i class="material-icons right">arrow_drop_down</i></a></li>
                 {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 {% endif %}
             </ul>
-
         </div>
     </nav>
 
@@ -46,12 +44,12 @@
         <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
         <li><a href="{{ url_for('collection') }}">Collection</a></li>
         {% if 'username' in session %}
-        <ul id="dropdown1" class="dropdown-content">
+        <ul id="sidenav-dropdown" class="dropdown-content">
             <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
             <li class="divider"></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ session['username'] }}<i
+        <li><a class="dropdown-trigger" href="#!" data-target="sidenav-dropdown">{{ session['username'] }}<i
                     class="material-icons right">arrow_drop_down</i></a></li>
         {% else %}
         <li><a href="{{ url_for('login') }}">Login</a></li>
