@@ -13,7 +13,7 @@
         <div class="nav-wrapper">
             <a href="{{ url_for('home') }}" class="brand-logo center">Drink Splash</a>
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-main" class="sidenav right hide-on-med-and-down">
+            <ul id="nav-main" class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('random_drink') }}">Random</a></li>
                 {% if 'username' in session %}
