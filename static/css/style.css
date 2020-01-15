@@ -29,12 +29,16 @@ nav ul a:hover {
   padding-top: 0px;
 }
 
-.recipes-main {
+/*.recipes-main {
   margin: 5% auto;
-}
+}*/
 
 .input-field>label {
   color: #383838;
+}
+
+#home-heading {
+  margin-bottom: 0;
 }
 
 .drink-image {  
@@ -62,6 +66,19 @@ background-color: #696969;
 
 nav, .page-footer {
   background-color: #24292e;
+}
+
+
+.dropdown-content {
+  background-color: #ececec;
+}
+
+.dropdown-content li>a {
+  color: #000000;
+}
+
+nav ul a:hover {
+  background-color: rgba(0,0,0,.4);
 }
 
 .delete-button {
@@ -136,11 +153,14 @@ margin-bottom: 5%;
   font-size: 1rem;
 }
 
-#login-form, #register-form {
+#login-form, #register-form, #ingredient-form {
   border: 1px solid #9c9c9c;
   border-radius: 16px;
-  margin-top: 20vh;
   background-color: #eaeaea;
+}
+
+#login-form, #register-form {
+margin-top: 20vh;
 }
 
 #register-form {
@@ -151,4 +171,9 @@ margin-bottom: 5%;
 .btn {
   width: 280px;
 }
+
+.dropdown-content {
+  top: 100% !important
+}
+
 }
