@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Josefin Slab', cursive;
+  font-size: 1.4rem;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
