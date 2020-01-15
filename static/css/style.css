@@ -111,6 +111,10 @@ h2, h3 {
   font-weight: bold;
 }
 
+.drink-home{
+  font-size: 1.5rem;
+}
+
 h5, h4 {
   color: red;
 }
@@ -175,6 +179,10 @@ margin-top: 20vh;
 
 .dropdown-content {
   top: 100% !important
+}
+
+.drink-home{
+  font-size: 2.92rem;
 }
 
 }
