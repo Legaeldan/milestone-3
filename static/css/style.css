@@ -151,6 +151,10 @@ a {
   color: black;
 }
 
+footer a {
+  color: #ffffff;
+}
+
 a:hover {
   color: #FFD700;
   font-weight: 900;
