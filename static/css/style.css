@@ -19,6 +19,13 @@ main {
 .drink-image {  
 width: 100%;
 margin-top: 4rem;
+border: 3px solid #ABABAB;
+border-radius: 50%;
+box-shadow: 0 0px 8px 2px black;
+}
+
+nav, .page-footer {
+  background-color: #24292e;
 }
 
 .delete-button {
