@@ -2,6 +2,7 @@
 
 {% block content %}
 <h2>Search by Ingredient</h2>
+<div class="center">
 <form action="{{ url_for('ingredients') }}" method="POST">
     <div class="input-field col s12">
         <select name="ingredientList">
@@ -18,7 +19,11 @@
 </form>
 <div class="row">
     {% if request.method == 'POST' %}
+    {% if not ingredient %}
+    <h2>No ingredient selected!</h2>
+    {% else %}
     <h2>Drinks containing {{ ingredient.ingredientList }}</h2>
+{% endif %}
 {% endif %}
 {% for drink in drinks|sort(attribute='drinkName') %}
 {% if ingredient.ingredientList in drink.ingredientList %}
@@ -28,5 +33,5 @@
 {% endif %}
 {% endfor %}
 </div>
-
+</div>
 {% endblock %}
