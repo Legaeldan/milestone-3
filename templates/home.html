@@ -11,13 +11,19 @@
     <div class="row">
         {% for drink in drinks %}
         {% if loop.index <= 6 %}
-        <a class="col s12 m4 tooltipped" href="{{url_for('view_drink', drink_id=drink._id)}}" data-position="bottom" data-tooltip="{{ drink.drinkName }}">
+        {% if loop.index == 3 %}
+        <div class="row">
+        {% endif %}
+        <a class="col s4 home-image" href="{{url_for('view_drink', drink_id=drink._id)}}" data-position="bottom" data-tooltip="{{ drink.drinkName }}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+            <h3 class="drink-home">{{drink.drinkName}}</h3>
         </a>
-
+        {% if loop.index == 3 %}
+        </div>
+        {% endif %}
         {% endif %}
         {% endfor %}
-    </div>
+    <//div>
 </div>
 
 {% endblock %}
