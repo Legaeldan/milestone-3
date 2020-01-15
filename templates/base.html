@@ -27,8 +27,9 @@
                     <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                  </ul>
-                <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+                <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
                 {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 {% endif %}
