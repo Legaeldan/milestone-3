@@ -21,7 +21,7 @@
         <ul class="discover-drink">
             {% for ingredient in drink.ingredientList %}
             <li>
-                <a href="{{ url_for('ingredients', ingredient_name=ingredient) }}">{{ ingredient }}</a>
+                <a class="drink_ingredient" href="{{ url_for('ingredients', ingredient_name=ingredient) }}">{{ ingredient }}</a>
             </li>       
             {% endfor %}
         </ul>
