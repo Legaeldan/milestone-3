@@ -121,11 +121,11 @@ h5, h4 {
 }
 
 .btn {
-  width: 80%;
-  height: 100px;
+  width: 50%;
+  height: 50px;
   font-size: 1.7rem;
-  line-height: 100px;
-  margin: 0 0 40px 0;
+  line-height: 50px;
+  margin: 0 0 20px 0;
 }
 
 .select-dropdown {
@@ -175,6 +175,10 @@ margin-top: 20vh;
 
 @media(min-width:768px) {
 .btn {
+  width: 80%;
+  height: 100px;
+  line-height: 100px;
+  margin: 0 0 40px 0;
   width: 280px;
 }
 
