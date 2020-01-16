@@ -10,6 +10,7 @@ The site is designed with the best user experience in mind, while maintaining a 
 
 ## Table of Contents
 1. [**UX**](#ux)
+    - [**Project Goals**](#project-goals)
 
 2. [**Features**](#features)
 
@@ -25,8 +26,13 @@ The site is designed with the best user experience in mind, while maintaining a 
 
 7. [**Disclaimer**](#disclaimer)
 
-
 ## UX
+
+### Project Goals
+
+The main objective in creating the Drink Splash application is to provide the user with a simple to use repository of recipes for cocktail and drink making. It also provides an every growing database of cocktails, drinks, and ingredients for the users to browse through and add to.
+
+This applications is designed with adventurous drinkers in mind that require an easy way to explore drinks based on what they might have on hand, or randomly discover a new drink they may not have tried before. And for those who wish to share their recipes with others easily.
 
 ## Features
  
