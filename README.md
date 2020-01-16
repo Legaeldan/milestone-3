@@ -11,6 +11,9 @@ The site is designed with the best user experience in mind, while maintaining a 
 ## Table of Contents
 1. [**UX**](#ux)
     - [**Project Goals**](#project-goals)
+    - [**development Goal**](#development-goal)
+    - [**User Stories**](#user-stories)
+    - [**Design choices**](#design-choices)
 
 2. [**Features**](#features)
 
@@ -33,6 +36,47 @@ The site is designed with the best user experience in mind, while maintaining a 
 The main objective in creating the Drink Splash application is to provide the user with a simple to use repository of recipes for cocktail and drink making. It also provides an every growing database of cocktails, drinks, and ingredients for the users to browse through and add to.
 
 This applications is designed with adventurous drinkers in mind that require an easy way to explore drinks based on what they might have on hand, or randomly discover a new drink they may not have tried before. And for those who wish to share their recipes with others easily.
+
+#### Development Goal
+
+- A project I'd be excited to show off to people as a testament to my abilities.
+- Well thought out programming to account for the unpredictability of users. 
+- Something that looked professional even for a novice programmer on their first venture in JavaScript and jQuery.
+- To learn and impliment intricate python code that would be impressive to a veteran python programmer. 
+
+### User Stories
+
+ **As a user I want this application to have:**
+ 1. A system to search for drinks containing certain ingredients.
+ 2. A website that is easy to navigate.
+ 3. A website which is pleasant to look at.
+ 4. A way to inspect and edit my own creations.
+ 5. An application which makes it easy to edit my own creations.
+ 6. An application that makes it possible for only the creator to change their creations.
+ 7. An application that is fast, which very little load times.
+
+### Design Choices
+
+The main approach to this application is made to easy to maintain, and easy to use database. To provide as many features as possible to make the entire experience simple. The following design choices were made to reflect this:
+
+**Fonts**
+
+- The main body font **Josefin Slab** was chosen due to it's simplistic design, as not to distract from the overall site, and to not clash with the colourful images provided in the drinks.
+
+**Colours**
+
+- The colour choices were made to be simplistic, but to constrast the images presented in the drinks.
+- Colours of **off-black** and **grey** were chosed to not overload the user, and maintain a simple, clean look.
+- **Gold** was chosen as nice contrast to the **black** and **grey** backdrop of the site, and to help highlight any helpful links. **Gold** was found to be the best contrast while remaining easy on the eye.
+
+**Styling**
+
+- Use of the **Materialize** framework was used to keep the site simple, only displaying relevant information, without drawing attention away from the content.
+- The use of borders and rounded edges to images was chosen to give the impression that the images are printed onto coasters, keeping in tone with the website overall theme of **drink recipes**. 
+
+**Background**
+
+- Background colour of a *linear gradient** from **black** to **white** was selected to better help the images and text stand out on screen, and to give a feel of a third dimension. This also helps accentuate the colours and images on screen, and give more depth to the overall page.
 
 ## Features
  
