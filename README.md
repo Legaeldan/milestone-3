@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="http://drink-splash.herokuapp.com/" target="_blank"><img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/DrinkSplash.png?raw=true" alt="Drink Splash Logo"/></a>
+  <a href="http://drink-splash.herokuapp.com/" target="_blank"><img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/DrinkSplash.png?raw=true" width="450" alt="Drink Splash Logo"/></a>
   Drink Splash - Find your drink today!
 </h1>
 <h2>Milestone 3 Project - Kieran Cunnane</h2>
