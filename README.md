@@ -18,7 +18,7 @@ The site is designed with the best user experience in mind, while maintaining a 
 4. [**Technologies Used**](#technologies-used)
 
 5. [**Deployment**](#deployment)
-    - [**Deployment to GitHub Pages**](#deployment-to-github-pages)
+    - [**Deployment to Heroku**](#deployment-to-heroku)
     - [**Running this project locally**](#running-this-project-locally)
 
 6. [**Credits**](#credits)
@@ -68,7 +68,7 @@ This project was developed using [Visual Studio Code](https://code.visualstudio.
 
 The main method of deployment is [Heroku](http://drink-splash.herokuapp.com/), connected directly to my [GitHub Repository](https://github.com/Legaeldan/milestone-3), and deployed within the [Heroku Dashboard](https://www.heroku.com/).
 
-### Deployment to GitHub Pages
+### Deployment to Heroku
 
 To deploy this page to [Heroku](https://www.heroku.com/) from its [GitHub repository](https://github.com/Legaeldan/milestone-3), the following steps were taken: 
 1. Log into [Heroku](https://dashboard.heroku.com/). 
