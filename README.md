@@ -79,7 +79,7 @@ The main approach to this application is made to easy to maintain, and easy to u
 
 **Background**
 
-- Background colour of a *linear gradient** from **black** to **white** was selected to better help the images and text stand out on screen, and to give a feel of a third dimension. This also helps accentuate the colours and images on screen, and give more depth to the overall page.
+- Background colour of a **linear gradient** from **black** to **white** was selected to better help the images and text stand out on screen, and to give a feel of a third dimension. This also helps accentuate the colours and images on screen, and give more depth to the overall page.
 
 ## Features
 
@@ -203,7 +203,7 @@ To deploy this page to [Heroku](https://www.heroku.com/) from its [GitHub reposi
 9. Under **Manual deploy**, select the branch you wish to deploy, and hit **Deploy Branch**
 10. After the application is built, select **Settings** from the top of the page.
 11. Select **Reveal Config Vars**.
-12. Add the config keys for **MONGO_URI**, **MONGO_DBNAME**, and **SECRET_KEY** (These will not be published here for security reasons).
+12. Add the config keys for **IP**, **PORT**, **MONGO_URI**, **MONGO_DBNAME**, and **SECRET_KEY** (These will not be published here for security reasons).
 13. Select **More** from the top right of the page, and select **Restart all dynos**.
 
 
