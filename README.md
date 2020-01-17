@@ -93,6 +93,11 @@ The main approach to this application is made to easy to maintain, and easy to u
     - The navbar has been created to change from a Login button, to the user's name once they are logged in.
     - This also gives the user access to their own collection from a dropdown menu which is generated once a user is logged in.
 
+<div align="center">
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/NavbarChange.png?raw=true" alt="Screenshot: DB Structure" >
+</div>
+
+
 3. **My Collection Page**
     - A page specifically designed to show the user only items which they have created themselves, and filter out all other users data.
 
