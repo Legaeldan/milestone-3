@@ -94,7 +94,7 @@ The main approach to this application is made to easy to maintain, and easy to u
     - This also gives the user access to their own collection from a dropdown menu which is generated once a user is logged in.
 
 <div align="center">
-<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/NavbarChange.png?raw=true" alt="Screenshot: DB Structure" >
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/NavbarChange.png?raw=true" alt="Screenshot: NavBar Changes" >
 </div>
 
 
@@ -104,6 +104,10 @@ The main approach to this application is made to easy to maintain, and easy to u
 4. **Context Sensitive Buttons**
     - On the view drinks page, by default, the page only generates the drink information.
     - If a user is logged in, and if the user is the person who created the document, they are then presented with the edit drink, and delete drink options. Delete drink having an extra confirmation in the form of a modal to ensure accidental deletion doesn't occur.
+
+<div align="center">
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/ContextButtons.png?raw=true" alt="Screenshot: Context Buttons" >
+</div>
 
 5. **Error handling**
     - A system is in place should a user try to access the add drinks page, and they are not logged in.
