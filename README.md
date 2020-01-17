@@ -16,6 +16,8 @@ The site is designed with the best user experience in mind, while maintaining a 
     - [**Design choices**](#design-choices)
 
 2. [**Features**](#features)
+    - [**Existing Features**](#existing-features)
+    - [**Features Left to Implement**](#features-left-to-implement)
 
 3. [**Testing**](#testing)
 
@@ -79,8 +81,57 @@ The main approach to this application is made to easy to maintain, and easy to u
 - Background colour of a *linear gradient** from **black** to **white** was selected to better help the images and text stand out on screen, and to give a feel of a third dimension. This also helps accentuate the colours and images on screen, and give more depth to the overall page.
 
 ## Features
- 
+
+### Existing Features
+
+1. **Encrypted Login**
+    - A login form with encryption using the bcrypt system in Python. This ensures that any sensitive data passed to the database is first encrypted using a salt, which is then tied to that user.
+    - This encrypted login system is also tied to the registration form, which is ecrypted before posting to the database.
+
+2. **Context Sensitive NavBar**
+    - The navbar has been created to change from a Login button, to the user's name once they are logged in.
+    - This also gives the user access to their own collection from a dropdown menu which is generated once a user is logged in.
+
+3. **My Collection Page**
+    - A page specifically designed to show the user only items which they have created themselves, and filter out all other users data.
+
+4. **Context Sensitive Buttons**
+    - On the view drinks page, by default, the page only generates the drink information.
+    - If a user is logged in, and if the user is the person who created the document, they are then presented with the edit drink, and delete drink options. Delete drink having an extra confirmation in the form of a modal to ensure accidental deletion doesn't occur.
+
+5. **Error handling**
+    - A system is in place should a user try to access the add drinks page, and they are not logged in.
+    - Should a user try the above, they will be immediately redirected to the login page. This also occurs with any registered user only features.
+    - Error handling on the ingredients search is also handled by checking if method is POST. Should no ingredient be entered, but method is not POST, it will return the standard page. If method is POST, it will generate content for "No Ingredients Found".
+
+6. **Random Drink Discovery**
+    - A system is in place to generate a random document from the library for users to discover drinks on the fly instead of manually scrolling through the documents.
+
+7. **Drinks Search Engine**
+    - A search page is in place on the ingredients section. Users can search and filter by particular ingredients. The user is then returned all drinks that contain that particular ingredient.
+    - This can also be done from the view drink page by clicking any ingredient on the list. The user will then be directed to the ingredients page, and returned all drinks containing that ingredient.
+
+8. **One to Many Relationships**
+    - To improve the site, I have implimented a one-to-many model through MongoDB. This means that information like ingredients would not all have to be stored in one document, and facilitate the search engine being able to pull multiple connected documents.
+    - this feature also allows for the registered user feature of the My Collection page. As a seperate collection called users ties the user to specific document as show below.
+
+### Features Left to Implement
+
+1. **Favourites**
+
+I would like to impliment a system that allows the user to favourite a drink, then return all drinks on a favourites page that the user has favourited.
+
 ## Testing
+
+
+
+### Known Bugs
+
+- **Android Search**
+    And issue was discovered when testing on Android phones, that when instructions is clicked on the view drink page, chrome immediately tries to do a Google search on the word "Instruction". This also applies to the any headings on the page, but I have yet to find the cause, or fix this issue. This issue does not occur in the developer section for desktop Chrome when scaling for mobile.
+
+- **Dropdown content**
+    Dropdown content, when on mobile, covers the username in the slide out menu. I had previously corrected this on desktop to show below the username, but as of yet, I haven't discovered the solution to this.
 
 ## Technologies Used
 
@@ -156,4 +207,8 @@ For more help on cloning a repository on Github, please click [here](https://hel
 
 ## Credits
 
+Inspiration for this project was found at [TheCocktailDB](https://www.thecocktaildb.com/), an open, crowd-sourced database and JSON API. I used this model as inspiration to emulate this system in MongoDB. I liked the concept initially, but wasn't happy with the design or overall layout. I hoped to improve on this with this project.
+
 ## Disclaimer
+
+Please note that all code and images in this site are for educational purposes only. The original CocktailDB site or any of it's ideas are in no way owned by me, and this site uses the original site as a concept only to show the developers ability in the language of Python/Flask. 
