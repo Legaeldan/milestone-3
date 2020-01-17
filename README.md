@@ -20,6 +20,7 @@ The site is designed with the best user experience in mind, while maintaining a 
     - [**Features Left to Implement**](#features-left-to-implement)
 
 3. [**Testing**](#testing)
+    - [**Known Bugs**](#known-bugs)
 
 4. [**Technologies Used**](#technologies-used)
 
