@@ -116,11 +116,21 @@ The main approach to this application is made to easy to maintain, and easy to u
     - To improve the site, I have implimented a one-to-many model through MongoDB. This means that information like ingredients would not all have to be stored in one document, and facilitate the search engine being able to pull multiple connected documents.
     - this feature also allows for the registered user feature of the My Collection page. As a seperate collection called users ties the user to specific document as show below.
 
+<div align="center">
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/DBStructure.png?raw=true" alt="Screenshot: DB Structure" >
+</div>
+
+
+
 ### Features Left to Implement
 
 1. **Favourites**
 
 I would like to impliment a system that allows the user to favourite a drink, then return all drinks on a favourites page that the user has favourited.
+
+2. **Measurements**
+
+I would like to impliment a system that generates the measurements of ingredients, and add to the ingredients section on view drink. I'm currently tied between a new collection of all possible measurement size, and concatonating the results with the assosciated ingredients, or providing the user with a section which generated new lines on the form whenever an ingredient is selected. I will explore this further going forward with development of this site.
 
 ## Testing
 
@@ -209,6 +219,12 @@ For more help on cloning a repository on Github, please click [here](https://hel
 ## Credits
 
 Inspiration for this project was found at [TheCocktailDB](https://www.thecocktaildb.com/), an open, crowd-sourced database and JSON API. I used this model as inspiration to emulate this system in MongoDB. I liked the concept initially, but wasn't happy with the design or overall layout. I hoped to improve on this with this project.
+
+### Acknowledgements
+
+#### Guidance
+
+I received inspiration and assistance on this project from [Simen Daehlin (Eventyret)](https://github.com/Eventyret), who assisted above and beyond to help improve the site. What seemed like the impossible task of understanding [Python](https://www.python.org/), became far simpler that originally believed. He has helped understand this language a lot better, and has pointed me in the right direction everytime whenever an issue arose with how to impliment code.
 
 ## Disclaimer
 
