@@ -6,7 +6,7 @@
 </div>
 <div class="row center">
     <form id="ingredient-form" class="col s12 m6 offset-m3" action="{{ url_for('ingredients') }}" method="POST">
-        <div class="input-field col s12">
+        <div class="input-field col s7 m8">
             <select name="ingredientList">
                 <option value="" disabled selected>Select Ingredient</option>
                 {% for ingredient in ingredients|sort(attribute='ingredientName') %}
@@ -15,9 +15,11 @@
                 {% endfor %}
             </select>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">SEARCH
+        <div class="col s5 m4">
+        <button id="search-button" class="btn waves-effect waves-light btn-large" type="submit">SEARCH
             <i class="material-icons right">send</i>
         </button>
+    </div>
     </form>
 </div>
 <div class="row">
