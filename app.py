@@ -112,9 +112,11 @@ def collection(collectionType):
     """
     if collectionType == 'my-drinks':
         if 'username' in session:
-            return render_template('mycollection.html', drinks=MONGO.db.drinks.find())
+            return render_template('collection.html',
+                                   drinks=MONGO.db.drinks.find({"createdBy": session['username']}))
         return redirect(url_for('login'))
-    return render_template('collection.html', drinks=MONGO.db.drinks.find())
+    return render_template('collection.html',
+                           drinks=MONGO.db.drinks.find())
 
 @APP.route('/add-ingredient', methods=['POST', 'GET'])
 def add_ingredient():
