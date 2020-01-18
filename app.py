@@ -101,10 +101,13 @@ def ingredients(ingredient_name):
     if request.method == 'POST':
         ingredient_search = request.form.to_dict()
         print(ingredient_search)
-        return render_template('ingredients.html', ingredients=ingredients_list,
-                               ingredient=ingredient_search, drinks=drinks_list)
+        return render_template('ingredients.html',
+                               ingredients=ingredients_list,
+                               ingredient=ingredient_search,
+                               drinks=drinks_list,
+                               headerTitle=ingredient_search['ingredientList'])
     return render_template('ingredients.html', drinks=drinks_list,
-                           ingredient=ingredient_dict, ingredients=ingredients_list)
+                           ingredient=ingredient_dict, ingredients=ingredients_list, headerTitle="Ingredients")
 
 
 @APP.route('/collection/<collectionType>')
@@ -116,10 +119,12 @@ def collection(collectionType):
     if collectionType == 'my-drinks':
         if 'username' in session:
             return render_template('collection.html',
-                                   drinks=MONGO.db.drinks.find({"createdBy": session['username']}))
+                                   drinks=MONGO.db.drinks.find({"createdBy": session['username']}),
+                                   headerTitle="My Drinks")
         return redirect(url_for('login'))
     return render_template('collection.html',
-                           drinks=MONGO.db.drinks.find())
+                           drinks=MONGO.db.drinks.find(),
+                           headerTitle="Collection")
 
 @APP.route('/add-ingredient', methods=['POST', 'GET'])
 def add_ingredient():
@@ -140,8 +145,10 @@ def add_ingredient():
         if mongo_count is None:
             ingredients_list.insert_one(final_ingredient)
             return redirect(url_for('add_drink'))
-        return render_template('addingredient.html', exists=1, ingredient=final_ingredient)
-    return render_template('addingredient.html')
+        return render_template('addingredient.html', exists=1, ingredient=final_ingredient,
+                                headerTitle="Add Ingredient")
+    return render_template('addingredient.html',
+                            headerTitle="Add Ingredient")
 
 
 @APP.route('/drink/<drink_id>', methods=['POST', 'GET'])
