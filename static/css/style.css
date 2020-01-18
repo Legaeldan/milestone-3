@@ -2,20 +2,17 @@
 
 body {
   font-family: 'Josefin Slab', cursive;
-  font-size: 1.4rem;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   background-image: linear-gradient(rgba(42, 43, 43, 0.77), rgba(105, 106, 106, 0.38));
 }
 
-main {
-  flex: 1 0 auto;
-}
-
 .content {
   flex: 1;
 }
+
+/*Layout styling*/
 
 .brand-logo {
   font-weight: bold;
@@ -30,20 +27,24 @@ nav ul a:hover {
   padding-top: 0px;
 }
 
-/*.recipes-main {
-  margin: 5% auto;
-}*/
+nav, .page-footer {
+  background-color: #24292e;
+}
+
+/*End Layout Styling*/
+/*Form Styling*/
 
 .input-field>label {
   color: #383838;
 }
 
+/*End Form*/
 #home-heading {
   margin-bottom: 0;
 }
 
 .drink-image {  
-width: 40%;
+width: 100%;
 margin-top: 4rem;
 border: 3px solid #ABABAB;
 border-radius: 50%;
@@ -52,24 +53,25 @@ padding: 5px;
 background-color: #696969;
 }
 
-h5, h4 {
+.bold-headers{
+  font-weight: bold;
+}
+
+h5 {
   color: red;
 }
 
 h6 {
   color: #FFD700;
-  font-weight: bold;
 }
 
 .link-image>h5 {
   text-align: center;
-  font-weight: bold;
   color: black;
 }
 
 #new-ingredient {
   color: #000000;
-  font-weight: bold;
 }
 
 #new-ingredient>a {
@@ -90,11 +92,6 @@ h6 {
   border-radius: 25%;
   box-shadow: 0 0px 8px 2px black;
 }
-
-nav, .page-footer {
-  background-color: #24292e;
-}
-
 
 .dropdown-content, .sidenav {
   background-color: #ececec;
@@ -123,28 +120,30 @@ nav ul a:hover {
 
 .discover-container {
   height: 80vh;
+  display: block;
 }
 
 .discover-drink {
-  padding: 40px 0;
   text-align: center;
   font-size: 1.5rem;
 }
 
 .ingredients-list>li {
   display: inline-block;
+  font-size: 1.5rem
 }
 
 h2, h3, .collection-image  {
   text-align: center;
-  font-weight: bold;
 }
 
-.drink-home, .collection-image {
+.drink-home {
   font-size: 1.5rem;
 }
 
-
+.collection-image {
+  font-size: 1rem;
+}
 
 .large-button {
   width: 50%;
@@ -168,7 +167,6 @@ h2, h3, .collection-image  {
 .drink-ingredients span,
 .content label {
   color: black !important;
-  font-weight: bold;
 }
 
 input[type=text]:not(.browser-default) {
@@ -223,12 +221,9 @@ margin-bottom: 5%;
   background-color: #eaeaea;
 }
 
-#login-form, #register-form {
-margin-top: 20vh;
-}
-
-#register-form {
-  margin-bottom: 15vh;
+.modal{
+  background-color: rgba(0,0,0,0);
+  box-shadow: 0 0;
 }
 
 @media(min-width:768px) {
@@ -240,12 +235,32 @@ margin-top: 20vh;
   width: 280px;
 }
 
+.drink-image {  
+  width: 40%;
+}
+
+.modal{
+  width: 20%;
+}
+
+.drink-image {  
+  width: 40%;
+}
+
 .dropdown-content {
   top: 100% !important
 }
 
+.collection-image {
+  font-size: 1.5rem;
+}
+
 .drink-home{
   font-size: 2.92rem;
+}
+
+.discover-container {
+  display: flex;
 }
 
 }

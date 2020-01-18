@@ -1,15 +1,9 @@
-{% extends 'base.html'%}
-
-{% block content %}
-<div class="row">
-    <div class="col s12 m4 offset-m4">
-        <form id="login-form" method=POST action="{{ url_for('login') }}">
+<div id="registerModal" class="modal col s6 offset-m3">
+    <div class="modal-content">
+        <form id="register-form" method=POST action="{{ url_for('register') }}">
             <div class="row">
                 <div class="col s12">
-                    <h3 class="center">Login</h3>
-                    {% if exists == 0 %}
-                    <h5 class="center">Invalid username/password</h5>
-                    {% endif %}
+                    <h3 class="center">Register</h3>
                 </div>
             </div>
             <div class="row">
@@ -20,24 +14,24 @@
             </div>
             <div class="row">
                 <div class="input-field col s10 offset-s1">
+                    <input id="email" type="email" class="validate" name="email" required>
+                    <label for="email">E-Mail Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
                     <input id="password" type="password" class="validate" name="password" required>
                     <label for="password">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="center-align">
-                    <button class="large-button btn waves-effect waves-light" type="submit" name="action">Log In
+                    <button class="large-button btn waves-effect waves-light themed-button" type="submit">Register
                         <i class="material-icons">vpn_key</i>
                     </button>
                 </div>
             </div>
         </form>
-        <div class="row">
-            <div id="sign-up" class="center-align">
-                Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>.
-            </div>
-        </div>
     </div>
-</div>
 
-{% endblock %}
+  </div>

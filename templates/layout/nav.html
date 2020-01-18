@@ -2,7 +2,7 @@
 
 <nav>
     <div class="nav-wrapper">
-        <a href="{{ url_for('home') }}" class="brand-logo center">Drink Splash</a>
+        <a href="{{ url_for('home') }}" class="brand-logo center nav-brand">Drink Splash</a>
         <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -21,7 +21,7 @@
             <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i
                         class="material-icons right">arrow_drop_down</i></a></li>
             {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a class="modal-trigger" href="#loginModal">Login</a></li>
             {% endif %}
         </ul>
     </div>
