@@ -4,11 +4,11 @@
 
 <div id="drinkResponse" class="row discover-container valign-wrapper">
     <div class="col s12 m6 center">
-        <h3>{{drink.drinkName}}</h3>
+        <h3 class="bold-headers">{{drink.drinkName}}</h3>
         <img id="discover-image" class="discover-drink" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
     </div>
     <div class="col s12 m6 center">
-            <h4>Ingredients</h4>
+            <h4 class="bold-headers">Ingredients</h4>
             <div class="related-drinks">Click ingredient for related drinks</div>
             <ul class="ingredients-list">
                 {% for ingredient in drink.ingredientList %}
@@ -26,29 +26,28 @@
                 {% endif %}
                 {% endfor %}
             </ul>
-            <h4>Instructions</h4>
+            <h4 class="bold-headers">Instructions</h4>
             <div class="discover-drink">
                 {{ drink.instructions }}
             </div>
     
     </div>
 
-    {% if session['username'] == drink.createdBy %}
-    <div class="row">
-        <div class="col s12 m6 center-align">
-            <a class="large-button waves-effect waves-light btn themed-button"
-                href="{{url_for('edit_drink', drink_id=drink._id)}}">EDIT DRINK</a>
-        </div>
-        <div class="col s12 m6 center-align">
-            <a id="delete-button"
-                class="large-button waves-effect waves-light btn delete-button themed-button modal-trigger"
-                href="#modal1">DELETE DRINK</a i>
-        </div>
+
+</div>
+{% if session['username'] == drink.createdBy %}
+<div class="row">
+    <div class="col s12 m6 center-align">
+        <a class="large-button waves-effect waves-light btn themed-button modal-trigger"
+            href="#editModal">EDIT DRINK</a>
     </div>
-    {% endif %}
+    <div class="col s12 m6 center-align">
+        <a id="delete-button"
+            class="large-button waves-effect waves-light btn delete-button themed-button modal-trigger"
+            href="#modal1">DELETE DRINK</a i>
+    </div>
 </div>
 
-{% if session['username'] == drink.createdBy %}
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>Delete Drink?</h4>
@@ -60,6 +59,8 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
     </div>
 </div>
+
+{% include 'components/editForm.html' %}
 {% endif %}
 
 {% endblock %}

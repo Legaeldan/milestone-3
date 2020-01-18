@@ -31,6 +31,8 @@
 {% if 'username' not in session %}
 {% include 'components/loginForm.html' %}
 {% include 'components/registerForm.html' %}
+{% else %}
+{% include 'components/addDrinkForm.html' %}
 {% endif %}
 
 

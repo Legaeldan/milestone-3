@@ -18,7 +18,7 @@
         <li><a class="dropdown-trigger" href="#!" data-target="sidenav-dropdown">{{ session['username'] }}<i
                     class="material-icons right">arrow_drop_down</i></a></li>
         {% else %}
-        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a class="modal-trigger" href="#loginModal">Login</a></li>
         {% endif %}
     </ul>
 </aside>

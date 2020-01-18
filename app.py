@@ -27,7 +27,8 @@ def home():
     print(today)
     return render_template('home.html',
                            drinks=sorted_drinks,
-                           headerTitle="Latest Drinks")
+                           headerTitle="Latest Drinks",
+                           ingredients=MONGO.db.ingedients.find())
 
 
 @APP.route('/logout')

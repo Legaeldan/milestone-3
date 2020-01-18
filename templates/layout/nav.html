@@ -8,7 +8,7 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('random_drink') }}">Random</a></li>
             {% if 'username' in session %}
-            <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
+            <li><a class="modal-trigger" href="#addDrinkModal">Add Drink</a></li>
             {% endif %}
             <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
             <li><a href="{{ url_for('collection') }}">Collection</a></li>
