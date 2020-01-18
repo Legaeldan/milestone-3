@@ -2,7 +2,7 @@ import os
 import random
 import datetime
 import bcrypt
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, abort
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -14,6 +14,9 @@ APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 MONGO = PyMongo(APP)
 
+@APP.errorhandler(404)
+def page_not_found():
+    return render_template('404.html', headerTitle="Error - Page Not Found"), 404
 
 @APP.route('/')
 def home():
@@ -146,54 +149,57 @@ def drink(drink_id):
     """
     Renders page for viewing all drink details for drink found in DB.
     """
-    if request.method == 'POST':
-        if drink_id == 'insertDrink':
+    try:
+        if request.method == 'POST':
+            if drink_id == 'insertDrink':
+                drinks = MONGO.db.drinks
+                form = request.form.to_dict()
+                today = datetime.datetime.now()
+                final_drink = {
+                    'drinkName': form["drinkName"].title(),
+                    'drinkImage': form["drinkImage"],
+                    'ingredientList': request.form.getlist("ingredientName"),
+                    'instructions': form["instructions"],
+                    'modifiedDate': str(today),
+                    'createdBy': session['username'],
+                }
+                insertedDrink = drinks.insert_one(final_drink).inserted_id
+                return render_template('viewdrink.html',
+                                       drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)}),
+                                       headerTitle=request.form.get('drinkName'),
+                                       ingredients=MONGO.db.ingedients.find())
             drinks = MONGO.db.drinks
-            form = request.form.to_dict()
             today = datetime.datetime.now()
-            final_drink = {
-                'drinkName': form["drinkName"].title(),
-                'drinkImage': form["drinkImage"],
-                'ingredientList': request.form.getlist("ingredientName"),
-                'instructions': form["instructions"],
-                'modifiedDate': str(today),
-                'createdBy': session['username'],
-            }
-            insertedDrink = drinks.insert_one(final_drink).inserted_id
+            drinks.update_one({'_id': ObjectId(drink_id)},
+                              {'$set':
+                               {
+                                   'drinkImage': request.form.get('drinkImage'),
+                                   'drinkName': request.form.get('drinkName'),
+                                   'ingredientList': request.form.getlist("ingredientName"),
+                                   'modifiedDate': str(today),
+                                   'instructions': request.form.get('instructions')
+                               }
+                               },
+                              upsert=False)
             return render_template('viewdrink.html',
-                                   drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)}),
+                                   drink=MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)}),
                                    headerTitle=request.form.get('drinkName'),
                                    ingredients=MONGO.db.ingedients.find())
-        drinks = MONGO.db.drinks
-        today = datetime.datetime.now()
-        drinks.update_one({'_id': ObjectId(drink_id)},
-                          {'$set':
-                           {
-                               'drinkImage': request.form.get('drinkImage'),
-                               'drinkName': request.form.get('drinkName'),
-                               'ingredientList': request.form.getlist("ingredientName"),
-                               'modifiedDate': str(today),
-                               'instructions': request.form.get('instructions')
-                           }
-                           },
-                          upsert=False)
-        return render_template('viewdrink.html',
-                               drink=MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)}),
-                               headerTitle=request.form.get('drinkName'),
-                               ingredients=MONGO.db.ingedients.find())
-    elif drink_id == 'randomDrink':
-        rand = MONGO.db.drinks.count()
-        the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
+        elif drink_id == 'randomDrink':
+            rand = MONGO.db.drinks.count()
+            the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
+            return render_template('viewdrink.html',
+                                   drink=the_drink,
+                                   headerTitle=the_drink['drinkName'],
+                                   ingredients=MONGO.db.ingedients.find())
+        the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
+        print(the_drink)
         return render_template('viewdrink.html',
                                drink=the_drink,
                                headerTitle=the_drink['drinkName'],
                                ingredients=MONGO.db.ingedients.find())
-    the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    print(the_drink)
-    return render_template('viewdrink.html',
-                           drink=the_drink,
-                           headerTitle=the_drink['drinkName'],
-                           ingredients=MONGO.db.ingedients.find())
+    except:
+        return abort(404)
 
 
 @APP.route('/delete-drink/<drink_id>')
