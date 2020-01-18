@@ -1,0 +1,26 @@
+{% block sidenav %}
+
+<aside>
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('random_drink') }}">Random</a></li>
+        {% if 'username' in session %}
+        <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
+        <li><a href="{{ url_for('collection') }}">Collection</a></li>
+        {% if 'username' in session %}
+        <ul id="sidenav-dropdown" class="dropdown-content">
+            <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+        <li><a class="dropdown-trigger" href="#!" data-target="sidenav-dropdown">{{ session['username'] }}<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        {% endif %}
+    </ul>
+</aside>
+
+{% endblock %}

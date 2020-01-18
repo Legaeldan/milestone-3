@@ -7,80 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Third Milestone project for Legaeldan 
                                       in the fullstack development course from Code Institute">
-    <meta name="keywords"
-        content="HTML5,CSS3,CodeInstitute,Milestone Project, PyMongo, MongoDB, Atlas, BSON,
-                Kieran Cunnane,User Centric Frontend,Full Stack Development,GitHub, Git, Python, Flask">
+    <meta name="keywords" content="HTML5,CSS3, PyMongo, MongoDB, Atlas, BSON, GitHub, Git, Python, Flask">
     <meta name="author" content="Kieran Cunnane">
-    <title>Drink Splash - Milestone 3</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <title>{{headerTitle}} | Drink Splash</title>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="{{ url_for('home') }}" class="brand-logo center">Drink Splash</a>
-            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('random_drink') }}">Random</a></li>
-                {% if 'username' in session %}
-                <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
-                <li><a href="{{ url_for('collection') }}">Collection</a></li>
-                {% if 'username' in session %}
-                <ul id="main-dropdown" class="dropdown-content">
-                    <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                </ul>
-                <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
-                {% else %}
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
+{% include 'layout/nav.html' %}
 
-    <ul class="sidenav" id="mobile-nav">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('random_drink') }}">Random</a></li>
-        {% if 'username' in session %}
-        <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
-        {% endif %}
-        <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
-        <li><a href="{{ url_for('collection') }}">Collection</a></li>
-        {% if 'username' in session %}
-        <ul id="sidenav-dropdown" class="dropdown-content">
-            <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        </ul>
-        <li><a class="dropdown-trigger" href="#!" data-target="sidenav-dropdown">{{ session['username'] }}<i
-                    class="material-icons right">arrow_drop_down</i></a></li>
-        {% else %}
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        {% endif %}
-    </ul>
+{% include 'layout/sidenav.html' %}
 
     <div class="container content">
         {% block content %} {% endblock %}
     </div>
 
-    <footer class="page-footer">
-        <div class="footer-copyright">
-            <div class="container">
-                © 2020 - Created by Legaeldan
-                <a class="right" href="https://github.com/Legaeldan/milestone-3">View on GitHub
-                    <i class="fab fa-github"></i></a>
-            </div>
-        </div>
-    </footer>
+{% include 'layout/footer.html' %}
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
