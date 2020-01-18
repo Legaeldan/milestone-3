@@ -43,7 +43,7 @@ nav ul a:hover {
 }
 
 .drink-image {  
-width: 100%;
+width: 40%;
 margin-top: 4rem;
 border: 3px solid #ABABAB;
 border-radius: 50%;
@@ -54,6 +54,11 @@ background-color: #696969;
 
 h5, h4 {
   color: red;
+}
+
+h6 {
+  color: #FFD700;
+  font-weight: bold;
 }
 
 .link-image>h5 {
@@ -78,6 +83,7 @@ h5, h4 {
 }
 
 #discover-image {
+  width: 75%;
   padding: 5px;
   border: 5px solid;
   background-color: #696969;
@@ -120,10 +126,13 @@ nav ul a:hover {
 }
 
 .discover-drink {
-  width: 100%;
   padding: 40px 0;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.ingredients-list>li {
+  display: inline-block;
 }
 
 h2, h3, .collection-image  {
@@ -166,18 +175,13 @@ input[type=text]:not(.browser-default) {
   border-bottom: 1px solid #5a5a5a;
 }
 
-#search-button, 
-#add-button, 
-#edit-button,
-#delete-button {
+.themed-button {
   margin-top: 1rem;
   margin-bottom: 1rem;
   background-color: #24292e
 }
 
-#search-button:hover, 
-#add-button:hover,
-#edit-button:hover {
+.themed-button:hover {
   background-color: #FFD700;
   color: #000000;
   transition-duration: .5s;
@@ -185,7 +189,7 @@ input[type=text]:not(.browser-default) {
 
 #delete-button:hover {
   background-color: #fb5157;
-  color: #000000;
+  color: #fff;
   transition-duration: .5s;
 }
 
@@ -203,11 +207,11 @@ a:hover {
   transition-duration: .5s;
 }
 
-#instructions {
+/*#instructions {
 text-align: center;
 font-size: 2.5rem;
 margin-bottom: 5%;
-}
+}*/
 
 .label-ingredients {
   font-size: 1rem;
@@ -230,8 +234,8 @@ margin-top: 20vh;
 @media(min-width:768px) {
 .large-button {
   width: 80%;
-  height: 100px;
-  line-height: 100px;
+  height: 50px;
+  line-height: 50px;
   margin: 0 0 40px 0;
   width: 280px;
 }

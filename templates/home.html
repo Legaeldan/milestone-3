@@ -14,10 +14,10 @@
         {% if loop.index == 4 %}
         <div class="row">
             {% endif %}
-            <a class="col s4 link-image" href="{{url_for('view_drink', drink_id=drink._id)}}" data-position="bottom"
+            <a class="col s4 link-image center" href="{{url_for('view_drink', drink_id=drink._id)}}" data-position="bottom"
                 data-tooltip="{{ drink.drinkName }}">
                 <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
-                <h3 class="drink-home">{{drink.drinkName}}</h3>
+                <h5 class="drink-home">{{drink.drinkName}}</h5>
             </a>
             {% if loop.index == 6 %}
         </div>
