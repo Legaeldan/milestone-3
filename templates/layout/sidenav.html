@@ -3,15 +3,15 @@
 <aside>
     <ul class="sidenav" id="mobile-nav">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('random_drink') }}">Random</a></li>
+        <li><a href="{{ url_for('view_drink', drink_id='randomDrink') }}">Random</a></li>
         {% if 'username' in session %}
-        <li><a href="{{ url_for('add_drink') }}">Add Drink</a></li>
+        <li><a class="modal-trigger" href="#addDrinkModal"></a>></li>
         {% endif %}
         <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
-        <li><a href="{{ url_for('collection') }}">Collection</a></li>
+        <li><a href="{{ url_for('collection', user=0) }}">Collection</a></li>
         {% if 'username' in session %}
         <ul id="sidenav-dropdown" class="dropdown-content">
-            <li><a href="{{ url_for('user_collection') }}">My Drinks</a></li>
+            <li><a href="{{ url_for('collection', user=1) }}">My Drinks</a></li>
             <li class="divider"></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>

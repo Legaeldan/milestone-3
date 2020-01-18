@@ -81,26 +81,6 @@ def register():
         return 'That username already exists!'
     return render_template('register.html')
 
-
-@APP.route('/random')
-def random_drink():
-    """
-    Count all document in drinks collection.
-
-    Returns a random document from drinks collection
-    based on location of randomly generated number.
-
-    Page with random document generation.
-
-    Reuses the view drink page, with a switch of random=1
-    to tell the page to render with title "random drink".
-    """
-    rand = MONGO.db.drinks.count()
-    the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
-    return render_template('viewdrink.html', random=1,
-                           drink=the_drink, ingredients=MONGO.db.ingedients.find())
-
-
 @APP.route('/ingredients', methods=['GET', 'POST'], defaults={'ingredient_name': {}})
 @APP.route('/ingredients/<ingredient_name>', methods=['GET', 'POST'])
 def ingredients(ingredient_name):
@@ -124,28 +104,17 @@ def ingredients(ingredient_name):
                            ingredient=ingredient_dict, ingredients=ingredients_list)
 
 
-@APP.route('/collection')
-def collection():
+@APP.route('/collection/<collectionType>')
+@APP.route('/collection/', defaults={'collectionType':{}})
+def collection(collectionType):
     """
     Renders page which display all drinks in drinks database.
     """
+    if collectionType == 'my-drinks':
+        if 'username' in session:
+            return render_template('mycollection.html', drinks=MONGO.db.drinks.find())
+        return redirect(url_for('login'))
     return render_template('collection.html', drinks=MONGO.db.drinks.find())
-
-
-@APP.route('/mydrinks')
-def user_collection():
-    """
-    A registered user only login page.
-
-    Renders a collection page and, if a user is logged in,
-    renders all documents created by them.
-
-    If no user is logged in, redirects to login page.
-    """
-    if 'username' in session:
-        return render_template('mycollection.html', drinks=MONGO.db.drinks.find())
-    return redirect(url_for('login'))
-
 
 @APP.route('/add-ingredient', methods=['POST', 'GET'])
 def add_ingredient():
@@ -172,6 +141,7 @@ def add_ingredient():
 
 @APP.route('/view-drink/<drink_id>', methods=['POST', 'GET'])
 def view_drink(drink_id):
+    
     """
     Renders page for viewing all drink details for drink found in DB.
     """
@@ -191,6 +161,14 @@ def view_drink(drink_id):
                           upsert=False)
         return render_template('viewdrink.html',
                                drink=MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)}),
+                               headerTitle=request.form.get('drinkName'),
+                               ingredients=MONGO.db.ingedients.find())
+    elif drink_id == 'randomDrink':
+        rand = MONGO.db.drinks.count()
+        the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
+        return render_template('viewdrink.html',
+                               drink=the_drink,
+                               headerTitle=the_drink['drinkName'],
                                ingredients=MONGO.db.ingedients.find())
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     print(the_drink)
@@ -207,23 +185,6 @@ def delete_drink(drink_id):
     """
     MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
     return redirect(url_for('collection'))
-
-
-@APP.route('/add-drink')
-def add_drink():
-    """
-    Add drink only a function for registered users.
-
-    If no user logged in, returns to the login page.
-
-    Renders add drink page.
-
-    Populates ingredient list to add to ingredient list array within drink.
-    """
-    if 'username' in session:
-        return render_template('adddrink.html', ingredients=MONGO.db.ingedients.find())
-    return redirect(url_for('login'))
-
 
 @APP.route('/insert-drink', methods=['POST'])
 def insert_drink():
