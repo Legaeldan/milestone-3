@@ -19,13 +19,9 @@
 
 <body>
 {% include 'layout/nav.html' %}
-
-{% include 'layout/sidenav.html' %}
-
     <div class="container content">
         {% block content %} {% endblock %}
     </div>
-
 {% include 'layout/footer.html' %}
 
 {% if 'username' not in session %}
