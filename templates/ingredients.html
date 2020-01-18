@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <h2>Search by Ingredient</h2>
+    <h2 class="bold-headers">Search by Ingredient</h2>
 </div>
 <div class="row center">
     <form id="ingredient-form" class="col s12 m6 offset-m3" action="{{ url_for('ingredients') }}" method="POST">
@@ -16,7 +16,7 @@
             </select>
         </div>
         <div class="col s5 m4">
-        <button id="search-button" class="btn waves-effect waves-light btn-large" type="submit">SEARCH
+        <button class="btn waves-effect waves-light btn-large themed-button" type="submit">SEARCH
             <i class="material-icons right">send</i>
         </button>
     </div>
@@ -27,13 +27,13 @@
         {% if request.method == 'POST' %}
 
         {% if not ingredient %}
-        <h2>No ingredient selected!</h2>
+        <h3>No ingredient selected!</h3>
         {% else %}
-        <h2>Drinks containing {{ ingredient.ingredientList }}</h2>
+        <h3>Drinks containing {{ ingredient.ingredientList }}</h3>
         {% endif %}
         {% else %}
         {% if ingredient.ingredientList != {} %}
-        <h2>Drinks containing {{ ingredient.ingredientList }}</h2>
+        <h3>Drinks containing {{ ingredient.ingredientList }}</h3>
         {% endif %}
         {% endif %}
 
@@ -41,9 +41,10 @@
 
         {% for drink in drinks|sort(attribute='drinkName') %}
         {% if ingredient.ingredientList in drink.ingredientList %}
-        <a class="col s4 m2 tooltipped" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
+        <a class="col s4 m2" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
             href="{{url_for('view_drink', drink_id=drink._id)}}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+            <div class="collection-image">{{drink.drinkName}}</div>
         </a>
         {% endif %}
         {% endfor %}

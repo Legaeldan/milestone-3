@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -27,6 +27,11 @@
     </div>
 
 {% include 'layout/footer.html' %}
+
+{% if 'username' not in session %}
+{% include 'components/loginForm.html' %}
+{% include 'components/registerForm.html' %}
+{% endif %}
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
