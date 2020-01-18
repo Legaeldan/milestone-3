@@ -169,16 +169,34 @@ def add_ingredient():
     return render_template('addingredient.html')
 
 
-@APP.route('/view-drink/<drink_id>')
+@APP.route('/view-drink/<drink_id>', methods=['POST', 'GET'])
 def view_drink(drink_id):
     """
     Renders page for viewing all drink details for drink found in DB.
     """
+    if request.method == 'POST':
+        drinks = MONGO.db.drinks
+        today = datetime.datetime.now()
+        drinks.update_one({'_id': ObjectId(drink_id)},
+                          {'$set':
+                           {
+                               'drinkImage': request.form.get('drinkImage'),
+                               'drinkName': request.form.get('drinkName'),
+                               'ingredientList': request.form.getlist("ingredientName"),
+                               'modifiedDate': str(today),
+                               'instructions': request.form.get('instructions')
+                           }
+                           },
+                          upsert=False)
+        return render_template('viewdrink.html',
+                               drink=MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)}),
+                               ingredients=MONGO.db.ingedients.find())
     the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
     print(the_drink)
     return render_template('viewdrink.html',
                            drink=the_drink,
-                           headerTitle=the_drink['drinkName'])
+                           headerTitle=the_drink['drinkName'],
+                           ingredients=MONGO.db.ingedients.find())
 
 
 @APP.route('/delete-drink/<drink_id>')
@@ -228,47 +246,8 @@ def insert_drink():
         'modifiedDate': str(today),
         'createdBy': session['username'],
     }
-    return redirect(url_for('view_drink', 
+    return redirect(url_for('view_drink',
                             drink_id=drinks.insert_one(final_drink).inserted_id))
-
-
-@APP.route('/edit-drink/<drink_id>')
-def edit_drink(drink_id):
-    """
-    Find drink details, and generate on page for editing purposes.
-    """
-    ingredient_list = MONGO.db.ingedients.find()
-    the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    return render_template('editdrink.html',
-                           ingredients=ingredient_list, drink=the_drink, drink_id=drink_id)
-
-
-@APP.route('/edit-drink/update/<drink_id>', methods=['POST'])
-def update_drink(drink_id):
-    """
-    Update drink passthrough page to push to DB.
-
-    Update only set objects in document, not all, using $set function.
-    Avoids creation of new documents if no items found.
-
-    upsert set to False to avoid creating new document. Only update existing.
-
-    """
-    drink = MONGO.db.drinks
-    today = datetime.datetime.now()
-    drink.update_one({'_id': ObjectId(drink_id)},
-                     {'$set':
-                      {
-                          'drinkImage': request.form.get('drinkImage'),
-                          'drinkName': request.form.get('drinkName'),
-                          'ingredientList': request.form.getlist("ingredientName"),
-                          'modifiedDate': str(today),
-                          'instructions': request.form.get('instructions')
-                      }
-                      },
-                     upsert=False)
-    return redirect(url_for('view_drink', drink_id=drink_id))
-
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
