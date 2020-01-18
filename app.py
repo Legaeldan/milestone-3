@@ -25,7 +25,9 @@ def home():
     today = datetime.datetime.now()
     sorted_drinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
     print(today)
-    return render_template('home.html', drinks=sorted_drinks)
+    return render_template('home.html',
+                           drinks=sorted_drinks,
+                           headerTitle="Latest Drinks")
 
 
 @APP.route('/logout')
