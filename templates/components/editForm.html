@@ -1,6 +1,6 @@
 <div id="editModal" class="modal col s6 offset-m3">
     <div class="modal-content">
-<form class="col s12" action="{{ url_for('view_drink', drink_id=drink._id) }}" method="POST">
+<form class="col s12" action="{{ url_for('drink', drink_id=drink._id) }}" method="POST">
     <div class="row">
       <div class="input-field col s12">
         <input id="drinkName" name="drinkName" type="text" placeholder="{{ drink.drinkName }}"

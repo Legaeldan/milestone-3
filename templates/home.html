@@ -16,7 +16,7 @@
     </div>
         <div class="row">
             {% endif %}
-            <a class="col s4 link-image center" href="{{url_for('view_drink', drink_id=drink._id)}}">
+            <a class="col s4 link-image center" href="{{url_for('drink', drink_id=drink._id)}}">
                 <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
                 <h5 class="drink-home">{{drink.drinkName}}</h5>
             </a>

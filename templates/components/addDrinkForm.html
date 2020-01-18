@@ -1,6 +1,6 @@
 <div id="addDrinkModal" class="modal">
     <div class="modal-content">
-<form class="col s12" action="{{ url_for('insert_drink') }}" method="POST">
+<form class="col s12" action="{{ url_for('drink', drink_id='insertDrink') }}" method="POST">
     <div class="row">
       <div class="input-field col s12">
         <input id="drinkName" name="drinkName" type="text" class="validate" required>

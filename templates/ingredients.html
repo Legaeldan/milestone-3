@@ -42,7 +42,7 @@
         {% for drink in drinks|sort(attribute='drinkName') %}
         {% if ingredient.ingredientList in drink.ingredientList %}
         <a class="col s4 m2" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
-            href="{{url_for('view_drink', drink_id=drink._id)}}">
+            href="{{url_for('drink', drink_id=drink._id)}}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
             <div class="collection-image">{{drink.drinkName}}</div>
         </a>

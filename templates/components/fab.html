@@ -5,7 +5,7 @@
     </a>
     <ul>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Home" href="{{ url_for('home') }}"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Random" href="{{ url_for('view_drink', drink_id='randomDrink') }}"><i class="fas fa-dice-five"></i></a></li>
+      <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Random" href="{{ url_for('drink', drink_id='randomDrink') }}"><i class="fas fa-dice-five"></i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Collection" href="{{ url_for('collection') }}"><i class="material-icons">local_drink</i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="My Drinks" href="{{ url_for('collection', collectionType='my-drinks') }}"><i class="material-icons">check</i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Ingredients" href="{{ url_for('ingredients') }}"><i class="fas fa-wine-bottle"></i></a></li>
@@ -18,7 +18,7 @@
       </a>
       <ul>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Home" href="{{ url_for('home') }}"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Random" href="{{ url_for('view_drink', drink_id='randomDrink') }}"><i class="fas fa-dice-five"></i></a></li>
+      <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Random" href="{{ url_for('drink', drink_id='randomDrink') }}"><i class="fas fa-dice-five"></i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Collection" href="{{ url_for('collection') }}"><i class="material-icons">local_drink</i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Ingredients" href="{{ url_for('ingredients') }}"><i class="fas fa-wine-bottle"></i></a></li>
       <li><a class="btn-floating fab-child modal-trigger tooltipped" data-position="left" data-tooltip="Login" href="#loginModal"><i class="large material-icons">vpn_key</i></a></li>

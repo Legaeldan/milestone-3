@@ -141,13 +141,29 @@ def add_ingredient():
     return render_template('addingredient.html')
 
 
-@APP.route('/view-drink/<drink_id>', methods=['POST', 'GET'])
-def view_drink(drink_id):
-    
+@APP.route('/drink/<drink_id>', methods=['POST', 'GET'])
+def drink(drink_id): 
     """
     Renders page for viewing all drink details for drink found in DB.
     """
     if request.method == 'POST':
+        if drink_id == 'insertDrink':
+            drinks = MONGO.db.drinks
+            form = request.form.to_dict()
+            today = datetime.datetime.now()
+            final_drink = {
+                'drinkName': form["drinkName"].title(),
+                'drinkImage': form["drinkImage"],
+                'ingredientList': request.form.getlist("ingredientName"),
+                'instructions': form["instructions"],
+                'modifiedDate': str(today),
+                'createdBy': session['username'],
+            }
+            insertedDrink = drinks.insert_one(final_drink).inserted_id
+            return render_template('viewdrink.html',
+                                   drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)}),
+                                   headerTitle=request.form.get('drinkName'),
+                                   ingredients=MONGO.db.ingedients.find())
         drinks = MONGO.db.drinks
         today = datetime.datetime.now()
         drinks.update_one({'_id': ObjectId(drink_id)},
@@ -187,31 +203,6 @@ def delete_drink(drink_id):
     """
     MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
     return redirect(url_for('collection'))
-
-@APP.route('/insert-drink', methods=['POST'])
-def insert_drink():
-    """
-    Passthrough to push drink to DB.
-
-    Creates a new object called final_drink
-    then pulls all detauls from the form, including
-    an array of ingredients.
-
-    Finally, inserts new dictionary into DB.
-    """
-    drinks = MONGO.db.drinks
-    form = request.form.to_dict()
-    today = datetime.datetime.now()
-    final_drink = {
-        'drinkName': form["drinkName"].title(),
-        'drinkImage': form["drinkImage"],
-        'ingredientList': request.form.getlist("ingredientName"),
-        'instructions': form["instructions"],
-        'modifiedDate': str(today),
-        'createdBy': session['username'],
-    }
-    return redirect(url_for('view_drink',
-                            drink_id=drinks.insert_one(final_drink).inserted_id))
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
