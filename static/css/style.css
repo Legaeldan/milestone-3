@@ -273,6 +273,10 @@ margin-bottom: 5%;
     text-align: right;
   }
 
+.ingredients-item {
+  min-height: 80px !important; 
+}
+
 .large-button {
   width: 80%;
   height: 50px;

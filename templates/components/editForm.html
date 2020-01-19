@@ -20,7 +20,7 @@
 
       {% for ingredient in ingredients|sort(attribute='ingredientName') %}
       {% if ingredient.ingredientName in drink.ingredientList %}
-      <div class="col s12 m2">
+      <div class="col s12 m2 ingredients-item">
         <p>
           <label>
             <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" checked />
@@ -29,7 +29,7 @@
         </p>
       </div>
       {% else %}
-      <div class="col s12 m2">
+      <div class="col s12 m2 ingredients-item">
         <p>
           <label>
             <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" />
