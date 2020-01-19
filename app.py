@@ -137,6 +137,12 @@ def collection(collectionType):
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
         return redirect(url_for('login'))
+    elif collectionType:
+        print(collectionType)
+        return render_template('collection.html',
+                               drinks=MONGO.db.drinks.find({"createdBy": collectionType}),
+                               ingredients=MONGO.db.ingedients.find(),
+                               headerTitle="My Drinks")
     return render_template('collection.html',
                            drinks=MONGO.db.drinks.find(),
                            ingredients=MONGO.db.ingedients.find(),
