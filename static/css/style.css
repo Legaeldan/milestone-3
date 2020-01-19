@@ -47,6 +47,10 @@ nav, .page-footer {
   margin-bottom: 0;
 }
 
+#error-image {
+  width: 100%;
+}
+
 .drink-image {  
 width: 100%;
 border: 3px solid #ABABAB;
@@ -276,6 +280,11 @@ margin-bottom: 5%;
 .ingredients-item {
   min-height: 80px !important; 
 }
+
+#error-image {
+  width: 50%;
+}
+
 
 .large-button {
   width: 80%;
