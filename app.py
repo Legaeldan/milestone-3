@@ -59,7 +59,8 @@ def login():
                              login_user['password']) == login_user['password']:
                 session['username'] = form['username']
                 return redirect(url_for('home'))
-        return render_template('login.html', exists=0)
+        return render_template('login.html',
+                               invalid=True)
     return render_template('login.html')
 
 
@@ -68,7 +69,7 @@ def register():
     if request.method == 'POST':
         form = request.form.to_dict()
         users = MONGO.db.users
-        existing_user = users.find_one({'name': request.form['username']})
+        existing_user = users.find_one({'username': request.form['username']})
         if existing_user is None:
             print(existing_user)
             hashpass = bcrypt.hashpw(
@@ -81,8 +82,11 @@ def register():
             users.insert_one(user_details)
             session['username'] = form['username']
             return redirect(url_for('home'))
-        return 'That username already exists!'
-    return render_template('register.html')
+        return render_template('register.html',
+                               exists=True,
+                               headerTitle='Register')
+    return render_template('register.html',
+                           headerTitle='Register')
 
 @APP.route('/ingredients', methods=['GET', 'POST'], defaults={'ingredient_name': {}})
 @APP.route('/ingredients/<ingredient_name>', methods=['GET', 'POST'])
@@ -199,12 +203,13 @@ def drink(drink_id):
                                    drink=the_drink,
                                    headerTitle=the_drink['drinkName'],
                                    ingredients=MONGO.db.ingedients.find())
-        the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-        print(the_drink)
-        return render_template('viewdrink.html',
-                               drink=the_drink,
-                               headerTitle=the_drink['drinkName'],
-                               ingredients=MONGO.db.ingedients.find())
+        else:
+            the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
+            print(the_drink)
+            return render_template('viewdrink.html',
+                                   drink=the_drink,
+                                   headerTitle=the_drink['drinkName'],
+                                   ingredients=MONGO.db.ingedients.find())
     except:
         return abort(404)
 
