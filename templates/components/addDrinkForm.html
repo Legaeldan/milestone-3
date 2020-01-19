@@ -17,7 +17,7 @@
     <div class="row drink-ingredients" id="drink-ingredients">
 
       {% for ingredient in ingredients|sort(attribute='ingredientName') %}
-      <div class="col s12 m2">
+      <div class="col s12 m2 ingredients-item">
         <p>
           <label>
             <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" />
