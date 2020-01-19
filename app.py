@@ -15,7 +15,7 @@ APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 MONGO = PyMongo(APP)
 
 @APP.errorhandler(404)
-def page_not_found():
+def page_not_found(e):
     return render_template('404.html', headerTitle="Error - Page Not Found"), 404
 
 @APP.route('/')
@@ -140,24 +140,26 @@ def add_ingredient():
     """
     Renders standard add ingredient page.
     """
-    if request.method == 'POST':
-        ingredients_list = MONGO.db.ingedients
-        today = datetime.datetime.now()
-        form = request.form.to_dict()
-        final_ingredient = {
-            'ingredientName': form["ingredientName"].title(),
-            'ingredientImage': form["ingredientImage"],
-            'modifiedDate': str(today)
-        }
-        mongo_count = ingredients_list.find_one(
-            {'ingredientName': form["ingredientName"]})
-        if mongo_count is None:
-            ingredients_list.insert_one(final_ingredient)
-            return redirect(url_for('add_drink'))
-        return render_template('addingredient.html', exists=1, ingredient=final_ingredient,
-                                headerTitle="Add Ingredient")
-    return render_template('addingredient.html',
-                            headerTitle="Add Ingredient")
+    if 'username' in session:
+        if request.method == 'POST':
+            ingredients_list = MONGO.db.ingedients
+            today = datetime.datetime.now()
+            form = request.form.to_dict()
+            final_ingredient = {
+                'ingredientName': form["ingredientName"].title(),
+                'ingredientImage': form["ingredientImage"],
+                'modifiedDate': str(today)
+            }
+            mongo_count = ingredients_list.find_one(
+                {'ingredientName': form["ingredientName"]})
+            if mongo_count is None:
+                ingredients_list.insert_one(final_ingredient)
+                return redirect(url_for('home'))
+            return render_template('addingredient.html', exists=1, ingredient=final_ingredient,
+                                   headerTitle="Add Ingredient")
+        return render_template('addingredient.html',
+                               headerTitle="Add Ingredient")
+    return redirect(url_for('home'))
 
 
 @APP.route('/drink/<drink_id>', methods=['POST', 'GET'])
