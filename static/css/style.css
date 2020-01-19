@@ -31,6 +31,10 @@ nav, .page-footer {
   background-color: #24292e;
 }
 
+.footer-copyright, .footer-github {
+  text-align: center;
+}
+
 /*End Layout Styling*/
 /*Form Styling*/
 
@@ -39,7 +43,7 @@ nav, .page-footer {
 }
 
 /*End Form*/
-#home-heading {
+#home-heading, .footer-margin {
   margin-bottom: 0;
 }
 
@@ -172,6 +176,10 @@ h2, h3, .collection-image  {
   font-size: 1rem;
 }
 
+.link-image {
+  min-height: 150px !important;
+}
+
 .large-button {
   width: 50%;
   height: 50px;
@@ -257,6 +265,14 @@ margin-bottom: 5%;
 }
 
 @media(min-width:768px) {
+  .footer-copyright {
+    text-align: left;
+  }
+  
+  .footer-github {
+    text-align: right;
+  }
+
 .large-button {
   width: 80%;
   height: 50px;
