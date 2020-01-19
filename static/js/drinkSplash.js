@@ -7,4 +7,7 @@ $(document).ready(function(){
     if ($('#ingredient-form').length > 0){
       $('.container').removeClass("valign-wrapper")
     }
+    if ($('#drinkResponse').length > 0){
+      $('.container').removeClass("valign-wrapper")
+    }
   });
