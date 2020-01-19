@@ -129,10 +129,12 @@ def collection(collectionType):
         if 'username' in session:
             return render_template('collection.html',
                                    drinks=MONGO.db.drinks.find({"createdBy": session['username']}),
+                                   ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
         return redirect(url_for('login'))
     return render_template('collection.html',
                            drinks=MONGO.db.drinks.find(),
+                           ingredients=MONGO.db.ingedients.find(),
                            headerTitle="Collection")
 
 @APP.route('/add-ingredient', methods=['POST', 'GET'])
@@ -185,7 +187,8 @@ def drink(drink_id):
                 return render_template('viewdrink.html',
                                        drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)}),
                                        headerTitle=request.form.get('drinkName'),
-                                       ingredients=MONGO.db.ingedients.find())
+                                       ingredients=MONGO.db.ingedients.find(),
+                                       editIngredients=MONGO.db.ingedients.find())
             drinks = MONGO.db.drinks
             today = datetime.datetime.now()
             drinks.update_one({'_id': ObjectId(drink_id)},
@@ -202,21 +205,24 @@ def drink(drink_id):
             return render_template('viewdrink.html',
                                    drink=MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)}),
                                    headerTitle=request.form.get('drinkName'),
-                                   ingredients=MONGO.db.ingedients.find())
+                                   ingredients=MONGO.db.ingedients.find(),
+                                   editIngredients=MONGO.db.ingedients.find())
         elif drink_id == 'randomDrink':
             rand = MONGO.db.drinks.count()
             the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
             return render_template('viewdrink.html',
                                    drink=the_drink,
                                    headerTitle=the_drink['drinkName'],
-                                   ingredients=MONGO.db.ingedients.find())
+                                   ingredients=MONGO.db.ingedients.find(),
+                                   editIngredients=MONGO.db.ingedients.find())
         else:
             the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
             print(the_drink)
             return render_template('viewdrink.html',
                                    drink=the_drink,
                                    headerTitle=the_drink['drinkName'],
-                                   ingredients=MONGO.db.ingedients.find())
+                                   ingredients=MONGO.db.ingedients.find(),
+                                   editIngredients=MONGO.db.ingedients.find())
     except:
         return abort(404)
 
@@ -227,7 +233,7 @@ def delete_drink(drink_id):
     Deletes drink from collection once confirmed on page.
     """
     MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
-    return redirect(url_for('collection'))
+    return redirect(url_for('collection', collectionType='my-drinks'))
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
