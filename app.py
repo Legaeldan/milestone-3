@@ -127,6 +127,11 @@ def collection(collectionType):
     """
     if collectionType == 'my-drinks':
         if 'username' in session:
+            if session['username'] == 'admin':
+                return render_template('collection.html',
+                                       drinks=MONGO.db.drinks.find(),
+                                       ingredients=MONGO.db.ingedients.find(),
+                                       headerTitle="My Drinks")
             return render_template('collection.html',
                                    drinks=MONGO.db.drinks.find({"createdBy": session['username']}),
                                    ingredients=MONGO.db.ingedients.find(),

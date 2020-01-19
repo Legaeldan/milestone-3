@@ -35,7 +35,7 @@
 
 
 </div>
-{% if session['username'] == drink.createdBy %}
+{% if session['username'] == drink.createdBy or session['username'] == 'admin' %}
 <div class="row">
     <div class="col s12 m6 center-align">
         <a class="large-button waves-effect waves-light btn themed-button modal-trigger"
