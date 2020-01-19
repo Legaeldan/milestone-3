@@ -104,7 +104,12 @@ def ingredients(ingredient_name):
     print(ingredient_dict)
     if request.method == 'POST':
         ingredient_search = request.form.to_dict()
-        print(ingredient_search)
+        if not ingredient_search:
+            return render_template('ingredients.html',
+                                   ingredients=ingredients_list,
+                                   ingredient=ingredient_search,
+                                   headerTitle='No ingredient selected')           
+        print('ingredientsearch', ingredient_search)
         return render_template('ingredients.html',
                                ingredients=ingredients_list,
                                ingredient=ingredient_search,
