@@ -1,0 +1,31 @@
+<div id="ingredientModal" class="modal user-modal col s6 offset-m3">
+    <div class="modal-content">
+        <form class="col s12 m6 offset-m3" action="{{ url_for('add_ingredient') }}" method="POST">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center bold-headers">Add Ingredient</h3>
+                </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="ingredientName" name="ingredientName" type="text" class="validate" required>
+                <label for="ingredientName">Ingredient Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="url" id="ingredientImage" name="ingredientImage" type="text" class="validate" required>
+                <label for="ingredientImage">Ingredient image link</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 center-align">
+                <button class="btn waves-effect waves-light" type="submit">Add
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </form>
+    </div>
+
+  </div>

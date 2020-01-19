@@ -18,7 +18,7 @@
     <label for="drink-ingredients" class="label-ingredients">Drink Ingredients</label>
     <div class="row drink-ingredients" id="drink-ingredients">
 
-      {% for ingredient in ingredients|sort(attribute='ingredientName') %}
+      {% for ingredient in editIngredients|sort(attribute='ingredientName') %}
       {% if ingredient.ingredientName in drink.ingredientList %}
       <div class="col s12 m2 ingredients-item">
         <p>
@@ -42,7 +42,7 @@
     </div>
     <div class="row">
       <div class="col s12 center-align">
-        <h5>Can't find your ingredient? <a href="{{ url_for('add_ingredient') }}">Click Here!</a></h5>
+        <h5>Can't find your ingredient? <a href="#ingredientModal" class="bold-headers modal-trigger modal-close">Click Here!</a></h5>
       </div>
     </div>
     <div class="row">
