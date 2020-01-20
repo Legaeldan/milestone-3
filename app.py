@@ -8,12 +8,9 @@ from bson.objectid import ObjectId
 
 APP = Flask(__name__)
 
-#APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
-#APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
-#APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
-APP.config["SECRET_KEY"] =  "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
-APP.config["MONGO_DBNAME"] = "drinks_manager"
-APP.config["MONGO_URI"] = "mongodb+srv://root:passw0rd@myfirstcluster-ludvv.mongodb.net/drinks_manager?retryWrites=true&w=majority"
+APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
+APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
+APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 MONGO = PyMongo(APP)
 
@@ -262,5 +259,5 @@ def delete_drink(drink_id):
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
-            port=int(9100),
+            port=os.environ.get('PORT'),
             debug=True)
