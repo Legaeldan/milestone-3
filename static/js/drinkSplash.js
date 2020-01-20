@@ -6,5 +6,11 @@ $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
     if ($('.remove-valign').length > 0){
       $('.container').removeClass("valign-wrapper")
-    }
+    };
+    $(".discover-drink").on("error", function () {
+      $(this).attr("src", "../static/images/no-image.png")
+    });
+    $(".drink-image").on("error", function () {
+      $(this).attr("src", "../static/images/no-image.png")
+    });
   });
