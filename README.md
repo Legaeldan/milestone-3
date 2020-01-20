@@ -143,15 +143,70 @@ I would like to impliment a system that generates the measurements of ingredient
 
 ## Testing
 
+### Bugs During Development
 
+Testing for end user experience and defensive design was done by myself, and outsourced during this project to give standard users a chance to experience the site, and for me to get realistic feedback on features. This also had the added benefit of getting reports back on exact errors, and what a standard end user would possibly try to do on this site that had not been accounted for. This also accounted towards defensive design, as near end of testing, the users we given instructions then to intentionally attempt to break the site.
+
+1. **Images not rendering**
+    - **Issue:** Users tried to add images to their creations. As they were not familiar what type of link was needed, the site would then render a broken image link, causing surrounding elements to shift out of place.
+    - **Solution:** Added jQuery function to check page for errors on images. Should it find an error in an image link, it would replace the image source with a predefined standard image link, with the text "Image not found" inside.
+    - **Result:** Function detected errors immediately, and corrected the issue. All sibling elements then rendered correctly around the broken image.
+
+2. **Incorrect URL input**
+    - **Issue:** Users, when trying to manually type the URL were greeted with a Jinja crash log. Anything outside a valid URL would cause this crash.
+    - **Solution:** Impliment a 404 page.
+    - **Result:** Added an error handler to flask for 404 errors. Then added a try except to catch all errors and provide a specific messages to the user. Added custom messages as descriptions to the user, which are then rendered on the page. Also added the explicit flag to the error handlers to catch anything that was not a valid URL.
+
+3. **Changing drink URL**
+    - **Issue:** Users tried to add custom strings to the end of the drinks URL ``` (pageURL.com/drink/<custom-string>) ```. When anything other than a valid link was inserted, the system crashed, and requested only 12 byte or 24 hex string input.
+    - **Solution:** Added a try except block to catch errors, and if failed, would revert to another page.
+    - **Result:** Added an error handler to flask for 404 errors. Then added a try except to the drinks page to catch all errors. The if checks within the try block checks for all possible valid variations of the URL, and on failure, returns to the 404 error handler.
+
+3. **Changing drink URL**
+    - **Issue:** Users could view a drink, and then change``` (pageURL.com/drink/<drink-id>) ``` to  ``` (pageURL.com/delete-drink/<drink-id>) ```. This would cause the drink to be delete regardless of rights.
+    - **Solution:** Add an if check to handle if the user is valid, and allowed to delete the item.
+    - **Result:** If check now checks firstly if the user is logged in. Then checks if the user is allowed to delete the drink. If neither of these are true, the user is returned to the 401 error handled, and provided a message of "Not Authorized".
+
+3. **Unable to add drink ingredients**
+    - **Issue:** When a user is logged in, the ingredients section of the add drink modal would generate no items. This was due to a for loop prior that expended all the data in that loop.
+    - **Solution:** Added a second search on the database specifically for the add drink page, and named it differently. 
+    - **Result:** Both add drink and edit drink forms had their own specific list to work from, allowing both forms to iterate over their own respective loops.
+
+4. **Any user could delete/edit**
+    - **Issue:** Buttons to edit and delete drinks was available to all users regardless if they added the item or not.
+    - **Solution:** Impliment user specific buttons, and encrypted logon system. 
+    - **Result:** Users are now only presented with buttons that apply to their own drinks, preventing others from deleteing their creations, and preventing a user stumbling across the site, and removing the entire database.
+
+5. **Drinks able to be duplicated**
+    - **Issue:** Users were able to create a drink multiple times. Resulting in duplicate entries.
+    - **Solution:** Add a check if the item already exists.
+    - **Result:** Should a user duplicate an item. They are then returned the drink they are duplicating, with a message that it already exists.
+
+6. **Ingredients off center in search**
+    - **Issue:** When an ingredient is selected for search. The box added a random margin to the left of the name.
+    - **Solution:** Removed unused space in for loops for generating ingredients which was the cause for a space to be generated on every item.
+    - **Result:** Ingredient selected now lined up correctly with the search box, to enable the user to read the item once select. This especially affected mobile users who had limited space.
+
+7. **Collection URL returns no user**
+    - **Issue:** Users can check other users collection by adding their name to the end of the collection URL. If the user had no items created by them, the system would return "User does not exist."
+    - **Solution:** Add additional user check before checking for user created item.
+    - **Result:** Collection correctly returns a 404 with custom message that user has no items in their collection. If user doesn't exists, returns a no user exists 404.
+
+8. **No account to maintain database**
+    - **Issue:** During testing, any database maintainance had to be done by logging into MongoDB, which was found to be time consuming.
+    - **Solution:** Add admin account that has access to all the features provided to users.
+    - **Result:** Gives the admin the ability to access all features, and delete drinks on the fly while scanning the website.
 
 ### Known Bugs
 
+- **valign-wrapper on IE11**
+    There is an issue with the valign-wrapper not being supported on IE11. As this is critical to the layout of the system, including the flex footer, I was unable to remove this for compatibility on Internet Explorer. Flex is crucial to the static footer, and to the vertical layout on Chrome.
+
+- **Ingredient List on Mobile**
+    An issue arose when adding a drink. When the user scrolls through the ingredients list and selects an item further down the list than the view height. The modal will expand as if the list behind is at full height. This issue has not been replicated on desktop.
+
 - **Android Search**
     And issue was discovered when testing on Android phones, that when instructions is clicked on the view drink page, chrome immediately tries to do a Google search on the word "Instruction". This also applies to the any headings on the page, but I have yet to find the cause, or fix this issue. This issue does not occur in the developer section for desktop Chrome when scaling for mobile.
-
-- **Dropdown content**
-    Dropdown content, when on mobile, covers the username in the slide out menu. I had previously corrected this on desktop to show below the username, but as of yet, I haven't discovered the solution to this.
 
 ## Technologies Used
 
