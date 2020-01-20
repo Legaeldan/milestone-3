@@ -149,7 +149,7 @@ def collection(collectionType):
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
         print("does not userExists")
-        return abort(404, description="User not found!")        
+        return abort(404, "User not found!")        
     return render_template('collection.html',
                            drinks=MONGO.db.drinks.find(),
                            ingredients=MONGO.db.ingedients.find(),
@@ -261,10 +261,16 @@ def delete_drink(drink_id):
     """
     Deletes drink from collection once confirmed on page.
     """
-    MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
-    return redirect(url_for('collection', collectionType='my-drinks'))
+    drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
+    print(drink)
+    if 'username' in session:
+        if session['username'] == drink['createdBy'] or session['username'] == 'admin':
+            MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
+            return redirect(url_for('collection', collectionType='my-drinks'))
+        return abort(404, "Not authorized to delete this drink!")
+    return abort(404, "Please login to delete drinks!")
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
-            (host=os.environ.get('PORT'),
+            port=os.environ.get('PORT'),
             debug=True)
