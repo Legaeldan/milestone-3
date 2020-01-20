@@ -16,8 +16,11 @@ MONGO = PyMongo(APP)
 
 @APP.errorhandler(404)
 def page_not_found(e):
-    print(e)
-    return render_template('404.html', headerTitle="Error - Page Not Found", message=e), 404
+    return render_template('error.html', headerTitle="Error - Page Not Found", message=e), 404
+
+@APP.errorhandler(401)
+def page_not_found(e):
+    return render_template('error.html', headerTitle="Error - Not Authorized", message=e), 401
 
 @APP.route('/')
 def home():
@@ -261,14 +264,17 @@ def delete_drink(drink_id):
     """
     Deletes drink from collection once confirmed on page.
     """
-    drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-    print(drink)
-    if 'username' in session:
-        if session['username'] == drink['createdBy'] or session['username'] == 'admin':
-            MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
-            return redirect(url_for('collection', collectionType='my-drinks'))
-        return abort(404, "Not authorized to delete this drink!")
-    return abort(404, "Please login to delete drinks!")
+    try:
+        drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
+        print(drink)
+        if 'username' in session:
+            if session['username'] == drink['createdBy']:
+                MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
+                return redirect(url_for('collection', collectionType='my-drinks'))
+            return abort(401, "Not authorized to delete this drink!")
+        return abort(401, "Please login to delete drinks!")
+    except:
+        return abort(404, "Drink not found!")
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
