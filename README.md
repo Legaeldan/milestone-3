@@ -151,8 +151,8 @@ Testing for end user experience and defensive design was done by myself, and out
     - **Issue:** Users tried to add images to their creations. As they were not familiar what type of link was needed, the site would then render a broken image link, causing surrounding elements to shift out of place.
     - **Solution:** Added jQuery function to check page for errors on images. Should it find an error in an image link, it would replace the image source with a predefined standard image link, with the text "Image not found" inside.
     - **Result:** Function detected errors immediately, and corrected the issue. All sibling elements then rendered correctly around the broken image.
-<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing1.jpg?raw=true" alt="Test Results 1"/>
-<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing2.jpg?raw=true" alt="Test Results 2"/>
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing1.png?raw=true" alt="Test Results 1"/>
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing2.png?raw=true" alt="Test Results 2"/>
 
 
 2. **Incorrect URL input**
@@ -190,7 +190,7 @@ Testing for end user experience and defensive design was done by myself, and out
     - **Solution:** Removed unused space in for loops for generating ingredients which was the cause for a space to be generated on every item.
     - **Result:** Ingredient selected now lined up correctly with the search box, to enable the user to read the item once select. This especially affected mobile users who had limited space.
 
-<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing4.jpg?raw=true" alt="Test Results 4"/>
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing4.png?raw=true" alt="Test Results 4"/>
 
 7. **Collection URL returns no user**
     - **Issue:** Users can check other users collection by adding their name to the end of the collection URL. If the user had no items created by them, the system would return "User does not exist."
@@ -210,7 +210,7 @@ Testing for end user experience and defensive design was done by myself, and out
 - **Ingredient List on Mobile**
     An issue arose when adding a drink. When the user scrolls through the ingredients list and selects an item further down the list than the view height. The modal will expand as if the list behind is at full height. This issue has not been replicated on desktop.
 
-<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing3.jpg?raw=true" alt="Test Results 3"/>
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing3.png?raw=true" alt="Test Results 3"/>
 
 - **Android Search**
     And issue was discovered when testing on Android phones, that when instructions is clicked on the view drink page, chrome immediately tries to do a Google search on the word "Instruction". This also applies to the any headings on the page, but I have yet to find the cause, or fix this issue. This issue does not occur in the developer section for desktop Chrome when scaling for mobile.
