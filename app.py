@@ -138,16 +138,23 @@ def collection(collectionType):
                                        drinks=MONGO.db.drinks.find(),
                                        ingredients=MONGO.db.ingedients.find(),
                                        headerTitle="My Drinks")
+            drinkCount = MONGO.db.drinks.find({"createdBy": session['username']}).count()
             return render_template('collection.html',
+                                   drinkCount=drinkCount,
                                    drinks=MONGO.db.drinks.find({"createdBy": session['username']}),
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
         return redirect(url_for('login'))
     elif collectionType:
-        userExists = MONGO.db.drinks.find_one({"createdBy": collectionType})
+        userExists = MONGO.db.users.find_one({"username": collectionType})
         if userExists:
+            drinkCount = MONGO.db.drinks.find({"createdBy": collectionType}).count()
+            print(drinkCount)
+            if not drinkCount:
+                return abort(404, description="User has no drinks!")
             print("userExists")
             return render_template('collection.html',
+                                   drinkCount=drinkCount,
                                    drinks=MONGO.db.drinks.find({"createdBy": collectionType}),
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
