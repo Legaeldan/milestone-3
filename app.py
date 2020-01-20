@@ -151,7 +151,7 @@ def collection(collectionType):
             drinkCount = MONGO.db.drinks.find({"createdBy": collectionType}).count()
             print(drinkCount)
             if not drinkCount:
-                return abort(404, description="User has no drinks!")
+                return abort(404, description="No collection found for this user!")
             print("userExists")
             return render_template('collection.html',
                                    drinkCount=drinkCount,
