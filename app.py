@@ -8,9 +8,12 @@ from bson.objectid import ObjectId
 
 APP = Flask(__name__)
 
-APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
-APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
-APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+#APP.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
+#APP.config["MONGO_DBNAME"] = os.environ.get('MONGO_DBNAME')
+#APP.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+APP.config["SECRET_KEY"] =  "vRb81oq80xFpG45So4CKACqU1GvA9Fv"
+APP.config["MONGO_DBNAME"] = "drinks_manager"
+APP.config["MONGO_URI"] = "mongodb+srv://root:passw0rd@myfirstcluster-ludvv.mongodb.net/drinks_manager?retryWrites=true&w=majority"
 
 MONGO = PyMongo(APP)
 
@@ -186,6 +189,17 @@ def drink(drink_id):
                 drinks = MONGO.db.drinks
                 form = request.form.to_dict()
                 today = datetime.datetime.now()
+                exists = drinks.find_one({"drinkName": str(form["drinkName"].title())})
+                print(form["drinkName"].title())
+                print(exists)
+                if exists:
+                    print("exists")
+                    return render_template('viewdrink.html',
+                                           drink=exists,
+                                           headerTitle=request.form.get('drinkName'),
+                                           ingredients=MONGO.db.ingedients.find(),
+                                           editIngredients=MONGO.db.ingedients.find(),
+                                           exists=1)
                 final_drink = {
                     'drinkName': form["drinkName"].title(),
                     'drinkImage': form["drinkImage"],
@@ -248,5 +262,5 @@ def delete_drink(drink_id):
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
-            port=os.environ.get('PORT'),
+            port=int(9100),
             debug=True)

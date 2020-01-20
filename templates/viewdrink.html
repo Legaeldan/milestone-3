@@ -1,7 +1,9 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+{% if exists == 1 %}
+<h1 class="bold-headers existing center">DRINK ALREADY EXISTS</h1>
+{% endif %}
 <div id="drinkResponse" class="row discover-container valign-wrapper remove-valign">
     <div class="col s12 m6 center">
         <h3 class="bold-headers">{{drink.drinkName}}</h3>

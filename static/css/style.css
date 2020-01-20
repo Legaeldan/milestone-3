@@ -63,7 +63,7 @@ background-color: #696969;
   font-weight: bold;
 }
 
-h5 {
+h5, .existing {
   color: red;
 }
 
