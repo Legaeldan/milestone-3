@@ -16,7 +16,8 @@ MONGO = PyMongo(APP)
 
 @APP.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html', headerTitle="Error - Page Not Found"), 404
+    print(e)
+    return render_template('404.html', headerTitle="Error - Page Not Found", message=e), 404
 
 @APP.route('/')
 def home():
@@ -125,6 +126,8 @@ def collection(collectionType):
     """
     Renders page which display all drinks in drinks database.
     """
+    print("Collection type below")
+    print(collectionType)
     if collectionType == 'my-drinks':
         if 'username' in session:
             if session['username'] == 'admin':
@@ -138,11 +141,15 @@ def collection(collectionType):
                                    headerTitle="My Drinks")
         return redirect(url_for('login'))
     elif collectionType:
-        print(collectionType)
-        return render_template('collection.html',
-                               drinks=MONGO.db.drinks.find({"createdBy": collectionType}),
-                               ingredients=MONGO.db.ingedients.find(),
-                               headerTitle="My Drinks")
+        userExists = MONGO.db.drinks.find_one({"createdBy": collectionType})
+        if userExists:
+            print("userExists")
+            return render_template('collection.html',
+                                   drinks=MONGO.db.drinks.find({"createdBy": collectionType}),
+                                   ingredients=MONGO.db.ingedients.find(),
+                                   headerTitle="My Drinks")
+        print("does not userExists")
+        return abort(404, description="User not found!")        
     return render_template('collection.html',
                            drinks=MONGO.db.drinks.find(),
                            ingredients=MONGO.db.ingedients.find(),
@@ -246,7 +253,7 @@ def drink(drink_id):
                                    ingredients=MONGO.db.ingedients.find(),
                                    editIngredients=MONGO.db.ingedients.find())
     except:
-        return abort(404)
+        return abort(404, "Drink does not exist!")
 
 
 @APP.route('/delete-drink/<drink_id>')
@@ -259,5 +266,5 @@ def delete_drink(drink_id):
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
-            port=os.environ.get('PORT'),
+            (host=os.environ.get('PORT'),
             debug=True)
