@@ -3,7 +3,25 @@
 {% block content %}
 
 <div class="recipes-main">
-    <div class="row">   
+    <div class="row"> 
+    {% if drinkCount == 1 %}
+    {% for drink in drinks|sort(attribute='drinkName') %}
+    <a class="col s12 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
+        href="{{url_for('drink', drink_id=drink._id)}}">
+        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        <div class="collection-image">{{drink.drinkName}}</div>
+    </a>
+
+    {% endfor %}
+    {% elif drinkCount == 2 %}
+    {% for drink in drinks|sort(attribute='drinkName') %}
+    <a class="col s6 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
+        href="{{url_for('drink', drink_id=drink._id)}}">
+        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        <div class="collection-image">{{drink.drinkName}}</div>
+    </a>
+    {% endfor %}
+    {% else %}
     {% for drink in drinks|sort(attribute='drinkName') %}
         <a class="col s3 m2 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
             href="{{url_for('drink', drink_id=drink._id)}}">
@@ -12,6 +30,7 @@
         </a>
 
     {% endfor %}
+    {% endif %}
 </div> 
 </div>
 {% endblock %}
