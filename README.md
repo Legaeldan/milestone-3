@@ -13,6 +13,7 @@ The site is designed with the best user experience in mind, while maintaining a 
     - [**Project Goals**](#project-goals)
     - [**development Goal**](#development-goal)
     - [**User Stories**](#user-stories)
+    - [**Wireframes**](#wireframes)
     - [**Design choices**](#design-choices)
 
 2. [**Features**](#features)
@@ -20,9 +21,14 @@ The site is designed with the best user experience in mind, while maintaining a 
     - [**Features Left to Implement**](#features-left-to-implement)
 
 3. [**Testing**](#testing)
+    - [**Test Planning**](#test-planning)
     - [**Known Bugs**](#known-bugs)
 
 4. [**Technologies Used**](#technologies-used)
+    - [**Languages**](#Languages)
+    - [**Frameworks/Libraries**](#frameworks/libraries)
+    - [**Software**](#Software)
+    - [**Additional Resources**](#additional-resources)
 
 5. [**Deployment**](#deployment)
     - [**Deployment to Heroku**](#deployment-to-heroku)
@@ -57,6 +63,12 @@ This applications is designed with adventurous drinkers in mind that require an 
  5. An application which makes it easy to edit my own creations.
  6. An application that makes it possible for only the creator to change their creations.
  7. An application that is fast, which very little load times.
+
+### Wireframes
+
+- [Desktop](#) Not Complete
+- [Tablet](#) Not Complete
+- [Mobile](https://github.com/Legaeldan/milestone-3/blob/master/static/Wireframes/Mobile%20App.pdf)
 
 ### Design Choices
 
@@ -143,6 +155,48 @@ I would like to impliment a system that generates the measurements of ingredient
 
 ## Testing
 
+As a first attempt at Python/Flask programming, the code had to be scrutinized, and thoroughly tested throughout. Every function would need to be planned, and tested in depth before moving on to other functionality, as these would be tied together later in the project.
+
+#### Test Planning:
+
+During planning and development, defensive design was taken into account. The planning of testing was split into two section. **Functionality** and **Defensive Design**. Each function was planned out carefully, then a subsection to testing was added for defensive design, in which that particular function was given every possible variable a user could give, and tested for unwanted activation.
+
+**Example:**
+ - **Planning:** A function is needed to remove the drink should the user not be happy with the outcome, or the drink is not required anymore. 
+ - **Testing (Phase 1):** The function does as required, and removed the entire entry from the database.
+ - **Testing (Phase 2):** the function applied this function regardless of what ID was given, resulting in a crash as the item didn't exist. The function was updated to try find the drink first, then return an error if failed.
+ - **Defensive:** After functionality was fully tested. Loop holes in the function were discovered. A user could delete a drink regardless of owning the item by altering the URL. Added checks if the user is firstly valid (As this is a registered user only function), then check if they own the item. If all checks pass, the function runs as normal.
+
+### Overall:
+
+ - **Planning:**
+ - **Testing (Phase 1):**
+ - **Testing (Phase 2):** 
+ - **Defensive:**
+
+ - **Planning:**Responsiveness
+ - **Testing (Phase 1):**
+ - **Testing (Phase 2):** 
+ - **Defensive:**
+
+**Design**
+ - **Planning:**Overal design had to be contrasting, to make specific elements jump out at the user.
+ - **Testing (Phase 1):**
+ - **Testing (Phase 2):** 
+ - **Defensive:**
+
+### Features:
+
+ - **Planning:**
+ - **Testing (Phase 1):**
+ - **Testing (Phase 2):** 
+ - **Defensive:**
+
+ - **Planning:**
+ - **Testing (Phase 1):**
+ - **Testing (Phase 2):** 
+ - **Defensive:**
+
 ### Bugs During Development
 
 Testing for end user experience and defensive design was done by myself, and outsourced during this project to give standard users a chance to experience the site, and for me to get realistic feedback on features. This also had the added benefit of getting reports back on exact errors, and what a standard end user would possibly try to do on this site that had not been accounted for. This also accounted towards defensive design, as near end of testing, the users we given instructions then to intentionally attempt to break the site.
@@ -207,6 +261,9 @@ Testing for end user experience and defensive design was done by myself, and out
 - **valign-wrapper on IE11**
     There is an issue with the valign-wrapper not being supported on IE11. As this is critical to the layout of the system, including the flex footer, I was unable to remove this for compatibility on Internet Explorer. Flex is crucial to the static footer, and to the vertical layout on Chrome.
 
+- **Windows 10 Flickering**
+    When Windows 10 system scale is set to 125%, the webpage flickers when the mouse is moved. A scroll bar also flickers on mouse move. Other than changing system settings back to 100%, I have found no cause or resolution to this.
+
 - **Ingredient List on Mobile**
     An issue arose when adding a drink. When the user scrolls through the ingredients list and selects an item further down the list than the view height. The modal will expand as if the list behind is at full height. This issue has not been replicated on desktop.
 
@@ -217,33 +274,46 @@ Testing for end user experience and defensive design was done by myself, and out
 
 ## Technologies Used
 
-- This project uses HTML, CSS and JavaScript programming languages.
+### Languages:
 - [Python](https://www.python.org/)
     - The project uses **Python** to run the application.
-- [Flask](http://flask.palletsprojects.com/en/1.1.x/)
-    - The project uses the **Flask** to dynamically generate pages, generate dynamic links, and content within the application.
-- [MongoDB](https://www.mongodb.com/)
-    - The project uses **MongoDB** to store all project documents within an easily accessible database.
-- [PyMongo](https://api.mongodb.com/python/current/)
-    - The project uses **Pymongo** to initiate a connection with, and transfer data to and from MongoDB.
+- [HTML](https://www.python.org/)
+    - The project uses **Python** to run the application.
+- [CSS](https://www.python.org/)
+    - The project uses **Python** to run the application.
+ - [Javascript](https://www.python.org/)
+    - The project uses **Python** to run the application.
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
+
+### Frameworks/Libraries:              
+- [Flask](http://flask.palletsprojects.com/en/1.1.x/)
+    - The project uses the **Flask** to dynamically generate pages, generate dynamic links, and content within the application.
+- [PyMongo](https://api.mongodb.com/python/current/)
+    - The project uses **Pymongo** to initiate a connection with, and transfer data to and from MongoDB.
+- [Materialize](https://materializecss.com/)
+    - The project uses the **Materialize** framework to simplify the structure of the website and make the website responsive easily.
+
+- [MongoDB](https://www.mongodb.com/)
+    - The project uses **MongoDB** to store all project documents within an easily accessible database.
+
+### Software:
 - [Visual Studio Code](https://code.visualstudio.com/)
     - The project uses **Visual Studio Code** to create all files contained in the site, and push to GitHub.
 - [Git](https://git-scm.com/downloads)
     - This project uses **Git** to commit and push all files to the [GitHub Repository](https://github.com/Legaeldan/milestone-2).
-- [Materialize](https://materializecss.com/)
-    - The project uses the **Materialize** framework to simplify the structure of the website and make the website responsive easily.
-- [Google Fonts](https://fonts.google.com/)
-    - The project uses **Google fonts** to style the website fonts.
-- [Font Awesome](https://fontawesome.com/)
-    - The project uses **Font Awesome** to style additional website icon links.
 - [GIMP](https://www.gimp.org/)
     - This project used tools in **GIMP** to create and edit images such as the logo and favicon.
 - [Visio](https://www.microsoft.com/en-ie/p/visio-standard-2019/cfq7ttc0k7cf?activetab=pivot%3aoverviewtab)
     - This project used tools in **Visio** to create, edit, and present wireframes in a more professional manner.
+
+### Additional Resources:    
+- [Google Fonts](https://fonts.google.com/)
+    - The project uses **Google fonts** to style the website fonts.
+- [Font Awesome](https://fontawesome.com/)
+    - The project uses **Font Awesome** to style additional website icon links.
 - [HTML Validator](https://validator.w3.org/)
-    - This project utilised the HTML validator provided by W3C to check and correct any issues in my current HTML code.
+    - This project utilised the HTML validator provided by W3C to check and correct any issues in my current HTML code.  
 
 ## Deployment
 
@@ -290,6 +360,9 @@ For more help on cloning a repository on Github, please click [here](https://hel
 ## Credits
 
 Inspiration for this project was found at [TheCocktailDB](https://www.thecocktaildb.com/), an open, crowd-sourced database and JSON API. I used this model as inspiration to emulate this system in MongoDB. I liked the concept initially, but wasn't happy with the design or overall layout. I hoped to improve on this with this project.
+
+Credit also to [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) for their tutorial on the - [Flask Login System](https://github.com/PrettyPrinted/mongodb-user-login).
+
 
 ### Acknowledgements
 
