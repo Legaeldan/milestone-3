@@ -66,7 +66,7 @@ This applications is designed with adventurous drinkers in mind that require an 
 
 ### Wireframes
 
-- [Desktop](#) Not Complete
+- [Desktop](https://github.com/Legaeldan/milestone-3/blob/master/static/Wireframes/Desktop-Tablet%20App.pdf) Not Complete
 - [Tablet](#) Not Complete
 - [Mobile](https://github.com/Legaeldan/milestone-3/blob/master/static/Wireframes/Mobile%20App.pdf)
 
