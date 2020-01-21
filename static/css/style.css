@@ -238,6 +238,29 @@ input[type=text]:not(.browser-default) {
   transition-duration: .5s;
 }
 
+input.valid[type=text]:not(.browser-default),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input.valid[type=password]:not(.browser-default),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input.valid[type=email]:not(.browser-default),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input.valid[type=url]:not(.browser-default),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #FFD700;
+  box-shadow: 0 1px 0 0 #FFD700;
+}
+
+
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=password]:not(.browser-default):focus:not([readonly])+label,
+input[type=email]:not(.browser-default):focus:not([readonly])+label,
+input[type=url]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label {
+  color: #FFD700
+}
+
 a {
   color: black;
 }
