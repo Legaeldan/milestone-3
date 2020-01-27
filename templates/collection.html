@@ -8,7 +8,7 @@
     {% for drink in drinks|sort(attribute='drinkName') %}
     <a class="col s12 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
         href="{{url_for('drink', drink_id=drink._id)}}">
-        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
         <div class="collection-image">{{drink.drinkName}}</div>
     </a>
 
@@ -17,7 +17,7 @@
     {% for drink in drinks|sort(attribute='drinkName') %}
     <a class="col s6 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
         href="{{url_for('drink', drink_id=drink._id)}}">
-        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
         <div class="collection-image">{{drink.drinkName}}</div>
     </a>
     {% endfor %}
@@ -25,7 +25,7 @@
     {% for drink in drinks|sort(attribute='drinkName') %}
         <a class="col s3 l2 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
             href="{{url_for('drink', drink_id=drink._id)}}">
-            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
             <div class="collection-image">{{drink.drinkName}}</div>
         </a>
 
