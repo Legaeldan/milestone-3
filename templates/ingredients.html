@@ -40,7 +40,7 @@
 
         {% for drink in drinks|sort(attribute='drinkName') %}
         {% if ingredient.ingredientList in drink.ingredientList %}
-        <a class="col s4 m2" 
+        <a class="col s4 m3 l2 center" 
             href="{{url_for('drink', drink_id=drink._id)}}">
             <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
             <div class="collection-image">{{drink.drinkName}}</div>
