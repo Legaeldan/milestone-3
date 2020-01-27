@@ -174,6 +174,8 @@ During planning and development, defensive design was taken into account. The pl
  - **Testing (Phase 1):** The function does as required, and removed the entire entry from the database.
  - **Testing (Phase 2):** the function applied this function regardless of what ID was given, resulting in a crash as the item didn't exist. The function was updated to try find the drink first, then return an error if failed.
  - **Defensive:** After functionality was fully tested. Loop holes in the function were discovered. A user could delete a drink regardless of owning the item by altering the URL. Added checks if the user is firstly valid (As this is a registered user only function), then check if they own the item. If all checks pass, the function runs as normal.
+ - **Result:** A simple button that can only be fired under certain circumstances.
+ - **Verdict:** Test passed as expected and delete button is now operational..
 
 ### Overall:
 
@@ -186,22 +188,27 @@ During planning and development, defensive design was taken into account. The pl
  - **Verdict:** Test passed as expected and the site is responsive.
 
 **Design**
- - **Planning:**Overal design had to be contrasting, to make specific elements jump out at the user.
- - **Testing (Phase 1):**
- - **Testing (Phase 2):** 
- - **Defensive:**
+ - **Planning:**Overal design had to be contrasting, to make specific elements jump out at the user. Colour charts to be created using [coolors.co](https://coolors.co/).
+ - **Testing:**Multiple colour palettes were tested, and finally settled upon the final result. All version were shown to testers, and notes taken on favourites.
+- **Result:** The overall theme of the site worked, and all tester were happy with the contrast.
+- **Verdict:** Test passed, and overall design of the site works well together.
 
 ### Features:
 
- - **Planning:**
- - **Testing (Phase 1):**
- - **Testing (Phase 2):** 
- - **Defensive:**
+**FAB Button**
+ - **Planning:** A different approach to navigation of the site was needed. After some deliberation, a **Floating Action Button** was decided upon. This would have to be lightweight, smooth, and easy to use. With a stand out design to draw users to the icon.
+ - **Testing (Phase 1):** During testing, multiple icons to reflect the menu item were tested. The final icons were then decided upon once in place.
+ - **Testing (Phase 2):** During testing, it was found icons were not quite enough when using a desktop, as it wasn't quite as intuitive as using mobile. The icons were then accompanied by **Tooltips** when hovered. This gave a pleasant indication of each icon to the user. 
+ - **Results:** The FAB works well, and was commented as being different and unique.
+ - **Verdict:** Test passed, and the FAB works well in the context provided.
 
- - **Planning:**
- - **Testing (Phase 1):**
- - **Testing (Phase 2):** 
- - **Defensive:**
+**Random Drink**
+ - **Planning:** A search feature was needed to provide the user with a random document/drink from the database.
+ - **Testing:** As this was tied into the view drink page, minimal testing was required. Tests were carried out using the **print()** funtion to ensure all results were indeed random, and follow the process through each step. After applying a random formula, was then applied to the view drink page. 
+  - **Result:** A random drink/document is returned every time the link is viewed.
+  - **Verdict:** Test passed, and feature works as expected.
+
+
 
 ### Bugs During Development
 
