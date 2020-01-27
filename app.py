@@ -19,7 +19,7 @@ def page_not_found(e):
     return render_template('error.html', headerTitle="Error - Page Not Found", message=e), 404
 
 @APP.errorhandler(401)
-def page_not_found(e):
+def not_authorized(e):
     return render_template('error.html', headerTitle="Error - Not Authorized", message=e), 401
 
 @APP.route('/')
@@ -112,15 +112,18 @@ def ingredients(ingredient_name):
             return render_template('ingredients.html',
                                    ingredients=ingredients_list,
                                    ingredient=ingredient_search,
-                                   headerTitle='No ingredient selected')           
+                                   headerTitle='No ingredient selected')
         print('ingredientsearch', ingredient_search)
         return render_template('ingredients.html',
                                ingredients=ingredients_list,
                                ingredient=ingredient_search,
                                drinks=drinks_list,
                                headerTitle=ingredient_search['ingredientList'])
-    return render_template('ingredients.html', drinks=drinks_list,
-                           ingredient=ingredient_dict, ingredients=ingredients_list, headerTitle="Ingredients")
+    return render_template('ingredients.html',
+                           drinks=drinks_list,
+                           ingredient=ingredient_dict,
+                           ingredients=ingredients_list,
+                           headerTitle="Ingredients")
 
 
 @APP.route('/collection/<collectionType>')
@@ -159,7 +162,7 @@ def collection(collectionType):
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
         print("does not userExists")
-        return abort(404, "User not found!")        
+        return abort(404, "User not found!")
     return render_template('collection.html',
                            drinks=MONGO.db.drinks.find(),
                            ingredients=MONGO.db.ingedients.find(),
@@ -193,7 +196,7 @@ def add_ingredient():
 
 
 @APP.route('/drink/<drink_id>', methods=['POST', 'GET'])
-def drink(drink_id): 
+def drink(drink_id):
     """
     Renders page for viewing all drink details for drink found in DB.
     """
@@ -223,8 +226,9 @@ def drink(drink_id):
                     'createdBy': session['username'],
                 }
                 insertedDrink = drinks.insert_one(final_drink).inserted_id
+                the_drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)})
                 return render_template('viewdrink.html',
-                                       drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)}),
+                                       drink=the_drink,
                                        headerTitle=request.form.get('drinkName'),
                                        ingredients=MONGO.db.ingedients.find(),
                                        editIngredients=MONGO.db.ingedients.find())
@@ -272,10 +276,10 @@ def delete_drink(drink_id):
     Deletes drink from collection once confirmed on page.
     """
     try:
-        drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
+        the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
         print(drink)
         if 'username' in session:
-            if session['username'] == drink['createdBy']:
+            if session['username'] == the_drink['createdBy']:
                 MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
                 return redirect(url_for('collection', collectionType='my-drinks'))
             return abort(401, "Not authorized to delete this drink!")
