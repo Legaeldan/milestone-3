@@ -1,7 +1,3 @@
-var imgNotFound = function() {
-  $(this).attr("src", "../static/images/no-image.png")
-};
-
 $(document).ready(function(){
     $(".dropdown-trigger").dropdown();
     $('select').formSelect();
