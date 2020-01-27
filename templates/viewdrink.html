@@ -7,7 +7,7 @@
 <div id="drinkResponse" class="row discover-container valign-wrapper remove-valign">
     <div class="col s12 m6 center">
         <h3 class="bold-headers">{{drink.drinkName}}</h3>
-        <img id="discover-image" class="discover-drink" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+        <img id="discover-image" class="discover-drink" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}"  onError="this.onerror=null;this.src='../static/images/no-image.png';">
         <div class="bold-headers">Crafted by: <a href="{{ url_for('collection', collectionType=drink.createdBy) }}">{{drink.createdBy}}</a></div>
     </div>
     <div class="col s12 m6 center">

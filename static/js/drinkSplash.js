@@ -1,3 +1,7 @@
+var imgNotFound = function() {
+  $(this).attr("src", "../static/images/no-image.png")
+};
+
 $(document).ready(function(){
     $(".dropdown-trigger").dropdown();
     $('select').formSelect();
@@ -7,10 +11,5 @@ $(document).ready(function(){
     if ($('.remove-valign').length > 0){
       $('.container').removeClass("valign-wrapper")
     };
-    $(".discover-drink").on("error", function () {
-      $(this).attr("src", "../static/images/no-image.png")
-    });
-    $(".drink-image").on("error", function () {
-      $(this).attr("src", "../static/images/no-image.png")
-    });
+
   });

@@ -17,7 +17,7 @@
         <div class="row">
             {% endif %}
             <a class="col s4 link-image center" href="{{url_for('drink', drink_id=drink._id)}}">
-                <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}">
+                <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
                 <h5 class="drink-home">{{drink.drinkName}}</h5>
             </a>
             {% if loop.index == 6 %}
