@@ -51,7 +51,8 @@ This applications is designed with adventurous drinkers in mind that require an 
 - A project I'd be excited to show off to people as a testament to my abilities.
 - Well thought out programming to account for the unpredictability of users. 
 - Something that looked professional even for a novice programmer on their first venture in JavaScript and jQuery.
-- To learn and impliment intricate python code that would be impressive to a veteran python programmer. 
+- To learn and impliment intricate python code that would be impressive to a veteran python programmer.
+- To create an ever expanding database project that users can easily add to, and over time will grow to large repository of information on drink creation.
 
 ### User Stories
 
@@ -61,10 +62,13 @@ This applications is designed with adventurous drinkers in mind that require an 
  3. A website which is pleasant to look at.
  4. A way to inspect and edit my own creations.
  5. An application which makes it easy to edit my own creations.
- 6. An application that makes it possible for only the creator to change their creations.
+ 6. An application that makes it possible for only myself to change my own creations.
  7. An application that is fast, which very little load times.
+ 8. A page that I can easily add my own creations to.
 
 ### Wireframes
+
+Wireframes were built in the early stages of development to get a rough outline of the structure needed for the planned features of the site. These can be viewed below:
 
 - [Desktop](https://github.com/Legaeldan/milestone-3/blob/master/static/Wireframes/Desktop-Tablet%20App.pdf)
 - [Tablet](#) Not Complete
@@ -153,6 +157,10 @@ I would like to impliment a system that allows the user to favourite a drink, th
 
 I would like to impliment a system that generates the measurements of ingredients, and add to the ingredients section on view drink. I'm currently tied between a new collection of all possible measurement size, and concatonating the results with the assosciated ingredients, or providing the user with a section which generated new lines on the form whenever an ingredient is selected. I will explore this further going forward with development of this site.
 
+3. **Admin Control Panel**
+
+A page specifically for user stats, how many views their drink has recieved, both unique, and recurring. A section on how many creations, and what their favourite ingredient to use in their recipes. Suggestions of related recipes based on their favourite ingredient.
+
 ## Testing
 
 As a first attempt at Python/Flask programming, the code had to be scrutinized, and thoroughly tested throughout. Every function would need to be planned, and tested in depth before moving on to other functionality, as these would be tied together later in the project.
@@ -169,15 +177,13 @@ During planning and development, defensive design was taken into account. The pl
 
 ### Overall:
 
- - **Planning:**
- - **Testing (Phase 1):**
- - **Testing (Phase 2):** 
- - **Defensive:**
+**Responsiveness-**
 
- - **Planning:**Responsiveness
- - **Testing (Phase 1):**
- - **Testing (Phase 2):** 
- - **Defensive:**
+ - **Planning:**This project was required to be totally responsive, and mobile friendly as it would be intended to be used on the fly. hence the choice of Materialize as my main framework for it's cut down components that result in a clean, uncluttered view, with access to all features through hidden buttons and menus. Testing was done using dev-tools during the entire project, and also a final test of the entire site after completion.
+ - **Testing:** Testing throughout the project was relatively simple using the materialize class modifiers. The only complicated issue in testing was the implimentation of the valign-wrapper, which was resolved by creating a class modifier, and implimenting a removal of the wrapper on discovery of this modifier.
+ - **Defensive:** N/A
+ - **Result:** A clean, responsive site, that works as expected. With no stray elements, or unwanted spacings.
+ - **Verdict:** Test passed as expected and the site is responsive.
 
 **Design**
  - **Planning:**Overal design had to be contrasting, to make specific elements jump out at the user.
