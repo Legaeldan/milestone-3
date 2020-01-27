@@ -46,6 +46,8 @@ The main objective in creating the Drink Splash application is to provide the us
 
 This applications is designed with adventurous drinkers in mind that require an easy way to explore drinks based on what they might have on hand, or randomly discover a new drink they may not have tried before. And for those who wish to share their recipes with others easily.
 
+As a side goal, I have left room for expansion once I have developed my skills further, and would like to develop this into a commercially viable system with ordering features, and live updates as outlined below in the [**Features Left to Implement**](#features-left-to-implement) section 2.2.4.
+
 #### Development Goal
 
 - A project I'd be excited to show off to people as a testament to my abilities.
@@ -161,6 +163,10 @@ I would like to impliment a system that generates the measurements of ingredient
 
 A page specifically for user stats, how many views their drink has recieved, both unique, and recurring. A section on how many creations, and what their favourite ingredient to use in their recipes. Suggestions of related recipes based on their favourite ingredient.
 
+4. **Ordering Feature**
+
+For future enhancement for practical use of the site. I would like to add an ordering feature. This would be used in a live setting (i.e. a pub/cocktail bar) to search drinks, find certain ingredients, and select a drink based on those criteria. To also provide a full list of ingredients to double as an allergen check. For users to store their orders, and order their favourites for later reordering. And for the list to generate on the fly to operators behind a bar. A good representation of this feature would be related to the Domino's Pizza application, which provides realtime order to a screen in shop.
+
 ## Testing
 
 As a first attempt at Python/Flask programming, the code had to be scrutinized, and thoroughly tested throughout. Every function would need to be planned, and tested in depth before moving on to other functionality, as these would be tied together later in the project.
@@ -207,8 +213,6 @@ During planning and development, defensive design was taken into account. The pl
  - **Testing:** As this was tied into the view drink page, minimal testing was required. Tests were carried out using the **print()** funtion to ensure all results were indeed random, and follow the process through each step. After applying a random formula, was then applied to the view drink page. 
   - **Result:** A random drink/document is returned every time the link is viewed.
   - **Verdict:** Test passed, and feature works as expected.
-
-
 
 ### Bugs During Development
 
