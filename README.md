@@ -359,12 +359,12 @@ Testing for end user experience and defensive design was done by myself, and out
 ### Languages:
 - [Python](https://www.python.org/)
     - The project uses **Python** to run the application.
-- [HTML](https://www.python.org/)
-    - The project uses **HTML** to run the application.
-- [CSS](https://www.python.org/)
-    - The project uses **Python** to run the application.
- - [Javascript](https://www.python.org/)
-    - The project uses **Python** to run the application.
+- [HTML](en.wikipedia.org/wiki/HTML)
+    - The project uses **HTML** to structure the DOM.
+- [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+    - The project uses **CSS** to style and theme pages..
+ - [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+    - The project uses **Javascript** to allow for DOM manipulation.
 
 ### Frameworks/Libraries:  
 - [JQuery](https://jquery.com)
