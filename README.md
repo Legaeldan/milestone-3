@@ -20,23 +20,28 @@ The site is designed with the best user experience in mind, while maintaining a 
     - [**Existing Features**](#existing-features)
     - [**Features Left to Implement**](#features-left-to-implement)
 
-3. [**Testing**](#testing)
+3. [**Information Architecture**](#information-architecture)
+    - [**Database Choice**](#database-choice)
+    - [**Data Types**](#data-types)
+    - [**Collections Structure**](#collections-structure)
+
+4. [**Testing**](#testing)
     - [**Test Planning**](#test-planning)
     - [**Known Bugs**](#known-bugs)
 
-4. [**Technologies Used**](#technologies-used)
+5. [**Technologies Used**](#technologies-used)
     - [**Languages**](#Languages)
     - [**Frameworks/Libraries**](#frameworks/libraries)
     - [**Software**](#Software)
     - [**Additional Resources**](#additional-resources)
 
-5. [**Deployment**](#deployment)
+6. [**Deployment**](#deployment)
     - [**Deployment to Heroku**](#deployment-to-heroku)
     - [**Running this project locally**](#running-this-project-locally)
 
-6. [**Credits**](#credits)
+7. [**Credits**](#credits)
 
-7. [**Disclaimer**](#disclaimer)
+8. [**Disclaimer**](#disclaimer)
 
 ## UX
 
@@ -166,6 +171,53 @@ A page specifically for user stats, how many views their drink has recieved, bot
 4. **Ordering Feature**
 
 For future enhancement for practical use of the site. I would like to add an ordering feature. This would be used in a live setting (i.e. a pub/cocktail bar) to search drinks, find certain ingredients, and select a drink based on those criteria. To also provide a full list of ingredients to double as an allergen check. For users to store their orders, and order their favourites for later reordering. And for the list to generate on the fly to operators behind a bar. A good representation of this feature would be related to the Domino's Pizza application, which provides realtime order to a screen in shop.
+
+## Information Architecture
+
+### Database Choice
+
+In the initial planning phase of this project, an SQL structured database was decided on, but was quickly found to be more complex in regards to hosting. Planning for this database choice was then restructed to suit a NoSQL database, with a one to many relationship structure, emulating the initial plan of an SQL database.
+
+To emulate the original SQL planned structure, inner objects satructured as arrays, and pulled from other collections was utilized as shown below and in the schemas supplied.
+
+### Data Types
+
+The types of data in this project stored in MongoDB are:
+- ObjectId
+- String
+- Binary
+- Array
+
+### Collections Structure
+
+Drink splash heavily relies on three connected database collections. Case sensitive collections are vital to it's operation as below:
+
+#### Users Collection
+| Title         | Key in db | form validation type | Data type |
+|---------------|-----------|----------------------|-----------|
+| Username ID   | _id       | None                 | ObjectId  |
+| Username      | username  | text                 | String    |
+| Email Address | email     | email                | String    |
+| Password      | password  | text                 | String    |
+[Example JSON from users collections](https://github.com/Legaeldan/milestone-3/blob/master/data/schemas/users.json)
+#### Ingredients Collection
+| Title                | Key in db       | form validation type | Data type |
+|----------------------|-----------------|----------------------|-----------|
+| Ingredient ID        | _id             | None                 | ObjectId  |
+| Ingredient Name      | ingredientName  | text                 | String    |
+| Ingredient Image URL | ingredientImage | url                  | String    |
+[Example JSON from ingredients collections](https://github.com/Legaeldan/milestone-3/blob/master/data/schemas/ingredients.json)
+#### Drinks Collection
+| Title               | Key in db      | form validation type | Data type |
+|---------------------|----------------|----------------------|-----------|
+| Drink ID            | _id            | None                 | ObjectId  |
+| Drink Name          | drinkName      | text                 | String    |
+| Instructions        | instructions   | textarea             | String    |
+| Drink Image URL     | drinkImage     | url                  | String    |
+| Ingredients List    | ingredientList | checkbox             | Array     |
+| Date Modified       | modifiedDate   | None                 | String    |
+| Created By Username | createdBy      | None                 | String    |
+[Example JSON from drinks collections](https://github.com/Legaeldan/milestone-3/blob/master/data/schemas/drinks.json)
 
 ## Testing
 
