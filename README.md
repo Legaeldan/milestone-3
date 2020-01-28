@@ -199,6 +199,7 @@ Drink splash heavily relies on three connected database collections. Case sensit
 | Username      | username  | text                 | String    |
 | Email Address | email     | email                | String    |
 | Password      | password  | text                 | String    |
+
 [Example JSON from users collections](https://github.com/Legaeldan/milestone-3/blob/master/data/schemas/users.json)
 #### Ingredients Collection
 | Title                | Key in db       | form validation type | Data type |
@@ -206,6 +207,7 @@ Drink splash heavily relies on three connected database collections. Case sensit
 | Ingredient ID        | _id             | None                 | ObjectId  |
 | Ingredient Name      | ingredientName  | text                 | String    |
 | Ingredient Image URL | ingredientImage | url                  | String    |
+
 [Example JSON from ingredients collections](https://github.com/Legaeldan/milestone-3/blob/master/data/schemas/ingredients.json)
 #### Drinks Collection
 | Title               | Key in db      | form validation type | Data type |
@@ -217,6 +219,7 @@ Drink splash heavily relies on three connected database collections. Case sensit
 | Ingredients List    | ingredientList | checkbox             | Array     |
 | Date Modified       | modifiedDate   | None                 | String    |
 | Created By Username | createdBy      | None                 | String    |
+
 [Example JSON from drinks collections](https://github.com/Legaeldan/milestone-3/blob/master/data/schemas/drinks.json)
 
 ## Testing
