@@ -1,4 +1,4 @@
-<div class="fixed-action-btn">
+<div class="fixed-action-btn hide">
     {% if 'username' in session %}
     <a class="btn-floating btn-large fab-main">
       <i class="large material-icons">account_circle</i>
@@ -10,6 +10,7 @@
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="My Drinks" href="{{ url_for('collection', collectionType='my-drinks') }}"><i class="material-icons">check</i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Ingredients" href="{{ url_for('ingredients') }}"><i class="fas fa-wine-bottle"></i></a></li>
       <li><a class="btn-floating fab-child modal-trigger tooltipped" data-position="left" data-tooltip="Add Drink" href="#addDrinkModal"><i class="material-icons">add</i></a></li>
+      <li><a id="FabNavToggle" class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="ToggleMenu"><i class="material-icons">sync</i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Logout" href="{{ url_for('logout') }}"><i class="material-icons">vpn_key</i></a></li>
     </ul>
     {% else %}
@@ -21,6 +22,7 @@
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Random" href="{{ url_for('drink', drink_id='randomDrink') }}"><i class="fas fa-dice-five"></i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Collection" href="{{ url_for('collection') }}"><i class="material-icons">local_drink</i></a></li>
       <li><a class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="Ingredients" href="{{ url_for('ingredients') }}"><i class="fas fa-wine-bottle"></i></a></li>
+      <li><a id="FabNavToggle" class="btn-floating fab-child tooltipped" data-position="left" data-tooltip="ToggleMenu"><i class="material-icons">sync</i></a></li>
       <li><a class="btn-floating fab-child modal-trigger tooltipped" data-position="left" data-tooltip="Login" href="#loginModal"><i class="large material-icons">vpn_key</i></a></li>
     </ul>
     {% endif %}

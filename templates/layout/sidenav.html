@@ -3,22 +3,23 @@
 <aside>
     <ul class="sidenav" id="mobile-nav">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('drink', drink_id='randomDrink') }}">Random</a></li>
-        {% if 'username' in session %}
-        <li><a class="modal-trigger" href="#addDrinkModal"></a>></li>
-        {% endif %}
-        <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
-        <li><a href="{{ url_for('collection', user=0) }}">Collection</a></li>
-        {% if 'username' in session %}
-        <ul id="sidenav-dropdown" class="dropdown-content">
-            <li><a href="{{ url_for('collection', user=1) }}">My Drinks</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        </ul>
-        <li><a class="dropdown-trigger" href="#!" data-target="sidenav-dropdown">{{ session['username'] }}<i
-                    class="material-icons right">arrow_drop_down</i></a></li>
-        {% else %}
-        <li><a class="modal-trigger" href="#loginModal">Login</a></li>
+            <li><a href="{{ url_for('drink', drink_id='randomDrink')  }}">Random</a></li>
+            {% if 'username' in session %}
+            <li><a class="modal-trigger" href="#addDrinkModal">Add Drink</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
+            <li><a href="{{ url_for('collection') }}">Collection</a></li>
+            <li><a id="sideNavToggle">ToggleMenu</a></li>
+            {% if 'username' in session %}
+            <ul id="main-dropdown" class="dropdown-content">
+                <li><a href="{{  url_for('collection', collectionType='my-drinks') }}">My Drinks</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+            <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+            {% else %}
+            <li><a class="modal-trigger" href="#loginModal">Login</a></li>
         {% endif %}
     </ul>
 </aside>
