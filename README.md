@@ -4,9 +4,10 @@
   Drink Splash - Find your drink today!
 </h1>
 <h2>Milestone 3 Project - Kieran Cunnane</h2>
-<p>This site has been created to give users a simple, easy to navigate site to find, create, update their favourite drink recipes, and view their own creations in one easy place.
 
-The site is designed with the best user experience in mind, while maintaining a strong, defensive design against unwanted changes to the database.</p>
+This site has been created to give users a simple, easy to navigate system in which to find, create, and update their favourite drink recipes. It enables users to view their own creations in one easy place.
+
+The site is designed with the most intuitive user experience in mind. A strong, defensive design against unwanted changes to the database has also been incorporated into the site.
 
 ## Table of Contents
 1. [**UX**](#ux)
@@ -49,7 +50,7 @@ The site is designed with the best user experience in mind, while maintaining a 
 
 The main objective in creating the Drink Splash application is to provide the user with a simple to use repository of recipes for cocktail and drink making. It also provides an every growing database of cocktails, drinks, and ingredients for the users to browse through and add to.
 
-This applications is designed with adventurous drinkers in mind that require an easy way to explore drinks based on what they might have on hand, or randomly discover a new drink they may not have tried before. And for those who wish to share their recipes with others easily.
+This applications is designed with adventurous drinkers in mind who require an easy way to explore drinks menu based on what they might have on hand, or randomly discover a new drink they may not have tried before. It also allows users to share their recipes with others easily.
 
 As a side goal, I have left room for expansion once I have developed my skills further, and would like to develop this into a commercially viable system with ordering features, and live updates as outlined below in the [**Features Left to Implement**](#features-left-to-implement) section 2.2.4.
 
@@ -70,7 +71,7 @@ As a side goal, I have left room for expansion once I have developed my skills f
  4. A way to inspect and edit my own creations.
  5. An application which makes it easy to edit my own creations.
  6. An application that makes it possible for only myself to change my own creations.
- 7. An application that is fast, which very little load times.
+ 7. An application that is fast, with very short load times.
  8. A page that I can easily add my own creations to.
 
 ### Wireframes
@@ -236,6 +237,8 @@ Drink splash heavily relies on three connected database collections. Case sensit
 
 As a first attempt at Python/Flask programming, the code had to be scrutinized, and thoroughly tested throughout. Every function would need to be planned, and tested in depth before moving on to other functionality, as these would be tied together later in the project.
 
+**All testing results can be found in the seperate [TESTING.md](https://github.com/Legaeldan/milestone-3/blob/master/data/testing/TESTING.md) file. 
+
 #### Test Planning:
 
 During planning and development, defensive design was taken into account. The planning of testing was split into two section. **Functionality** and **Defensive Design**. Each function was planned out carefully, then a subsection to testing was added for defensive design, in which that particular function was given every possible variable a user could give, and tested for unwanted activation.
@@ -248,36 +251,7 @@ During planning and development, defensive design was taken into account. The pl
  - **Result:** A simple button that can only be fired under certain circumstances.
  - **Verdict:** Test passed as expected and delete button is now operational..
 
-### Overall:
-
-**Responsiveness-**
-
- - **Planning:**This project was required to be totally responsive, and mobile friendly as it would be intended to be used on the fly. hence the choice of Materialize as my main framework for it's cut down components that result in a clean, uncluttered view, with access to all features through hidden buttons and menus. Testing was done using dev-tools during the entire project, and also a final test of the entire site after completion.
- - **Testing:** Testing throughout the project was relatively simple using the materialize class modifiers. The only complicated issue in testing was the implimentation of the valign-wrapper, which was resolved by creating a class modifier, and implimenting a removal of the wrapper on discovery of this modifier.
- - **Defensive:** N/A
- - **Result:** A clean, responsive site, that works as expected. With no stray elements, or unwanted spacings.
- - **Verdict:** Test passed as expected and the site is responsive.
-
-**Design**
- - **Planning:**Overal design had to be contrasting, to make specific elements jump out at the user. Colour charts to be created using [coolors.co](https://coolors.co/).
- - **Testing:**Multiple colour palettes were tested, and finally settled upon the final result. All version were shown to testers, and notes taken on favourites.
-- **Result:** The overall theme of the site worked, and all tester were happy with the contrast.
-- **Verdict:** Test passed, and overall design of the site works well together.
-
-### Features:
-
-**FAB Button**
- - **Planning:** A different approach to navigation of the site was needed. After some deliberation, a **Floating Action Button** was decided upon. This would have to be lightweight, smooth, and easy to use. With a stand out design to draw users to the icon.
- - **Testing (Phase 1):** During testing, multiple icons to reflect the menu item were tested. The final icons were then decided upon once in place.
- - **Testing (Phase 2):** During testing, it was found icons were not quite enough when using a desktop, as it wasn't quite as intuitive as using mobile. The icons were then accompanied by **Tooltips** when hovered. This gave a pleasant indication of each icon to the user. 
- - **Results:** The FAB works well, and was commented as being different and unique.
- - **Verdict:** Test passed, and the FAB works well in the context provided.
-
-**Random Drink**
- - **Planning:** A search feature was needed to provide the user with a random document/drink from the database.
- - **Testing:** As this was tied into the view drink page, minimal testing was required. Tests were carried out using the **print()** funtion to ensure all results were indeed random, and follow the process through each step. After applying a random formula, was then applied to the view drink page. 
-  - **Result:** A random drink/document is returned every time the link is viewed.
-  - **Verdict:** Test passed, and feature works as expected.
+**All testing results can be found in the seperate [TESTING.md](https://github.com/Legaeldan/milestone-3/blob/master/data/testing/TESTING.md) file. 
 
 ### Bugs During Development
 
@@ -301,39 +275,39 @@ Testing for end user experience and defensive design was done by myself, and out
     - **Solution:** Added a try except block to catch errors, and if failed, would revert to another page.
     - **Result:** Added an error handler to flask for 404 errors. Then added a try except to the drinks page to catch all errors. The if checks within the try block checks for all possible valid variations of the URL, and on failure, returns to the 404 error handler.
 
-3. **Changing drink URL**
+4. **Changing drink URL**
     - **Issue:** Users could view a drink, and then change``` (pageURL.com/drink/<drink-id>) ``` to  ``` (pageURL.com/delete-drink/<drink-id>) ```. This would cause the drink to be delete regardless of rights.
     - **Solution:** Add an if check to handle if the user is valid, and allowed to delete the item.
     - **Result:** If check now checks firstly if the user is logged in. Then checks if the user is allowed to delete the drink. If neither of these are true, the user is returned to the 401 error handled, and provided a message of "Not Authorized".
 
-3. **Unable to add drink ingredients**
+5. **Unable to add drink ingredients**
     - **Issue:** When a user is logged in, the ingredients section of the add drink modal would generate no items. This was due to a for loop prior that expended all the data in that loop.
     - **Solution:** Added a second search on the database specifically for the add drink page, and named it differently. 
     - **Result:** Both add drink and edit drink forms had their own specific list to work from, allowing both forms to iterate over their own respective loops.
 
-4. **Any user could delete/edit**
+6. **Any user could delete/edit**
     - **Issue:** Buttons to edit and delete drinks was available to all users regardless if they added the item or not.
     - **Solution:** Impliment user specific buttons, and encrypted logon system. 
     - **Result:** Users are now only presented with buttons that apply to their own drinks, preventing others from deleteing their creations, and preventing a user stumbling across the site, and removing the entire database.
 
-5. **Drinks able to be duplicated**
+7. **Drinks able to be duplicated**
     - **Issue:** Users were able to create a drink multiple times. Resulting in duplicate entries.
     - **Solution:** Add a check if the item already exists.
     - **Result:** Should a user duplicate an item. They are then returned the drink they are duplicating, with a message that it already exists.
 
-6. **Ingredients off center in search**
+8. **Ingredients off center in search**
     - **Issue:** When an ingredient is selected for search. The box added a random margin to the left of the name.
     - **Solution:** Removed unused space in for loops for generating ingredients which was the cause for a space to be generated on every item.
     - **Result:** Ingredient selected now lined up correctly with the search box, to enable the user to read the item once select. This especially affected mobile users who had limited space.
 
 <img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing4.png?raw=true" alt="Test Results 4"/>
 
-7. **Collection URL returns no user**
+9. **Collection URL returns no user**
     - **Issue:** Users can check other users collection by adding their name to the end of the collection URL. If the user had no items created by them, the system would return "User does not exist."
     - **Solution:** Add additional user check before checking for user created item.
     - **Result:** Collection correctly returns a 404 with custom message that user has no items in their collection. If user doesn't exists, returns a no user exists 404.
 
-8. **No account to maintain database**
+10. **No account to maintain database**
     - **Issue:** During testing, any database maintainance had to be done by logging into MongoDB, which was found to be time consuming.
     - **Solution:** Add admin account that has access to all the features provided to users.
     - **Result:** Gives the admin the ability to access all features, and delete drinks on the fly while scanning the website.
@@ -353,6 +327,12 @@ Testing for end user experience and defensive design was done by myself, and out
 
 - **Android Search**
     And issue was discovered when testing on Android phones, that when instructions is clicked on the view drink page, chrome immediately tries to do a Google search on the word "Instruction". This also applies to the any headings on the page, but I have yet to find the cause, or fix this issue. This issue does not occur in the developer section for desktop Chrome when scaling for mobile.
+
+- **Responsive Resizing**
+    When resizing the screen using Chrome Developer tools. There is an issue in which overflow from the page has expanded past the content. This overflow is retained from the larger screen, and can be removed by reloading the page once the desired size/device has been found. There is no solution to this at present.
+
+- **PEP Standards**
+    During linting of the python application, and warning occured on lines 154 & 256 that state an unneccessary elif statement was used after a return. I have tested the program both with, and without these elif statements, and found the function does not complete as expected without these statements. I have not yet found the cause of the warnings.
 
 ## Technologies Used
 
