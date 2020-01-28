@@ -310,9 +310,12 @@ Testing for end user experience and defensive design was done by myself, and out
     - The project uses **Pymongo** to initiate a connection with, and transfer data to and from MongoDB.
 - [Materialize](https://materializecss.com/)
     - The project uses the **Materialize** framework to simplify the structure of the website and make the website responsive easily.
-
 - [MongoDB](https://www.mongodb.com/)
     - The project uses **MongoDB** to store all project documents within an easily accessible database.
+- [Virtual Env](https://virtualenv.pypa.io/en/latest/)
+    - This project utilise Virtualenv to run a closed virtual enviroment specifically tailored for this project.
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+    - This project uses the Bcrypt library to encrypt passwords for user security.
 
 ### Software:
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -358,6 +361,16 @@ To deploy this page to [Heroku](https://www.heroku.com/) from its [GitHub reposi
 
 ### Running this project locally
 
+**Please note: This project was created and run on Windows in Visual Studio Code with a Virtual Enviroment using Python 3 and Git. Please ensure you have Python 3 and Git installed locally before running this project. For other OS or Code Editors, please refer to the relevant documentation for your enviroment.**
+
+**Preferred Requirements:**  
+ - [Visual Studio Code](https://code.visualstudio.com/)
+ - [Git](https://git-scm.com/downloads)
+ - [Python](https://www.python.org/)
+ - An account with [MongoDB Atlas](https://www.mongodb.com/) or a local instance of MongoDB. Please refer to the [MongoDB Documentation](https://docs.atlas.mongodb.com/) for more help.
+
+
+
 To clone this project from GitHub:
 1. Follow this link to the [GitHub repository](https://github.com/Legaeldan/milestone-3).
 2. Under the repository name, click the green "Clone or download" button.
@@ -371,8 +384,31 @@ git clone https://github.com/Legaeldan/milestone-3
 ```
 
 7. Press Enter. Your local clone will be created.
-8. From the terminal, type ```pip3 install -r requirements.txt```.
-9. Once complete, type ```python app.py```
+8. From the terminal, type ```pip3 install virtualenv```
+9. Once the above is complete, type ```virtualenv env```. This will create your local virtual enviroment.
+10. Create a folder in the root directory called **.vscode**.
+11. In the **.vscode** folder, create a file called **settings.json**
+12. Insert the below code into the settings.json file, wait for the enviroment to load (This can be seen in the lower left hand corner of VSCode).
+```json
+{
+    "python.pythonPath": "env\\Scripts\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": ["--load-plugins=pylint_flask"],
+    "files.autoSave": "onFocusChange",
+    "terminal.integrated.env.osx": {
+      "SECRET_KEY": "[INSERT YOUR SECRET KEY HERE]",
+      "DEV": "1",
+      "FLASK_DEBUG": "1",
+      "MONGO_URI": "[INSERT YOUR MONGO URI HERE]",
+      "MONGO_DBNAME": "[INSERT YOUR DB NAME HERE]"
+    }
+}
+```
+13. Restart VSCode. The bottom left should now state **Python X.X.X 64/32-bit ('env':virtualenv)**
+14. Open a terminal windows. The directory in terminal should now be preceeded by **(env)**, stating the enviroment is now active.
+15. From the terminal, type ```pip3 install -r requirements.txt```.
+16. Once complete, type ```python app.py```
 
 For more help on cloning a repository on Github, please click [here](https://help.github.com/en/articles/cloning-a-repository).
 
