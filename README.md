@@ -295,15 +295,15 @@ Testing for end user experience and defensive design was done by myself, and out
 - [Python](https://www.python.org/)
     - The project uses **Python** to run the application.
 - [HTML](https://www.python.org/)
-    - The project uses **Python** to run the application.
+    - The project uses **HTML** to run the application.
 - [CSS](https://www.python.org/)
     - The project uses **Python** to run the application.
  - [Javascript](https://www.python.org/)
     - The project uses **Python** to run the application.
-- [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
 
-### Frameworks/Libraries:              
+### Frameworks/Libraries:  
+- [JQuery](https://jquery.com)
+    - The project uses **JQuery** to simplify DOM manipulation.            
 - [Flask](http://flask.palletsprojects.com/en/1.1.x/)
     - The project uses the **Flask** to dynamically generate pages, generate dynamic links, and content within the application.
 - [PyMongo](https://api.mongodb.com/python/current/)
@@ -346,7 +346,7 @@ To deploy this page to [Heroku](https://www.heroku.com/) from its [GitHub reposi
 3. Give you app a unique name, and select the region you wish to deploy to.
 4. After the app is created, select **Deploy** from the top of the page, and scroll down to **Deployment Method**.
 5. Select **GitHub** as the method of deployment.
-6. Log in using your Github credentials. 
+6. Log in using your **Github credentials.** 
 7. Select your username, and search for the reposity in the **repo-name** box.
 8. Select **Connect** on the repository you wish to connect to.
 9. Under **Manual deploy**, select the branch you wish to deploy, and hit **Deploy Branch**
@@ -366,7 +366,9 @@ To clone this project from GitHub:
 5. Change the current working directory to the location where you want the cloned directory to be made.
 6. Type ```git clone```, and then paste the URL you copied in Step 3.
 
-```git clone https://github.com/Legaeldan/milestone-3```
+```
+git clone https://github.com/Legaeldan/milestone-3
+```
 
 7. Press Enter. Your local clone will be created.
 8. From the terminal, type ```pip3 install -r requirements.txt```.
