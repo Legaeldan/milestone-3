@@ -1,0 +1,8 @@
+[{
+    "_id": {
+        "$oid": "<objectId>"
+    },
+    "username": "<string>",
+    "email": "<string>",
+    "password": "<binary_salt_encrypted_password>"
+}]

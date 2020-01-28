@@ -1,0 +1,11 @@
+[{
+    "_id": {
+        "$oid": "<objectId>"
+    },
+    "drinkName": "<string>",
+    "instructions": "<string>",
+    "drinkImage": "<string_url>",
+    "ingredientList":"<array>",
+    "modifiedDate": "<string>",
+    "createdBy": "<string>"
+}]
