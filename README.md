@@ -145,15 +145,18 @@ The main approach to this application is made to easy to maintain, and easy to u
     - A search page is in place on the ingredients section. Users can search and filter by particular ingredients. The user is then returned all drinks that contain that particular ingredient.
     - This can also be done from the view drink page by clicking any ingredient on the list. The user will then be directed to the ingredients page, and returned all drinks containing that ingredient.
 
-8. **One to Many Relationships**
+8. **Add Drink/Edit Drink Modal**
+
+
+9. **Switchable Menu**
+
+10. **One to Many Relationships**
     - To improve the site, I have implimented a one-to-many model through MongoDB. This means that information like ingredients would not all have to be stored in one document, and facilitate the search engine being able to pull multiple connected documents.
     - this feature also allows for the registered user feature of the My Collection page. As a seperate collection called users ties the user to specific document as show below.
 
 <div align="center">
 <img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/DBStructure.png?raw=true" alt="Screenshot: DB Structure" >
 </div>
-
-
 
 ### Features Left to Implement
 

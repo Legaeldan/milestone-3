@@ -43,3 +43,24 @@
   - **Testing (Phase 2):** Refactoring of code meant that a single page could be utilised. The code was incorporated into the overall collection page, and upon testing was found to work both when a username was clicked, and when a URL was entered for a valid user.
   - **Results:** Users can obtain collections relating to specific users, and themselves upon request.
   - **Verdict:** Test passed, and feature is working as expected.
+
+  **Switchable Menu**
+  - **Planning:**
+  - **Testing (Phase 1):**
+  - **Testing (Phase 2):**
+  - **Results:**
+  - **Verdict:**
+
+  **Add Drink/Edit Drink Modal**
+  - **Planning:**
+  - **Testing (Phase 1):**
+  - **Testing (Phase 2):**
+  - **Results:**
+  - **Verdict:**
+
+  **Drink Search**
+  - **Planning:**
+  - **Testing (Phase 1):**
+  - **Testing (Phase 2):**
+  - **Results:**
+  - **Verdict:**
