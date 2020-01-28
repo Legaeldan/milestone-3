@@ -1,7 +1,7 @@
 {% block sidenav %}
 
 <aside>
-    <ul class="sidenav" id="mobile-nav">
+    <ul class="sidenav toggleNavbar" id="mobile-nav">
         <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('drink', drink_id='randomDrink')  }}">Random</a></li>
             {% if 'username' in session %}
