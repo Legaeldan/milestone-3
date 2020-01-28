@@ -16,11 +16,11 @@ MONGO = PyMongo(APP)
 
 @APP.errorhandler(404)
 def page_not_found(e):
-    return render_template('error.html', headerTitle="Error - Page Not Found", message=e), 404
+    return render_template('pages/error.html', headerTitle="Error - Page Not Found", message=e), 404
 
 @APP.errorhandler(401)
 def not_authorized(e):
-    return render_template('error.html', headerTitle="Error - Not Authorized", message=e), 401
+    return render_template('pages/error.html', headerTitle="Error - Not Authorized", message=e), 401
 
 @APP.route('/')
 def home():
@@ -32,7 +32,7 @@ def home():
     today = datetime.datetime.now()
     sorted_drinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
     print(today)
-    return render_template('home.html',
+    return render_template('pages/home.html',
                            drinks=sorted_drinks,
                            headerTitle="Latest Drinks",
                            ingredients=MONGO.db.ingedients.find())
@@ -63,9 +63,9 @@ def login():
                              login_user['password']) == login_user['password']:
                 session['username'] = form['username']
                 return redirect(url_for('home'))
-        return render_template('login.html',
+        return render_template('pages/login.html',
                                invalid=True)
-    return render_template('login.html')
+    return render_template('pages/login.html')
 
 
 @APP.route('/register', methods=['POST', 'GET'])
@@ -86,10 +86,10 @@ def register():
             users.insert_one(user_details)
             session['username'] = form['username']
             return redirect(url_for('home'))
-        return render_template('register.html',
+        return render_template('pages/register.html',
                                exists=True,
                                headerTitle='Register')
-    return render_template('register.html',
+    return render_template('pages/register.html',
                            headerTitle='Register')
 
 @APP.route('/ingredients', methods=['GET', 'POST'], defaults={'ingredient_name': {}})
@@ -109,17 +109,17 @@ def ingredients(ingredient_name):
     if request.method == 'POST':
         ingredient_search = request.form.to_dict()
         if not ingredient_search:
-            return render_template('ingredients.html',
+            return render_template('pages/ingredients.html',
                                    ingredients=ingredients_list,
                                    ingredient=ingredient_search,
                                    headerTitle='No ingredient selected')
         print('ingredientsearch', ingredient_search)
-        return render_template('ingredients.html',
+        return render_template('pages/ingredients.html',
                                ingredients=ingredients_list,
                                ingredient=ingredient_search,
                                drinks=drinks_list,
                                headerTitle=ingredient_search['ingredientList'])
-    return render_template('ingredients.html',
+    return render_template('pages/ingredients.html',
                            drinks=drinks_list,
                            ingredient=ingredient_dict,
                            ingredients=ingredients_list,
@@ -137,12 +137,12 @@ def collection(collectionType):
     if collectionType == 'my-drinks':
         if 'username' in session:
             if session['username'] == 'admin':
-                return render_template('collection.html',
+                return render_template('pages/collection.html',
                                        drinks=MONGO.db.drinks.find(),
                                        ingredients=MONGO.db.ingedients.find(),
                                        headerTitle="My Drinks")
             drinkCount = MONGO.db.drinks.find({"createdBy": session['username']}).count()
-            return render_template('collection.html',
+            return render_template('pages/collection.html',
                                    drinkCount=drinkCount,
                                    drinks=MONGO.db.drinks.find({"createdBy": session['username']}),
                                    ingredients=MONGO.db.ingedients.find(),
@@ -156,14 +156,14 @@ def collection(collectionType):
             if not drinkCount:
                 return abort(404, description="No collection found for this user!")
             print("userExists")
-            return render_template('collection.html',
+            return render_template('pages/collection.html',
                                    drinkCount=drinkCount,
                                    drinks=MONGO.db.drinks.find({"createdBy": collectionType}),
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
         print("does not userExists")
         return abort(404, "User not found!")
-    return render_template('collection.html',
+    return render_template('pages/collection.html',
                            drinks=MONGO.db.drinks.find(),
                            ingredients=MONGO.db.ingedients.find(),
                            headerTitle="Collection")
@@ -211,7 +211,7 @@ def drink(drink_id):
                 print(exists)
                 if exists:
                     print("exists")
-                    return render_template('viewdrink.html',
+                    return render_template('pages/viewdrink.html',
                                            drink=exists,
                                            headerTitle=request.form.get('drinkName'),
                                            ingredients=MONGO.db.ingedients.find(),
@@ -227,7 +227,7 @@ def drink(drink_id):
                 }
                 insertedDrink = drinks.insert_one(final_drink).inserted_id
                 the_drink=MONGO.db.drinks.find_one({"_id": ObjectId(insertedDrink)})
-                return render_template('viewdrink.html',
+                return render_template('pages/viewdrink.html',
                                        drink=the_drink,
                                        headerTitle=request.form.get('drinkName'),
                                        ingredients=MONGO.db.ingedients.find(),
@@ -245,7 +245,7 @@ def drink(drink_id):
                                }
                                },
                               upsert=False)
-            return render_template('viewdrink.html',
+            return render_template('pages/viewdrink.html',
                                    drink=MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)}),
                                    headerTitle=request.form.get('drinkName'),
                                    ingredients=MONGO.db.ingedients.find(),
@@ -253,7 +253,7 @@ def drink(drink_id):
         elif drink_id == 'randomDrink':
             rand = MONGO.db.drinks.count()
             the_drink = MONGO.db.drinks.find()[random.randrange(rand)]
-            return render_template('viewdrink.html',
+            return render_template('pages/viewdrink.html',
                                    drink=the_drink,
                                    headerTitle=the_drink['drinkName'],
                                    ingredients=MONGO.db.ingedients.find(),
@@ -261,7 +261,7 @@ def drink(drink_id):
         else:
             the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
             print(the_drink)
-            return render_template('viewdrink.html',
+            return render_template('pages/viewdrink.html',
                                    drink=the_drink,
                                    headerTitle=the_drink['drinkName'],
                                    ingredients=MONGO.db.ingedients.find(),
