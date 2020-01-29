@@ -36,7 +36,6 @@ def home():
     """
     today = datetime.datetime.now()
     sorted_drinks = MONGO.db.drinks.find().sort('modifiedDate', -1)
-    print(today)
     return render_template('pages/home.html',
                            drinks=sorted_drinks,
                            headerTitle="Latest Drinks",
@@ -90,7 +89,6 @@ def register():
         users = MONGO.db.users
         existing_user = users.find_one({'username': request.form['username']})
         if existing_user is None:
-            print(existing_user)
             hashpass = bcrypt.hashpw(
                 form['password'].encode('utf-8'), bcrypt.gensalt())
             user_details = {
@@ -119,7 +117,6 @@ def ingredients(ingredient_name):
     ingredient_dict = {
         'ingredientList': ingredient_name
     }
-    print(ingredient_dict)
     if request.method == 'POST':
         ingredient_search = request.form.to_dict()
         if not ingredient_search:
@@ -127,7 +124,6 @@ def ingredients(ingredient_name):
                                    ingredients=ingredients_list,
                                    ingredient=ingredient_search,
                                    headerTitle='No ingredient selected')
-        print('ingredientsearch', ingredient_search)
         return render_template('pages/ingredients.html',
                                ingredients=ingredients_list,
                                ingredient=ingredient_search,
@@ -149,8 +145,6 @@ def collection(collectionType):
     If my drinks argument supplied, returns users own drinks.
     On error, returns a user not found error page.
     """
-    print("Collection type below")
-    print(collectionType)
     if collectionType == 'my-drinks':
         if 'username' in session:
             if session['username'] == 'admin':
@@ -169,16 +163,13 @@ def collection(collectionType):
         userExists = MONGO.db.users.find_one({"username": collectionType})
         if userExists:
             drinkCount = MONGO.db.drinks.find({"createdBy": collectionType}).count()
-            print(drinkCount)
             if not drinkCount:
                 return abort(404, description="No collection found for this user!")
-            print("userExists")
             return render_template('pages/collection.html',
                                    drinkCount=drinkCount,
                                    drinks=MONGO.db.drinks.find({"createdBy": collectionType}),
                                    ingredients=MONGO.db.ingedients.find(),
                                    headerTitle="My Drinks")
-        print("does not userExists")
         return abort(404, "User not found!")
     return render_template('pages/collection.html',
                            drinks=MONGO.db.drinks.find(),
@@ -207,7 +198,9 @@ def add_ingredient():
             if mongo_count is None:
                 ingredients_list.insert_one(final_ingredient)
                 return redirect(url_for('home'))
-            return render_template('addingredient.html', exists=1, ingredient=final_ingredient,
+            return render_template('addingredient.html',
+                                   exists=1,
+                                   ingredient=final_ingredient,
                                    headerTitle="Add Ingredient")
         return render_template('addingredient.html',
                                headerTitle="Add Ingredient")
@@ -230,10 +223,7 @@ def drink(drink_id):
                 form = request.form.to_dict()
                 today = datetime.datetime.now()
                 exists = drinks.find_one({"drinkName": str(form["drinkName"].title())})
-                print(form["drinkName"].title())
-                print(exists)
                 if exists:
-                    print("exists")
                     return render_template('pages/viewdrink.html',
                                            drink=exists,
                                            headerTitle=request.form.get('drinkName'),
@@ -283,7 +273,6 @@ def drink(drink_id):
                                    editIngredients=MONGO.db.ingedients.find())
         else:
             the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-            print(the_drink)
             return render_template('pages/viewdrink.html',
                                    drink=the_drink,
                                    headerTitle=the_drink['drinkName'],
@@ -302,7 +291,6 @@ def delete_drink(drink_id):
     """
     try:
         the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
-        print(drink)
         if 'username' in session:
             if session['username'] == the_drink['createdBy']:
                 MONGO.db.drinks.delete_one({"_id": ObjectId(drink_id)})
@@ -315,4 +303,4 @@ def delete_drink(drink_id):
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
-            debug=True)
+            debug=False)
