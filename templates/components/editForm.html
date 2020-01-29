@@ -1,65 +1,64 @@
 <div id="editModal" class="modal col s6 offset-m3">
-    <div class="modal-content">
-<form class="col s12" action="{{ url_for('drink', drink_id=drink._id) }}" method="POST">
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="editDrinkName" name="drinkName" type="text" placeholder="{{ drink.drinkName }}"
-          value="{{ drink.drinkName }}" class="validate" required>
-        <label for="editDrinkName">Drink Name</label>
+  <div class="modal-content">
+    <form class="col s12" action="{{ url_for('drink', drink_id=drink._id) }}" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="editDrinkName" name="drinkName" type="text" placeholder="{{ drink.drinkName }}"
+            value="{{ drink.drinkName }}" class="validate" required>
+          <label for="editDrinkName">Drink Name</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="url" id="editDrinkImage" name="drinkImage" type="text" placeholder="{{ drink.drinkImage }}"
-          value="{{ drink.drinkImage }}" class="validate" required>
-        <label for="editDrinkImage">Drink image link (jpg, jpeg, gif, or png)</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="url" id="editDrinkImage" name="drinkImage" type="text" placeholder="{{ drink.drinkImage }}"
+            value="{{ drink.drinkImage }}" class="validate" required>
+          <label for="editDrinkImage">Drink image link (jpg, jpeg, gif, or png)</label>
+        </div>
       </div>
-    </div>
-    <label for="editDrinkIngredients" class="label-ingredients">Drink Ingredients</label>
-    <div class="row drink-ingredients" id="editDrinkIngredients">
-
-      {% for ingredient in editIngredients|sort(attribute='ingredientName') %}
-      {% if ingredient.ingredientName in drink.ingredientList %}
-      <div class="col s12 m2 ingredients-item">
-        <p>
-          <label>
-            <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" checked />
-            <span>{{ ingredient.ingredientName }}</span>
-          </label>
-        </p>
+      <label for="editDrinkIngredients" class="label-ingredients">Drink Ingredients</label>
+      <div class="row drink-ingredients" id="editDrinkIngredients">
+        {% for ingredient in editIngredients|sort(attribute='ingredientName') %}
+        {% if ingredient.ingredientName in drink.ingredientList %}
+        <div class="col s12 m2 ingredients-item">
+          <p>
+            <label>
+              <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" checked />
+              <span>{{ ingredient.ingredientName }}</span>
+            </label>
+          </p>
+        </div>
+        {% else %}
+        <div class="col s12 m2 ingredients-item">
+          <p>
+            <label>
+              <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" />
+              <span>{{ ingredient.ingredientName }}</span>
+            </label>
+          </p>
+        </div>
+        {% endif %}
+        {% endfor %}
       </div>
-      {% else %}
-      <div class="col s12 m2 ingredients-item">
-        <p>
-          <label>
-            <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" />
-            <span>{{ ingredient.ingredientName }}</span>
-          </label>
-        </p>
+      <div class="row">
+        <div class="col s12 center-align">
+          <h5>Can't find your ingredient? <a href="#ingredientModal"
+              class="bold-headers modal-trigger modal-close">Click Here!</a></h5>
+        </div>
       </div>
-      {% endif %}
-      {% endfor %}
-    </div>
-    <div class="row">
-      <div class="col s12 center-align">
-        <h5>Can't find your ingredient? <a href="#ingredientModal" class="bold-headers modal-trigger modal-close">Click Here!</a></h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="editInstructions" name="instructions"
+            class="materialize-textarea">{{ drink.instructions }}</textarea>
+          <label for="editInstructions">Instructions</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <textarea id="editInstructions" name="instructions" class="materialize-textarea">{{ drink.instructions }}</textarea>
-        <label for="editInstructions">Instructions</label>
+      <div class="row">
+        <div class="col s12 center-align">
+          <button class="btn waves-effect waves-light themed-button" type="submit">Save Changes
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s12 center-align">
-        <button class="btn waves-effect waves-light themed-button" type="submit">Save Changes
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-    </div>
-
-
-  </form>
+    </form>
   </div>
-  </div>
+</div>

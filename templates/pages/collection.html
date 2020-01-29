@@ -1,36 +1,35 @@
 {% extends 'layout/base.html'%}
-
 {% block content %}
-
 <div class="recipes-collection">
-    <div class="row"> 
-    {% if drinkCount == 1 %}
-    {% for drink in drinks|sort(attribute='drinkName') %}
-    <a class="col s12 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
-        href="{{url_for('drink', drink_id=drink._id)}}">
-        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
-        <div class="collection-image">{{drink.drinkName}}</div>
-    </a>
-
-    {% endfor %}
-    {% elif drinkCount == 2 %}
-    {% for drink in drinks|sort(attribute='drinkName') %}
-    <a class="col s6 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
-        href="{{url_for('drink', drink_id=drink._id)}}">
-        <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
-        <div class="collection-image">{{drink.drinkName}}</div>
-    </a>
-    {% endfor %}
-    {% else %}
-    {% for drink in drinks|sort(attribute='drinkName') %}
-        <a class="col s3 l2 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
+    <div class="row">
+        {% if drinkCount == 1 %}
+        {% for drink in drinks|sort(attribute='drinkName') %}
+        <a class="col s12 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
             href="{{url_for('drink', drink_id=drink._id)}}">
-            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}" onError="this.onerror=null;this.src='../static/images/no-image.png';">
+            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}"
+                onError="this.onerror=null;this.src='../static/images/no-image.png';">
             <div class="collection-image">{{drink.drinkName}}</div>
         </a>
-
-    {% endfor %}
-    {% endif %}
-</div> 
+        {% endfor %}
+        {% elif drinkCount == 2 %}
+        {% for drink in drinks|sort(attribute='drinkName') %}
+        <a class="col s6 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
+            href="{{url_for('drink', drink_id=drink._id)}}">
+            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}"
+                onError="this.onerror=null;this.src='../static/images/no-image.png';">
+            <div class="collection-image">{{drink.drinkName}}</div>
+        </a>
+        {% endfor %}
+        {% else %}
+        {% for drink in drinks|sort(attribute='drinkName') %}
+        <a class="col s3 l2 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
+            href="{{url_for('drink', drink_id=drink._id)}}">
+            <img class="drink-image" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}"
+                onError="this.onerror=null;this.src='../static/images/no-image.png';">
+            <div class="collection-image">{{drink.drinkName}}</div>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

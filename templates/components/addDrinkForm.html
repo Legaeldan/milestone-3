@@ -1,55 +1,51 @@
 <div id="addDrinkModal" class="modal">
-    <div class="modal-content">
-<form class="col s12" action="{{ url_for('drink', drink_id='insertDrink') }}" method="POST">
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="addDrinkName" name="drinkName" type="text" class="validate" required>
-        <label for="addDrinkName">Drink Name</label>
+  <div class="modal-content">
+    <form class="col s12" action="{{ url_for('drink', drink_id='insertDrink') }}" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="addDrinkName" name="drinkName" type="text" class="validate" required>
+          <label for="addDrinkName">Drink Name</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="url" id="addDrinkImage" name="drinkImage" type="text" class="validate" required>
-        <label for="addDrinkImage">Drink image link (jpg, jpeg, gif, or png)</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="url" id="addDrinkImage" name="drinkImage" type="text" class="validate" required>
+          <label for="addDrinkImage">Drink image link (jpg, jpeg, gif, or png)</label>
+        </div>
       </div>
-    </div>
-    <label for="addDrinkIngredients" class="label-ingredients">Drink Ingredients</label>
-    <div class="row drink-ingredients" id="addDrinkIngredients">
-
-      {% for ingredient in ingredients|sort(attribute='ingredientName') %}
-      <div class="col s12 m2 ingredients-item">
-        <p>
-          <label>
-            <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" />
-            <span>{{ ingredient.ingredientName }}</span>
-          </label>
-        </p>
+      <label for="addDrinkIngredients" class="label-ingredients">Drink Ingredients</label>
+      <div class="row drink-ingredients" id="addDrinkIngredients">
+        {% for ingredient in ingredients|sort(attribute='ingredientName') %}
+        <div class="col s12 m2 ingredients-item">
+          <p>
+            <label>
+              <input type="checkbox" name="ingredientName" value="{{ ingredient.ingredientName }}" />
+              <span>{{ ingredient.ingredientName }}</span>
+            </label>
+          </p>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
-    <div class="row">
-      <div class="col s12 center-align">
-        <h5 id="new-ingredient">Can't find your ingredient? <a href="#ingredientModal" class="bold-headers modal-trigger modal-close">Click Here!</a></h5>
+      <div class="row">
+        <div class="col s12 center-align">
+          <h5 id="new-ingredient">Can't find your ingredient? <a href="#ingredientModal"
+              class="bold-headers modal-trigger modal-close">Click Here!</a></h5>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <textarea id="addInstructions" name="instructions" class="materialize-textarea"></textarea>
-        <label for="addInstructions">Instructions</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="addInstructions" name="instructions" class="materialize-textarea"></textarea>
+          <label for="addInstructions">Instructions</label>
+        </div>
       </div>
-    </div>
-
-
-
-    <div class="row">
-      <div class="col s12 center-align">
-        <button id="add-button" class="large-button btn waves-effect waves-light themed-button" type="submit">Add drink
-          <i class="material-icons right">send</i>
-        </button>
+      <div class="row">
+        <div class="col s12 center-align">
+          <button id="add-button" class="large-button btn waves-effect waves-light themed-button" type="submit">Add
+            drink
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
       </div>
-    </div>
-
-  </form>
+    </form>
   </div>
-  </div>
+</div>

@@ -1,5 +1,4 @@
 {% extends 'layout/base.html'%}
-
 {% block content %}
 <div class="row remove-valign">
     <h2 class="bold-headers">Search by Ingredient</h2>
@@ -25,7 +24,6 @@
 <div class="row">
     <div class="col s12">
         {% if request.method == 'POST' %}
-
         {% if not ingredient %}
         <h3>No ingredient selected!</h3>
         {% else %}
@@ -36,9 +34,6 @@
         <h3>Drinks containing {{ ingredient.ingredientList }}</h3>
         {% endif %}
         {% endif %}
-
-
-
         {% for drink in drinks|sort(attribute='drinkName') %}
         {% if ingredient.ingredientList in drink.ingredientList %}
         <a class="col s4 m3 l2 center link-image" href="{{url_for('drink', drink_id=drink._id)}}">

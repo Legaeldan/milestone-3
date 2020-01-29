@@ -1,40 +1,40 @@
 <div id="loginModal" class="modal user-modal">
     <div class="modal-content">
-                <form id="login-form" method=POST action="{{ url_for('login') }}">
-                    <div class="row">
-                        <div class="col s12">
-                            <h3 class="center bold-headers">Login</h3>
-                            {% if exists == 0 %}
-                            <h5 class="center">Invalid username/password</h5>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s10 offset-s1">
-                            <input id="modal-username" type="text" class="validate" name="username" required>
-                            <label for="modal-username">Username</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s10 offset-s1">
-                            <input id="modal-password" type="password" class="validate" name="password" required>
-                            <label for="modal-password">Password</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="center-align">
-                            <button class="large-button btn waves-effect waves-light themed-button" type="submit" name="action">Log In
-                                <i class="material-icons">vpn_key</i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="center-align">
-                            Don't have an account? <a href="#registerModal" class="bold-headers modal-trigger modal-close">Sign up here</a>.
-                        </div>
-                    </div>
-                </form>
-
+        <form id="login-form" method=POST action="{{ url_for('login') }}">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center bold-headers">Login</h3>
+                    {% if exists == 0 %}
+                    <h5 class="center">Invalid username/password</h5>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="modal-username" type="text" class="validate" name="username" required>
+                    <label for="modal-username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="modal-password" type="password" class="validate" name="password" required>
+                    <label for="modal-password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center-align">
+                    <button class="large-button btn waves-effect waves-light themed-button" type="submit"
+                        name="action">Log In
+                        <i class="material-icons">vpn_key</i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center-align">
+                    Don't have an account? <a href="#registerModal" class="bold-headers modal-trigger modal-close">Sign
+                        up here</a>.
+                </div>
+            </div>
+        </form>
     </div>
-
-  </div>
+</div>

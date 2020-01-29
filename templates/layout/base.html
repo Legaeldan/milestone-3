@@ -18,23 +18,21 @@
 </head>
 
 <body>
-{% include 'layout/nav.html' %}
+    {% include 'layout/nav.html' %}
     <div class="container content valign-wrapper">
         {% block content %} {% endblock %}
     </div>
-{% include 'layout/footer.html' %}
+    {% include 'layout/footer.html' %}
 
-{% if 'username' not in session %}
-{% include 'components/loginForm.html' %}
-{% include 'components/registerForm.html' %}
-{% else %}
-{% include 'components/addDrinkForm.html' %}
-{% include 'components/addIngredient.html' %}
-{% endif %}
-{% include 'components/fab.html' %}
-{% include 'layout/sidenav.html' %}
-
-
+    {% if 'username' not in session %}
+    {% include 'components/loginForm.html' %}
+    {% include 'components/registerForm.html' %}
+    {% else %}
+    {% include 'components/addDrinkForm.html' %}
+    {% include 'components/addIngredient.html' %}
+    {% endif %}
+    {% include 'components/fab.html' %}
+    {% include 'layout/sidenav.html' %}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../static/js/drinkSplash.js"></script>
