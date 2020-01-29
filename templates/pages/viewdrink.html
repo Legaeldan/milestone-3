@@ -1,5 +1,4 @@
 {% extends 'layout/base.html'%}
-
 {% block content %}
 {% if exists == 1 %}
 <h1 class="bold-headers existing center">DRINK ALREADY EXISTS</h1>
@@ -7,50 +6,48 @@
 <div id="drinkResponse" class="row discover-container valign-wrapper remove-valign">
     <div class="col s12 m6 center">
         <h3 class="bold-headers">{{drink.drinkName}}</h3>
-        <img id="discover-image" class="discover-drink" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}"  onError="this.onerror=null;this.src='../static/images/no-image.png';">
-        <div class="bold-headers">Crafted by: <a href="{{ url_for('collection', collectionType=drink.createdBy) }}">{{drink.createdBy}}</a></div>
+        <img id="discover-image" class="discover-drink" src="{{drink.drinkImage}}" alt="{{drink.drinkName}}"
+            onError="this.onerror=null;this.src='../static/images/no-image.png';">
+        <div class="bold-headers">Crafted by: <a
+                href="{{ url_for('collection', collectionType=drink.createdBy) }}">{{drink.createdBy}}</a></div>
     </div>
     <div class="col s12 m6 center">
-            <h4 class="bold-headers">Ingredients</h4>
-            <div class="related-drinks">Click ingredient for related drinks</div>
-            <ul class="ingredients-list">
-                {% for ingredient in drink.ingredientList %}
-                {% if loop.last %}
-                <li>
-                    <a class="drink_ingredient"
-                        href="{{ url_for('ingredients', ingredient_name=ingredient) }}">{{ ingredient }}</a>
-                </li>
-                {% else %}
-                <li>
-                    <a class="drink_ingredient"
-                        href="{{ url_for('ingredients', ingredient_name=ingredient) }}">{{ ingredient }}</a>
-                </li>
-                <li>,</li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-            <h4 class="bold-headers">Instructions</h4>
-            <div class="discover-drink">
-                {{ drink.instructions }}
-            </div>
-    
+        <h4 class="bold-headers">Ingredients</h4>
+        <div class="related-drinks">Click ingredient for related drinks</div>
+        <ul class="ingredients-list">
+            {% for ingredient in drink.ingredientList %}
+            {% if loop.last %}
+            <li>
+                <a class="drink_ingredient"
+                    href="{{ url_for('ingredients', ingredient_name=ingredient) }}">{{ ingredient }}</a>
+            </li>
+            {% else %}
+            <li>
+                <a class="drink_ingredient"
+                    href="{{ url_for('ingredients', ingredient_name=ingredient) }}">{{ ingredient }}</a>
+            </li>
+            <li>,</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <h4 class="bold-headers">Instructions</h4>
+        <div class="discover-drink">
+            {{ drink.instructions }}
+        </div>
     </div>
-
-
 </div>
 {% if session['username'] == drink.createdBy or session['username'] == 'admin' %}
 <div class="row">
     <div class="col s12 m6 center-align">
-        <a class="large-button waves-effect waves-light btn themed-button modal-trigger"
-            href="#editModal">EDIT DRINK</a>
+        <a class="large-button waves-effect waves-light btn themed-button modal-trigger" href="#editModal">EDIT
+            DRINK</a>
     </div>
     <div class="col s12 m6 center-align">
         <a id="delete-button"
             class="large-button waves-effect waves-light btn delete-button themed-button modal-trigger"
-            href="#deleteModal">DELETE DRINK</a i>
+            href="#deleteModal">DELETE DRINK</a>
     </div>
 </div>
-
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <h4>Delete Drink?</h4>
@@ -62,8 +59,6 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
     </div>
 </div>
-
 {% include 'components/editForm.html' %}
 {% endif %}
-
 {% endblock %}
