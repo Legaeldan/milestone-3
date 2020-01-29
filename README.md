@@ -146,9 +146,13 @@ The main approach to this application is made to easy to maintain, and easy to u
     - This can also be done from the view drink page by clicking any ingredient on the list. The user will then be directed to the ingredients page, and returned all drinks containing that ingredient.
 
 8. **Add Drink/Edit Drink Modal**
+    - A modal style add and edit modal for easy addition of drinks. This feature does away with the need for extra pages to handle the requests.
+    - This simplified version results in the addition of drinks facility being available on any page the user may be on.
 
 
 9. **Switchable Menu**
+    - The accommodate more traditional users of the site, I have added in a switchable function via Javascript to switch from the new style FAB menu, and a classic navbar style menu.
+    - This feature is also persistence on devices when switched. Even after a session is closed, the users choice is still registered if they favour the FAB menu style.
 
 10. **One to Many Relationships**
     - To improve the site, I have implimented a one-to-many model through MongoDB. This means that information like ingredients would not all have to be stored in one document, and facilitate the search engine being able to pull multiple connected documents.
@@ -325,6 +329,12 @@ Testing for end user experience and defensive design was done by myself, and out
 
 - **Ingredient List on Mobile**
     An issue arose when adding a drink. When the user scrolls through the ingredients list and selects an item further down the list than the view height. The modal will expand as if the list behind is at full height. This issue has not been replicated on desktop.
+
+- **Menu overlay on mobile**
+    When on mobile, and switching from the classic menu to the FAB menu. The overlay remains in place until the user taps again anywhere on the screen. I have tested hiding this overlay on click using jQuery, but it results in the menu opening and sticking on screen when switching back to classic menu. The only way to exit them menu when this happens is clicking another link.
+
+- **Tooltip showing incorrectly**
+    When on mobile, tooltips show up incorrectly when clicking the menu switch icon. The tooltips show at the top of the screen until the user clicks again. I have yet to resolve this issue.
 
 <img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/testing3.png?raw=true" alt="Test Results 3"/>
 
