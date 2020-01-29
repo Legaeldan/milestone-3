@@ -16,17 +16,22 @@ MONGO = PyMongo(APP)
 
 @APP.errorhandler(404)
 def page_not_found(e):
+    """
+    Returns page not found message on error page.
+    """
     return render_template('pages/error.html', headerTitle="Error - Page Not Found", message=e), 404
 
 @APP.errorhandler(401)
 def not_authorized(e):
+    """
+    Returns unathorized message on error page.
+    """
     return render_template('pages/error.html', headerTitle="Error - Not Authorized", message=e), 401
 
 @APP.route('/')
 def home():
     """
     Renders homepage, and generates all drinks in db.
-
     Sorts in reverse order by key modifiedDate.
     """
     today = datetime.datetime.now()
@@ -42,18 +47,21 @@ def home():
 def logout():
     """
     Checks if user is logged in. Prevents non-logged in users accessing logout function.
-
     If user is logged in, terminate session.
-
     If no user logged in, sent to home page.
     """
     if 'username' in session:
         session.pop('username')
     return redirect(url_for('home'))
 
-
+#Below definition is taken and tailored from PrettyPrinted. Please refer to Credits section of README.md for more info.
 @APP.route('/login', methods=['POST', 'GET'])
 def login():
+    """
+    Cross references supplied login info with DB.
+    If correct, sets session to username.
+    If failure, returns login page with error.
+    """
     if request.method == 'POST':
         form = request.form.to_dict()
         users = MONGO.db.users
@@ -67,9 +75,16 @@ def login():
                                invalid=True)
     return render_template('pages/login.html')
 
-
+#Below definition is taken and tailored from PrettyPrinted. Please refer to Credits section of README.md for more info.
 @APP.route('/register', methods=['POST', 'GET'])
 def register():
+    """
+    Checks is user already exists.
+    Encrypts the supplied password using a generated salt.
+    Pushes information in form to database.
+    Logs in user, and returns to home.
+    Failures return to register page with message.
+    """
     if request.method == 'POST':
         form = request.form.to_dict()
         users = MONGO.db.users
@@ -97,7 +112,6 @@ def register():
 def ingredients(ingredient_name):
     """
     Renders all ingredients within page.
-
     Retrieves all documents from ingredients database.
     """
     ingredients_list = MONGO.db.ingedients.find()
@@ -131,6 +145,9 @@ def ingredients(ingredient_name):
 def collection(collectionType):
     """
     Renders page which display all drinks in drinks database.
+    If username supplied, shows only drinks by that user.
+    If my drinks argument supplied, returns users own drinks.
+    On error, returns a user not found error page.
     """
     print("Collection type below")
     print(collectionType)
@@ -171,7 +188,9 @@ def collection(collectionType):
 @APP.route('/add-ingredient', methods=['POST', 'GET'])
 def add_ingredient():
     """
-    Renders standard add ingredient page.
+    Takes info from ingredient modal.
+    Checks DB for record. If no record found, posts to DB.
+    If record found, returns error with already existing.
     """
     if 'username' in session:
         if request.method == 'POST':
@@ -199,6 +218,10 @@ def add_ingredient():
 def drink(drink_id):
     """
     Renders page for viewing all drink details for drink found in DB.
+    On POST, checks DB from drink of the same name.
+    On returning record, reroutes to drink page that already exists.
+    When no record found, posts drink to DB, and redirects back to new page.
+    With randomDrink argument, returns a random drink from database.
     """
     try:
         if request.method == 'POST':
@@ -273,7 +296,9 @@ def drink(drink_id):
 @APP.route('/delete-drink/<drink_id>')
 def delete_drink(drink_id):
     """
+    Checks if delete request comes from drink creator.
     Deletes drink from collection once confirmed on page.
+    Returns error if drink doesn't exists, or incorrect info provided in URL.
     """
     try:
         the_drink = MONGO.db.drinks.find_one({"_id": ObjectId(drink_id)})
