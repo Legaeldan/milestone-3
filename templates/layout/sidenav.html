@@ -11,12 +11,12 @@
             <li><a href="{{ url_for('collection') }}">Collection</a></li>
             <li><a id="sideNavToggle">ToggleMenu</a></li>
             {% if 'username' in session %}
-            <ul id="main-dropdown" class="dropdown-content">
+            <ul id="side-dropdown" class="dropdown-content">
                 <li><a href="{{  url_for('collection', collectionType='my-drinks') }}">My Drinks</a></li>
                 <li class="divider"></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
-            <li><a class="dropdown-trigger" href="#!" data-target="main-dropdown">{{ session['username'] }}<i
+            <li><a class="dropdown-trigger" href="#!" data-target="side-dropdown">{{ session['username'] }}<i
                         class="material-icons right">arrow_drop_down</i></a></li>
             {% else %}
             <li><a class="modal-trigger" href="#loginModal">Login</a></li>
