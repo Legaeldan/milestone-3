@@ -391,8 +391,9 @@ Testing for end user experience and defensive design was done by myself, and out
 - [Font Awesome](https://fontawesome.com/)
     - The project uses **Font Awesome** to style additional website icon links.
 - [HTML Validator](https://validator.w3.org/)
-    - This project utilised the HTML validator provided by W3C to check and correct any issues in my current HTML code.  
-
+    - This project utilised the HTML validator provided by W3C to check and correct any issues in my current HTML code.
+- [Coolors](https://coolors.co/)
+    - Coolors.co was used in the initial phase of the project to outline, and define the colour scheme of the overall project.
 ## Deployment
 
 This project was developed using [Visual Studio Code](https://code.visualstudio.com/), [Python](https://www.python.org/), and [Git](https://git-scm.com/downloads), committed to a local [Git](https://git-scm.com/downloads) repository, and pushed to [GitHub](https://github.com/Legaeldan/milestone-3) using a locally installed version of [Git](https://git-scm.com/downloads) via command prompt.
@@ -473,6 +474,8 @@ For more help on cloning a repository on Github, please click [here](https://hel
 ## Credits
 
 Inspiration for this project was found at [TheCocktailDB](https://www.thecocktaildb.com/), an open, crowd-sourced database and JSON API. I used this model as inspiration to emulate this system in MongoDB. I liked the concept initially, but wasn't happy with the design or overall layout. I hoped to improve on this with this project.
+
+Code for structure and layout was taken from the [Materialize Framework](https://materializecss.com/getting-started.html) documentation site, and edited to suit the purpose of this project.
 
 Credit also to [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) for their tutorial on the - [Flask Login System](https://github.com/PrettyPrinted/mongodb-user-login).
 
