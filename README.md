@@ -347,6 +347,9 @@ Testing for end user experience and defensive design was done by myself, and out
 - **PEP Standards**
     During linting of the python application, and warning occured on lines 154 & 256 that state an unneccessary elif statement was used after a return. I have tested the program both with, and without these elif statements, and found the function does not complete as expected without these statements. I have not yet found the cause of the warnings.
 
+- **Add ingredient redirect**
+    Testing had shown that when adding an ingredient through the modal of add ingredient. Once submitted, the user was redirected to the home page, and had to begin the add drink process again. Unfortunately this is by design, as the data needs to be submitted, and retrieved again. I have yet to find a solution that would capture the data, and return to the users modal without destroy any unsaved data.  
+
 ## Technologies Used
 
 ### Languages:
