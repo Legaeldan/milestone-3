@@ -2,24 +2,24 @@
 
 <aside>
     <ul class="sidenav toggleNavbar" id="mobile-nav">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('drink', drink_id='randomDrink')  }}">Random</a></li>
+        <li><a href="{{ url_for('home') }}"><i class="material-icons">home</i>Home</a></li>
+            <li><a href="{{ url_for('drink', drink_id='randomDrink')  }}"><i class="fas fa-dice-five"></i>Random</a></li>
             {% if 'username' in session %}
-            <li><a class="modal-trigger" href="#addDrinkModal">Add Drink</a></li>
+            <li><a class="modal-trigger" href="#addDrinkModal"><i class="material-icons">add</i>Add Drink</a></li>
             {% endif %}
-            <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
-            <li><a href="{{ url_for('collection') }}">Collection</a></li>
-            <li><a id="sideNavToggle">ToggleMenu</a></li>
+            <li><a href="{{ url_for('ingredients') }}"><i class="fas fa-wine-bottle"></i>Ingredients</a></li>
+            <li><a href="{{ url_for('collection') }}"><i class="material-icons">local_drink</i>Collection</a></li>
+            <li><a id="sideNavToggle"><i class="material-icons">sync</i>ToggleMenu</a></li>
             {% if 'username' in session %}
             <ul id="side-dropdown" class="dropdown-content">
-                <li><a href="{{  url_for('collection', collectionType='my-drinks') }}">My Drinks</a></li>
+                <li><a href="{{  url_for('collection', collectionType='my-drinks') }}"><i class="material-icons">check</i>My Drinks</a></li>
                 <li class="divider"></li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('logout') }}"><i class="material-icons">vpn_key</i>Logout</a></li>
             </ul>
             <li><a class="dropdown-trigger" href="#!" data-target="side-dropdown">{{ session['username'] }}<i
                         class="material-icons right">arrow_drop_down</i></a></li>
             {% else %}
-            <li><a class="modal-trigger" href="#loginModal">Login</a></li>
+            <li><a class="modal-trigger" href="#loginModal"><i class="material-icons">vpn_key</i>Login</a></li>
         {% endif %}
     </ul>
 </aside>
