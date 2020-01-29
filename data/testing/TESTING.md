@@ -45,22 +45,21 @@
   - **Verdict:** Test passed, and feature is working as expected.
 
   **Switchable Menu**
-  - **Planning:**
-  - **Testing (Phase 1):**
-  - **Testing (Phase 2):**
-  - **Results:**
-  - **Verdict:**
+  - **Planning:** A classic menu structure for users less familiar with the page, or the concept of a FAB menu.
+  - **Testing (Phase 1):** Testing the toggle for the menu yielded promising results. During testing it was discovered that storage of the menu the user prefers needed to be held. Local storage via JS was implimented during this phase. The addition of a hide class was implimented to add and remove on certain clicks.
+  - **Results:** User can toggle between menu styles, and option is persistent over multiple closures of browsers.
+  - **Verdict:** Test passed as expected, and is working.
 
   **Add Drink/Edit Drink Modal**
-  - **Planning:**
-  - **Testing (Phase 1):**
-  - **Testing (Phase 2):**
-  - **Results:**
-  - **Verdict:**
+  - **Planning:** A simple modal to add and edit drinks, reducing page switching. Creating a more streamline solution, and a neater layout overall.
+  - **Testing (Phase 1):** Initial testing worked well, but was later discovered that the ingredient list did not generate for adding a drink if the logged in user had the ability to edit a drink. If the user was on one of their own creations, the loop that generates the list ended, and could not be iterated again.
+  - **Testing (Phase 2):** A secondary retrieval of ingredients from the DB was implimented, and named specifically for a secondary modal. 
+  - **Results:** After implimentation of a secondary loop, the modals populate correctly.
+  - **Verdict:** Testing passed as expected.  
 
   **Drink Search**
-  - **Planning:**
-  - **Testing (Phase 1):**
-  - **Testing (Phase 2):**
-  - **Results:**
-  - **Verdict:**
+  - **Planning:** A method to search drinks based on ingredients, so users can narrow results based on certain items contained in drink.
+  - **Testing (Phase 1):** A simple list generated into a form facilitates searching the DB for a particular item. Search iterates over every ingredient on each drink, ensuring full coverage of all DB items. 
+  - **Testing (Phase 2):** A secondary method was implimented from the view drink page. A simple way to return the above tests, but via clicking an ingredient link on the view drink ingredients section.
+  - **Results:** User has multiple methods of searching for drinks based on an ingredient.
+  - **Verdict:** All tests passed.
