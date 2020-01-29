@@ -252,7 +252,9 @@ During planning and development, defensive design was taken into account. The pl
 
 To show the performance of the site overall. An audit was run at the final stage of development, and the results are posted as below. Due to limitations of the Heroku platform, the audit failed on Best Practices. A requirement for HTTPS lowered the overall score of this test.
 
+<div align="center">
 <img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/auditresults.png?raw=true" alt="Audit Results"/>
+</div>
 
 **Example:**
  - **Planning:** A function is needed to remove the drink should the user not be happy with the outcome, or the drink is not required anymore. 
