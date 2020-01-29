@@ -12,7 +12,6 @@
             {% endif %}
             <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
             <li><a href="{{ url_for('collection') }}">Collection</a></li>
-            <li><a id="MainNavToggle">ToggleMenu</a></li>
             {% if 'username' in session %}
             <ul id="main-dropdown" class="dropdown-content">
                 <li><a href="{{  url_for('collection', collectionType='my-drinks') }}">My Drinks</a></li>
@@ -24,6 +23,7 @@
             {% else %}
             <li><a class="modal-trigger" href="#loginModal">Login</a></li>
             {% endif %}
+            <li><a id="MainNavToggle"><i class="material-icons">sync</i></a></li>
         </ul>
     </div>
 </nav>
