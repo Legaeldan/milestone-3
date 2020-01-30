@@ -1,7 +1,6 @@
 {% extends 'layout/base.html'%}
 {% block content %}
-<div class="recipes-collection">
-    <div class="row">
+<div class="row center recipes-collection">
         {% if drinkCount == 1 %}
         {% for drink in drinks|sort(attribute='drinkName') %}
         <a class="col s12 link-image center" data-position="bottom" data-tooltip="{{ drink.drinkName }}"
@@ -30,6 +29,5 @@
         </a>
         {% endfor %}
         {% endif %}
-    </div>
 </div>
 {% endblock %}
