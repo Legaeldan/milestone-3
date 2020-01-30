@@ -250,6 +250,12 @@ As a first attempt at Python/Flask programming, the code had to be scrutinized, 
 
 During planning and development, defensive design was taken into account. The planning of testing was split into two section. **Functionality** and **Defensive Design**. Each function was planned out carefully, then a subsection to testing was added for defensive design, in which that particular function was given every possible variable a user could give, and tested for unwanted activation.
 
+To show the performance of the site overall. An audit was run at the final stage of development, and the results are posted as below. Due to limitations of the Heroku platform, the audit failed on Best Practices. A requirement for HTTPS lowered the overall score of this test.
+
+<div align="center">
+<img src="https://github.com/Legaeldan/milestone-3/blob/master/static/images/testing/auditresults.png?raw=true" alt="Audit Results"/>
+</div>
+
 **Example:**
  - **Planning:** A function is needed to remove the drink should the user not be happy with the outcome, or the drink is not required anymore. 
  - **Testing (Phase 1):** The function does as required, and removed the entire entry from the database.
