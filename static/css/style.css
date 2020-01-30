@@ -12,8 +12,6 @@ body {
   flex: 1;
 }
 
-/*Layout styling*/
-
 .brand-logo {
   font-weight: bold;
   color: #FFD700 !important;
@@ -31,23 +29,22 @@ nav ul a:hover {
   padding-top: 0px;
 }
 
-nav, .page-footer {
+nav,
+.page-footer {
   background-color: #24292e;
 }
 
-.footer-copyright, .footer-github {
+.footer-copyright,
+.footer-github {
   text-align: center;
 }
-
-/*End Layout Styling*/
-/*Form Styling*/
 
 .input-field>label {
   color: #383838;
 }
 
-/*End Form*/
-#home-heading, .footer-margin {
+#home-heading,
+.footer-margin {
   margin-bottom: 0;
 }
 
@@ -55,19 +52,20 @@ nav, .page-footer {
   width: 100%;
 }
 
-.drink-image {  
-width: 100%;
-border: 3px solid #ABABAB;
-border-radius: 50%;
-box-shadow: 0 0px 8px 2px black;
-background-color: #696969;
+.drink-image {
+  width: 100%;
+  border: 3px solid #ABABAB;
+  border-radius: 50%;
+  box-shadow: 0 0px 8px 2px black;
+  background-color: #696969;
 }
 
-.bold-headers{
+.bold-headers {
   font-weight: bold;
 }
 
-h5, .existing {
+h5,
+.existing {
   color: red;
 }
 
@@ -132,16 +130,18 @@ h6 {
   box-shadow: 0 0px 8px 2px black;
 }
 
-.dropdown-content, .sidenav {
+.dropdown-content,
+.sidenav {
   background-color: #ececec;
 }
 
-.dropdown-content li>a, .sidenav li>a {
+.dropdown-content li>a,
+.sidenav li>a {
   color: #000000;
 }
 
 nav ul a:hover {
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0, 0, 0, .4);
 }
 
 .delete-button {
@@ -172,7 +172,9 @@ nav ul a:hover {
   font-size: 1.5rem
 }
 
-h2, h3, .collection-image  {
+h2,
+h3,
+.collection-image {
   text-align: center;
 }
 
@@ -205,7 +207,7 @@ h2, h3, .collection-image  {
   border: 1px solid #cccccc;
   border-radius: 16px;
   overflow-x: hidden;
-  position:relative;
+  position: relative;
 }
 
 .drink-ingredients span,
@@ -292,7 +294,7 @@ margin-bottom: 5%;
   background-color: #eaeaea;
 }
 
-.modal{
+.modal {
   box-shadow: 0 0;
 }
 
@@ -304,60 +306,60 @@ margin-bottom: 5%;
   .footer-copyright {
     text-align: left;
   }
-  
+
   .footer-github {
     text-align: right;
   }
 
-.ingredients-item {
-  min-height: 80px !important; 
-}
+  .ingredients-item {
+    min-height: 80px !important;
+  }
 
-#error-image {
-  width: 50%;
-}
+  #error-image {
+    width: 50%;
+  }
 
-.user-modal {
-  width: 50%;
-  max-height: 100%;
-}
+  .user-modal {
+    width: 50%;
+    max-height: 100%;
+  }
 
-.large-button {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  margin: 0 0 40px 0;
-  max-width: 280px;
-}
+  .large-button {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 0 40px 0;
+    max-width: 280px;
+  }
 
-.drink-image {  
-  width: 40%;
-}
+  .drink-image {
+    width: 40%;
+  }
 
-.drink-image {  
-  width: 40%;
-}
+  .drink-image {
+    width: 40%;
+  }
 
-.dropdown-content {
-  top: 100% !important
-}
+  .dropdown-content {
+    top: 100% !important
+  }
 
-#latest-drinks {
-  padding-top: 5%;
-  margin-top: 0;
-}
+  #latest-drinks {
+    padding-top: 5%;
+    margin-top: 0;
+  }
 
-.collection-image {
-  font-size: 1.5rem;
-}
+  .collection-image {
+    font-size: 1.5rem;
+  }
 
-.drink-home{
-  font-size: 2.92rem;
-}
+  .drink-home {
+    font-size: 2.92rem;
+  }
 
-.discover-container {
-  display: flex;
-}
+  .discover-container {
+    display: flex;
+  }
 
 }
 
